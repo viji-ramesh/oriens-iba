@@ -1,0 +1,243 @@
+﻿<div class="container-fluid" ng-controller="Orders_ctrl">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row top-row-strip">
+                <div class="col-md-12">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"> Order</li>
+                        <li class="breadcrumb-item active">IVR KIT REPORT</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row ">
+        <div class="col-md-12 " ng-show="showpList1">
+            <div class="card p-3">
+                <div class="row">
+                    <div class="col-md-8 mx-auto">
+                        <div class="example-wrap" ng-show="showpList1">
+                            <div class="example">
+                                <form name="Form">
+                                    <div class="form-group row">
+                                        <label class="col-md-2 col-form-label">
+                                            <input type="radio" ng-model="rtype" value="All" ng-checked="true">&nbsp; All
+                                        </label>
+                                        <div class="col-md-8">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-2 col-form-label">
+                                            <input type="radio" ng-model="rtype" value="On">&nbsp;On
+                                        </label>
+                                        <div class="col-md-3">
+                                            <input type="Date" class="form-control" name="txtondate" ng-model="txtondate" placeholder="On Date">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-2 col-form-label">
+                                            <input type="radio" ng-model="rtype" value="From">&nbsp;From
+                                        </label>
+                                        <div class="col-md-3">
+                                            <input type="Date" class="form-control" name="txtfrmdate" ng-model="txtondate" placeholder="From Date">
+                                        </div>
+                                        <label class="col-md-2 col-form-label">
+                                            To
+                                        </label>
+                                        <div class="col-md-3">
+                                            <input type="Date" class="form-control" name="txttodate" ng-model="txttodate" placeholder="To Date">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row" style="display: none">
+                                        <label class="col-md-2 col-form-label">
+                                            <input type="checkbox" ng-model="chkidno">User ID
+                                        </label>
+                                        <div class="col-md-3">
+                                            <input type="text" class="form-control" name="txtidnos" ng-model="txtidnos" placeholder="IBA No.">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-2 col-form-label">
+                                            &nbsp; Order Type
+                                        </label>
+                                        <div class="col-md-3">
+                                            <select ng-model="ddlrtype" id="desgid" class="form-control">
+                                                <option ng-selected="true" value="0">SELF</option>
+                                                <option value="1">CUSTOMER</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-4 col-form-label">
+                                        </label>
+                                        <div class="col-md-8">
+                                            <button type="submit" class="btn btn-primary" ng-click="getIVRKitReport(ddlrtype,txtidnos,chkidno)">
+                                                Submit
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row" ng-show="showpList2">
+        <div class="col-md-6">
+            <img src="images/backimg.jpg" style="width: 80px; height: 35px" ng-click="backOnlineOrders()" />
+        </div>
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-3 col-md-offset-9">
+            <input type="text" ng-model="search" class="form-control" placeholder="Search">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class=" table-responsive">
+                <table class="table table-bordered table-striped f-14"
+                       ng-show="showpList2">
+                    <thead>
+                        <tr class="table-header">
+
+                            <th>
+                                S No.
+                            </th>
+                            <th>
+                                Idno
+                            </th>
+                            <th>
+                                Name
+                            </th>
+                            <th>
+                                Bill No
+                            </th>
+                            <th>
+                                Bill Date
+                            </th>
+                            <th>
+                                KIT ID
+                            </th>
+                            <th>
+                                KIT Name
+                            </th>
+                            <th>
+                                Amont
+                            </th>
+                            <th>
+                                PV
+                            </th>
+                            <th>
+                                MOP
+                            </th>
+                            <th>
+                                Status
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr dir-paginate="x in ivrkit | filter:search | itemsPerPage:ItemsperPage track by $index">
+                            <td>
+                                {{$index+1}}
+                            </td>
+                            <td>
+                                {{x.idno}}
+                            </td>
+                            <td>
+                                {{x.Name}}
+                            </td>
+                            <td>
+                                <a>
+                                    <label style="color: Blue" ng-click="getInvoice(x.billno,x.BillDate)">
+                                        {{x.billno}}
+                                    </label>
+                                </a>
+                            </td>
+                            <td>
+                                {{x.Purdate}}
+                            </td>
+                            <td>
+                                <a>
+                                    <label style="color: Blue" ng-click="getIVRKitReport('getkit',x.KID,x.billno)">
+                                        {{x.KID}}
+                                    </label>
+                                </a>
+                            </td>
+                            <td>
+                                {{x.KitName}}
+                            </td>
+                            <td>
+                                {{x.Amount}}
+                            </td>
+                            <td>
+                                {{x.BV}}
+                            </td>
+                            <td>
+                                {{x.mop}}
+                            </td>
+                            <td>
+                                {{x.OrdSts}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table table-bordered table-striped f-14" ng-show="showpList3">
+                    <thead>
+                        <tr class="table-header">
+                            <th>
+                                KIT ID
+                            </th>
+                            <th>
+                                Pcode
+                            </th>
+                            <th>
+                                PName
+                            </th>
+                            <th>
+                                MRP
+                            </th>
+                            <th>
+                                Qty
+                            </th>
+                            <th>
+                                Amount
+                            </th>
+                            <th>
+                                PV
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="y in ivrkitlist">
+                            <td>
+                                {{y.KID}}
+                            </td>
+                            <td>
+                                {{y.pcode}}
+                            </td>
+                            <td>
+                                {{y.pname}}
+                            </td>
+                            <td>
+                                {{y.MRP}}
+                            </td>
+                            <td>
+                                {{y.qty}}
+                            </td>
+                            <td>
+                                {{y.amount}}
+                            </td>
+                            <td>
+                                {{y.BV}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

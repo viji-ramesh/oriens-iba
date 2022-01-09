@@ -1,0 +1,99 @@
+﻿<div class="container-fluid" ng-controller="ShareProduct_ctrl">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row top-row-strip">
+                <div class="col-md-12">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"> Profile</li>
+                        <li class="breadcrumb-item active">PRODUCT SHARING</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-md-12 ">
+                    <div class="card p-3">
+                        <div class="row">
+                            <div class="col-md-8 mx-auto">
+                                <form name="Form2">
+                                    <div class="form-group row">
+                                        <label class="col-md-2 col-form-label">
+                                            Search :
+                                        </label>
+                                        <div class="col-md-8">
+                                            <div class="row">
+                                                <div class="col-md-7">
+                                                    <input type="text" class="form-control" name="txtPcode" ng-model="txtPcode"
+                                                           placeholder="Product Code">
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <button type="submit" class="btn btn-primary" ng-click="getProductURL(txtPcode)">
+                                                        Search
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-2 col-form-label">
+                                            Url :
+                                        </label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" name="txtUrl" ng-model="txtUrl" placeholder="Product Url">
+                                        </div>
+                                    </div>
+                                </form>
+
+                                <div class="form-group row">
+                                    <label class="col-md-2 col-form-label">
+                                        Share To :
+                                    </label>
+                                    <div class="col-md-8">
+                                        <input type="radio" ng-model="mtype" ng-change="ShowEmail(mtype)" ng-checked="true"
+                                               value="guest">
+                                        New Member
+                                        <input type="radio" ng-model="mtype" ng-change="ShowEmail(mtype)" value="member">
+                                        Member
+                                    </div>
+                                </div>
+                                <div class="example-wrap">
+                                    <div class="example">
+                                        <form name="Form">
+                                            <div class="form-group row" ng-show="tomember">
+                                                <label class="col-md-2 col-form-label">
+                                                    Email :
+                                                </label>
+                                                <div class="col-md-8">
+                                                    <textarea class="form-control" ng-model="txtemails" placeholder="abc@example.com,xyz@example.com"
+                                                              required></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-md-2 col-form-label">
+                                                    Comments :
+                                                </label>
+                                                <div class="col-md-8">
+                                                    <textarea class="form-control" ng-model="txtmesage" placeholder="Enter your comments"
+                                                              required></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-md-2 col-form-label">
+                                                </label>
+                                                <div class="col-md-8">
+                                                    <button type="submit" class="btn btn-primary" ng-click="sendProductUrl(mtype)">
+                                                        Submit
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,146 @@
+﻿<div class="" ng-controller="Orders_ctrl" ng-init="Dsummary('productcreditsTransfored','Transfer')">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row top-row-strip">
+                <div class="col-md-12">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"> Order</li>
+                        <li class="breadcrumb-item active">PRODUCT CREDITS TRANSFER</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>    
+    <div class="panel" ng-model="panel1" ng-show="revertto==false">
+        <div class="panel-body">
+            
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-3 col-md-offset-9" style="float: right">
+                        <select ng-model="ddltrtype" class="form-control" ng-change="TransferChange(ddltrtype)">
+                            <option value="Recieved">Recieved</option>
+                            <option value="Transferred">Transferred</option>
+                        </select>
+                    </div>
+                    <br /><br />
+                    <div class=" table-responsive">
+                        <table class="table table-bordered table-striped f-14">
+                            <thead>
+                                <tr class="table-header">
+                                    <th>
+                                        SNo.
+                                    </th>
+                                    <th>
+                                        Dated
+                                    </th>
+                                    <th>
+                                        Credits
+                                    </th>
+                                    <th>
+                                        Description
+                                    </th>
+                                    <th>
+                                        Remarks
+                                    </th>
+                                    <!--<th class="style1" ng-show="revert==true">
+                        Action
+                    </th>-->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr dir-paginate="x in prodcr | filter:search | itemsPerPage:ItemsperPage track by $index">
+                                    <td class="label-center">
+                                        {{$index+1}}
+                                    </td>
+                                    <td class="label-center">
+                                        {{x.Dated}}
+                                    </td>
+                                    <td class="label-right">
+                                        {{x.Amount}}
+                                    </td>
+                                    <td>
+                                        {{x.Remarks}}
+                                    </td>
+                                    <td>
+                                        {{x.rem}}
+                                    </td>
+                                    <!-- <td ng-show="revert==true">
+                        <label style="color: Blue; cursor: pointer" ng-click="gotorevert(x.RevertIdno,x.TrAmt,x.pcrds)">
+                            Revert</label>
+                    </td>-->
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-11">
+                            <dir-pagination-controls max-size="15" direction-links="true" boundary-links="true">
+                            </dir-pagination-controls>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class=" panel col-md-12 col-lg-12" ng-show="revertto==true">
+        <!-- Example Horizontal Form -->
+        <div class="example-wrap">
+            <div class="example">
+                <form name="Form">
+                    <div class="form-group row">
+                        <label class="col-6  col-md-4 col-form-label rightcolan">
+                            Revert To
+                        </label>
+                        <div class="col-6 col-md-8">
+                            <label class="col-md-8 col-form-label">
+                                {{userid}}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-6 col-md-4 col-form-label rightcolan">
+                            Available Credits
+                        </label>
+                        <div class="col-6 col-md-8">
+                            <label class="col-md-8 col-form-label">
+                                {{avlcredits}}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-6 col-md-4 col-form-label rightcolan">
+                            Transfer Limit
+                        </label>
+                        <div class="col-6 col-md-8">
+                            <label class="col-md-8 col-form-label">
+                                {{trcredits}}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-6 col-md-4 col-form-label rightcolan">
+                            Transfer Credits
+                        </label>
+                        <div class="col-6 col-md-3">
+                            <input type="text" class="form-control" name="txtpc" ng-model="txtpc"
+                                   placeholder="Enter Product Credits" autocomplete="off" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-6 col-md-4 col-form-label">
+                        </label>
+                        <div class="col-6 col-md-8" ng-show="Transforing==true">
+                            <button type="submit" class="btn btn-primary" ng-disabled="Form.$invalid" ng-click="SubmitRevert(userid,trcredits,txtpc)">
+                                Submit
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- End Example Horizontal Form -->
+        <br />
+    </div>
+</div>

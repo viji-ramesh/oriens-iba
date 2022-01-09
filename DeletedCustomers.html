@@ -1,0 +1,93 @@
+﻿<head>
+    <style type="text/css">
+        .style1 {
+            height: 23px;
+        }
+    </style>
+</head>
+<div class="container-fluid" ng-controller="Customer_ctrl" ng-init="GetDeletedCustomer()">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row top-row-strip">
+                <div class="col-md-12">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"> Profile</li>
+                        <li class="breadcrumb-item active">Deleted Customer Report</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-md-9"></div>
+                <div class="col-md-3">
+                    <input type="text" ng-model="search" class="form-control" placeholder="Search">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class=" table-responsive">
+                        <table class="table table-bordered table-striped f-14">
+                            <thead>
+                                <tr class="table-header">
+                                    <th class="style1">
+                                        S No.
+                                    </th>
+                                    <th class="style1">
+                                        User Id
+                                    </th>
+                                    <th class="style1">
+                                        Name
+                                    </th>
+                                    <th class="style1">
+                                        Introducer
+                                    </th>
+                                    <th class="style1">
+                                        City
+                                    </th>
+                                    <th class="style1">
+                                        Deleted On
+                                    </th>
+                                    <th class="style1">
+                                        Type
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr dir-paginate="x in getdelcust | filter:search | itemsPerPage:ItemsperPage track by $index">
+                                    <td>
+                                        {{$index+1}}
+                                    </td>
+                                    <td>
+                                        {{x.idno}}
+                                    </td>
+                                    <td>
+                                        {{x.name}}
+                                    </td>
+                                    <td>
+                                        {{x.sprno}}
+                                    </td>
+                                    <td>
+                                        {{x.city}}
+                                    </td>
+                                    <td>
+                                        {{x.memdate}}
+                                    </td>
+                                    <td>
+                                        {{x.custtype}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-11">
+                            <dir-pagination-controls max-size="15" direction-links="true" boundary-links="true">
+                            </dir-pagination-controls>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+</div>

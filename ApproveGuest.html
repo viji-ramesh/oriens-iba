@@ -1,0 +1,620 @@
+﻿<div class="container-fluid" ng-controller="ApproveGuest_ctrl" ng-init="GetMember()">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row top-row-strip">
+                <div class="col-md-12">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"> Profile</li>
+                        <li class="breadcrumb-item active">Approve Guest</li>
+                    </ol>
+                </div>
+            </div>
+            <form name="Form_Sponsor" novalidate>
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h3 class="panel-title">
+                                {{title1}}
+                            </h3>
+                        </div>
+                        <div class="col-md-4">
+                            <h3 class="panel-title">
+                                {{title3}}
+                            </h3>
+                        </div>
+                        <div class="col-md-4">
+                            <h3 class="panel-title">
+                                {{title2}}
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        Sponsor Information
+                    </h3>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-lg-6">
+                        <!-- Example Horizontal Form -->
+                        <div class="example-wrap">
+                            <div class="example">
+                                <form>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 col-form-label">
+                                            Sponsor ID :
+                                        </label>
+                                        <div class="col-md-9">
+                                            <label style="color: Orange" class="col-md-9 col-form-label">
+                                                {{spridno}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <legend class="col-md-3 col-form-legend">Placement : </legend>
+                                        <div class="col-md-9">
+                                            <select class="form-control" ng-model="ddlspseries" style="width: 100pt" required>
+                                                <option value="L" selected="selected">Left</option>
+                                                <option value="R">Right</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- End Example Horizontal Form -->
+                    </div>
+                    <div class="col-md-12 col-lg-6">
+                        <!-- Example Horizontal Form -->
+                        <div class="example-wrap">
+                            <div class="example">
+                                <form>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 col-form-label">
+                                            Name :
+                                        </label>
+                                        <div class="col-md-9">
+                                            <label style="color: Orange" class="col-md-9 col-form-label">
+                                                {{sprname}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- End Example Horizontal Form -->
+                    </div>
+                </div>
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        Personal Information
+                    </h3>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-lg-6">
+                        <!-- Example Horizontal Form -->
+                        <div class="example-wrap">
+                            <div class="example">
+                                <form>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 col-form-label">
+                                            User IBA No:
+                                        </label>
+                                        <div class="col-md-9">
+                                            <select class="form-control" ng-model="ddlnewidno" style="width: 150pt" required>
+                                                <option ng-repeat="option in newUserIdno" value="{{option.midno}}">{{option.dmidno}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 col-form-label">
+                                            First Name:
+                                        </label>
+                                        <div class="col-md-9">
+                                            <label style="color: Orange" class="col-md-9 col-form-label">
+                                                {{fname}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <legend class="col-md-3 col-form-legend">Date of Birth : </legend>
+                                        <div class="col-md-9">
+                                            <label style="color: Orange" class="col-md-9 col-form-label">
+                                                {{txtdob | date}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row" ng-class="{ 'has-error' : Form_Sponsor.txtmobile.$invalid && !Form_Sponsor.txtmobile.$pristine }">
+                                        <label class="col-md-3 col-form-label">
+                                            Mobile No:
+                                        </label>
+                                        <div class="col-md-9">
+                                            <label style="color: Orange" class="col-md-9 col-form-label">
+                                                {{txtmobile}}
+                                            </label>
+                                        </div>
+                                        <div ng-show="Form_Sponsor.txtmobile.$invalid && !Form_Sponsor.txtmobile.$pristine"
+                                             class="validation_info">
+                                            <ul class="ulvalid">
+                                                <li class="invalid" ng-show="Form_Sponsor.txtmobile.$invalid">Sponsor ID is required.</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 col-form-label">
+                                            ID Proof:
+                                        </label>
+                                        <div class="col-md-9">
+                                            <label style="color: Orange" class="col-md-9 col-form-label">
+                                                {{txtidproof}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 col-form-label">
+                                            Door No :
+                                        </label>
+                                        <div class="col-md-9">
+                                            <label style="color: Orange" class="col-md-9 col-form-label">
+                                                {{txtadd1}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 col-form-label">
+                                            City :
+                                        </label>
+                                        <div class="col-md-9">
+                                            <label style="color: Orange" class="col-md-9 col-form-label">
+                                                {{txtcity}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 col-form-label">
+                                            State :
+                                        </label>
+                                        <div class="col-md-9">
+                                            <label style="color: Orange" class="col-md-9 col-form-label">
+                                                {{ddlstate}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 col-form-label">
+                                            Phone Res :
+                                        </label>
+                                        <div class="col-md-9">
+                                            <label style="color: Orange" class="col-md-9 col-form-label">
+                                                {{phoneres}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- End Example Horizontal Form -->
+                    </div>
+                    <div class="col-md-12 col-lg-6">
+                        <!-- Example Horizontal Form -->
+                        <div class="example-wrap">
+                            <div class="example">
+                                <form>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 col-form-label">
+                                            Designation:
+                                        </label>
+                                        <div class="col-md-9">
+                                            <label style="color: Orange" class="col-md-9 col-form-label">
+                                                {{Desg}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <legend class="col-md-3 col-form-legend">Gender: </legend>
+                                        <div class="col-md-9">
+                                            <label style="color: Orange" class="col-md-9 col-form-label">
+                                                {{Sex}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 col-form-label">
+                                            Email:
+                                        </label>
+                                        <div class="col-md-9">
+                                            <label style="color: Orange" class="col-md-9 col-form-label">
+                                                {{txtemail}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 col-form-label">
+                                            Blood Group:
+                                        </label>
+                                        <div class="col-md-9">
+                                            <label style="color: Orange" class="col-md-9 col-form-label">
+                                                {{txtbgroup}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 col-form-label">
+                                            Street:
+                                        </label>
+                                        <div class="col-md-9">
+                                            <label style="color: Orange" class="col-md-9 col-form-label">
+                                                {{txtadd2}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 col-form-label">
+                                            District:
+                                        </label>
+                                        <div class="col-md-9">
+                                            <label style="color: Orange" class="col-md-9 col-form-label">
+                                                {{txtdistrict}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 col-form-label">
+                                            Zip Code :
+                                        </label>
+                                        <div class="col-md-9">
+                                            <label style="color: Orange" class="col-md-9 col-form-label">
+                                                {{txtpin}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 col-form-label">
+                                            Phone Office :
+                                        </label>
+                                        <div class="col-md-9">
+                                            <label style="color: Orange" class="col-md-9 col-form-label">
+                                                {{phoneoff}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- End Example Horizontal Form -->
+                    </div>
+                </div>
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        Bank Information
+                    </h3>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-lg-6">
+                        <!-- Example Horizontal Form -->
+                        <div class="example-wrap">
+                            <div class="example">
+                                <form>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 col-form-label">
+                                            Payee Name :
+                                        </label>
+                                        <div class="col-md-9">
+                                            <label style="color: Orange" class="col-md-9 col-form-label">
+                                                {{txtpayeename}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 col-form-label">
+                                            Account No :
+                                        </label>
+                                        <div class="col-md-9">
+                                            <label style="color: Orange" class="col-md-9 col-form-label">
+                                                {{txtaccno}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 col-form-label">
+                                            IFSC Code:
+                                        </label>
+                                        <div class="col-md-9">
+                                            <label style="color: Orange" class="col-md-9 col-form-label">
+                                                {{txtifscode}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- End Example Horizontal Form -->
+                    </div>
+                    <div class="col-md-12 col-lg-6">
+                        <!-- Example Horizontal Form -->
+                        <div class="example-wrap">
+                            <div class="example">
+                                <form>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 col-form-label">
+                                            Pan No :
+                                        </label>
+                                        <div class="col-md-9">
+                                            <label style="color: Orange" class="col-md-9 col-form-label">
+                                                {{txtPANNo}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 col-form-label">
+                                            Bank Name :
+                                        </label>
+                                        <div class="col-md-9">
+                                            <label style="color: Orange" class="col-md-9 col-form-label">
+                                                {{txtbank}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 col-form-label">
+                                            Branch Name:
+                                        </label>
+                                        <div class="col-md-9">
+                                            <label style="color: Orange" class="col-md-9 col-form-label">
+                                                {{txtbranch}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- End Example Horizontal Form -->
+                    </div>
+                </div>
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        Product & Payment Information
+                    </h3>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-lg-6">
+                        <!-- Example Horizontal Form -->
+                        <div class="example-wrap">
+                            <div class="example">
+                                <div class="col-md-12">
+                                    <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#ourproductslist"
+                                            ng-click="getProducts()">
+                                        Click here for order products
+                                    </button>
+                                    <table class="table table-hover dataTable table-striped w-full" ng-show="selecteditemsshow">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    Pcode
+                                                </th>
+                                                <th>
+                                                    Name
+                                                </th>
+                                                <th>
+                                                    Price
+                                                </th>
+                                                <th>
+                                                    PV
+                                                </th>
+                                                <th>
+                                                    Qty
+                                                </th>
+                                                <th>
+                                                    Amount
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="x in SelectedItems">
+                                                <td>
+                                                    {{x.PCode}}
+                                                </td>
+                                                <td>
+                                                    {{x.PName}}
+                                                </td>
+                                                <td>
+                                                    {{x.Price}}
+                                                </td>
+                                                <td>
+                                                    {{x.BV}}
+                                                </td>
+                                                <td>
+                                                    {{x.Qty}}
+                                                </td>
+                                                <td>
+                                                    {{x.Amount}}
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Example Horizontal Form -->
+                    </div>
+                    <div class="col-md-12 col-lg-6" ng-show="selecteditemsshow">
+                        <br />
+                        <br />
+
+                        <div class="example-wrap">
+                            <div class="example">
+                                <form>
+                                    <div class="form-group row">
+                                        <label class="col-md-4 col-form-label">
+                                            Mode of Payment :
+                                        </label>
+                                        <div class="col-md-8">
+                                            <select class="form-control" ng-model="ddlEWallet" style="width: 200pt" required>
+                                                <option value="EWallet" selected="selected">EWallet</option>
+                                                <!--<option value="PG1">Online Payment</option>-->
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row" ng-show="ddlEWallet=='EWallet'">
+                                        <label class="col-md-4 col-form-label">
+                                            Ewallet Amount :
+                                        </label>
+                                        <div class="col-md-8">
+                                            <label style="color: Orange" class="col-md-9 col-form-label">
+                                                Rs.{{ewalletamt}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row" ng-show="ddlEWallet=='EWallet'">
+                                        <label class="col-md-4 col-form-label">
+                                            Transaction Password :
+                                        </label>
+                                        <div class="col-md-8">
+                                            <input class="form-control" ng-model="trpassword" type="password" style="width: 200pt" ng-blur="Checktpwd(trpassword)" required />
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="ourproductslist" role="dialog">
+                        <div class="modal-dialog modal-lg">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">
+                                        &times;
+                                    </button>
+                                    <h4 class="modal-title">
+                                        Products
+                                    </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <table class="table table-hover dataTable table-striped w-full">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    Select
+                                                </th>
+                                                <th>
+                                                    Pcode
+                                                </th>
+                                                <th>
+                                                    Name
+                                                </th>
+                                                <th>
+                                                    Price
+                                                </th>
+                                                <th>
+                                                    PV
+                                                </th>
+                                                <th>
+                                                    Qty
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="x in products">
+                                                <td>
+                                                    <input type="checkbox" id="selectprd_{{x.pcode}}" ng-model="selectprd" />
+                                                </td>
+                                                <td>
+                                                    {{x.pcode}}
+                                                </td>
+                                                <td>
+                                                    {{x.name}}
+                                                </td>
+                                                <td>
+                                                    {{x.price}}
+                                                </td>
+                                                <td>
+                                                    {{x.BV}}
+                                                </td>
+                                                <td>
+                                                    <input id="qty_{{x.pcode}}" style="width: 60pt" value="{{x.qty}}" type="number" min="0" />
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <button type="submit" class="btn btn-primary" data-dismiss="modal">
+                                        Close
+                                    </button>
+                                    <button type="submit" ng-click="SelectedProducts()" class="btn btn-primary" data-dismiss="modal">
+                                        Submit
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        Nominee Information
+                    </h3>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-lg-6">
+                        <!-- Example Horizontal Form -->
+                        <div class="example-wrap">
+                            <div class="example">
+                                <form>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 col-form-label">
+                                            Nominee Name:
+                                        </label>
+                                        <div class="col-md-9">
+                                            <label style="color: Orange" class="col-md-9 col-form-label">
+                                                {{nominee}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <legend class="col-md-3 col-form-legend">Nominee Age : </legend>
+                                        <div class="col-md-9">
+                                            <label style="color: Orange" class="col-md-9 col-form-label">
+                                                {{nomage}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- End Example Horizontal Form -->
+                    </div>
+                    <div class="col-md-12 col-lg-6">
+                        <!-- Example Horizontal Form -->
+                        <div class="example-wrap">
+                            <div class="example">
+                                <form>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 col-form-label">
+                                            Relation:
+                                        </label>
+                                        <div class="col-md-9">
+                                            <label style="color: Orange" class="col-md-9 col-form-label">
+                                                {{relation}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- End Example Horizontal Form -->
+                        <div class="form-group row">
+                            <div class="col-md-9">
+                                <button type="submit" class="btn btn-primary" ng-disabled="Form_Sponsor.$invalid"
+                                        ng-click="SubmitApproveGuest()">
+                                    Submit
+                                </button>
+                                <!--<button type="reset" class="btn btn-default btn-outline" ng-disabled="Form_Sponsor.$invalid">
+                        Reset</button>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+</div>

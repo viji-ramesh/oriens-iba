@@ -1,0 +1,94 @@
+﻿
+<div class="container-fluid" ng-controller="PrintPreview_ctrl" ng-init="SponsorReport()">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row top-row-strip">
+                <div class="col-md-12">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"> Genealogy</li>
+                        <li class="breadcrumb-item active">DIRECT SPONSOR REPORT</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="" ng-model="panel1">
+        
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-3 col-md-offset-9" style="float:right">
+                    <input type="text" ng-model="search" class="form-control" placeholder="Search">
+                </div>
+                <br />
+                <br />
+                <div class=" table-responsive">
+                    <table class="table table-bordered table-striped f-14">
+                        <thead>
+                            <tr class="table-header">
+                                <th>
+                                    S No.
+                                </th>
+                                <th>
+                                    User Id
+                                </th>
+                                <th>
+                                    Name
+                                </th>
+                                <th>
+                                    Introducer
+                                </th>
+                                <th>
+                                    State
+                                </th>
+                                <th>
+                                    Join Date
+                                </th>
+                                <th>
+                                    Status
+                                </th>
+                                <th>
+                                    SP
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr dir-paginate="x in sprrpts | filter:search | itemsPerPage:ItemsperPage track by $index">
+                                <td>
+                                    {{$index+1}}
+                                </td>
+                                <td>
+                                    {{x.UserID}}
+                                </td>
+                                <td>
+                                    {{x.Name}}
+                                </td>
+                                <td>
+                                    {{x.Introducer}}
+                                </td>
+                                <td>
+                                    {{x.State}}
+                                </td>
+                                <td>
+                                    {{x.JoinDate}}
+                                </td>
+                                <td>
+                                    {{x.Status}}
+                                </td>
+                                <td>
+                                    {{x.SP}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="row form-group">
+                        <div class="col-md-11">
+                            <dir-pagination-controls max-size="15" direction-links="true" boundary-links="true">
+                            </dir-pagination-controls>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

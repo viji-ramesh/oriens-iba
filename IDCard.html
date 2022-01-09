@@ -1,0 +1,174 @@
+﻿<div class="container-fluid" ng-controller="getSession">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row top-row-strip">
+                <div class="col-md-12">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"> Profile</li>
+                        <li class="breadcrumb-item active">IDENTITY CARD</li>
+                    </ol>
+                </div>
+            </div>
+            <div>
+
+                <div class="panel panel-body" ng-init="GetIdcard()">
+                    <div>
+                        <table width="95%" cellspacing="0" cellpadding="0" align="center">
+                            <tbody>
+                                <tr>
+                                    <td valign="top">
+                                        <table width="100%" cellspacing="0" cellpadding="0">
+                                            <tbody>
+
+                                                <tr>
+                                                    <td>
+                                                        <div class="table" id="Congrats1" style="visibility: visible;">
+                                                            <table class="tborder" width="100%" cellspacing="0" cellpadding="0" border="0" align="center">
+                                                                <tbody>
+
+                                                                    <tr>
+                                                                        <td width="45%" align="center">
+                                                                            <img src="../images/IdCard.jpg">
+                                                                        </td>
+                                                                        <td width="10%">
+                                                                            &nbsp;
+                                                                        </td>
+                                                                        <td width="45%" valign="top" align="center">
+                                                                            <div style="width: 425px; height: 285px; margin: 0px auto; padding: 0px; color: #115e30;">
+                                                                                <div class="visiting">
+                                                                                    <table width="100%" cellspacing="0" cellpadding="0" border="0" align="center">
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td style="height: 140px;" width="30%">
+                                                                                                    &nbsp;
+                                                                                                </td>
+                                                                                                <td style="height: 20px;">
+                                                                                                    &nbsp;
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    &nbsp;
+                                                                                                </td>
+                                                                                                <td>
+                                                                                                    <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                                                                                                        <tbody>
+                                                                                                            <tr>
+                                                                                                                <td class="visiting-name" width="20%">
+                                                                                                                    <strong>Name</strong>
+                                                                                                                </td>
+                                                                                                                <td class="visiting-name" width="5%">
+                                                                                                                    &nbsp;:&nbsp;
+                                                                                                                </td>
+                                                                                                                <td class="visiting-name">
+                                                                                                                    <span id="lblname" style="font-weight: bold;">{{lblnameid}} </span>
+                                                                                                                </td>
+                                                                                                            </tr>
+                                                                                                            <tr>
+                                                                                                                <td colspan="3">
+                                                                                                                    &nbsp;
+                                                                                                                </td>
+                                                                                                            </tr>
+                                                                                                            <tr>
+                                                                                                                <td class="visiting-name">
+                                                                                                                    <strong>IBA ID</strong>
+                                                                                                                </td>
+                                                                                                                <td class="visiting-name">
+                                                                                                                    &nbsp;:&nbsp;
+                                                                                                                </td>
+                                                                                                                <td class="visiting-name">
+                                                                                                                    <span id="lblidno" style="font-weight: bold;">{{lblidnoid}}</span>
+                                                                                                                </td>
+                                                                                                            </tr>
+                                                                                                            <tr>
+                                                                                                                <td colspan="3">
+                                                                                                                    &nbsp;
+                                                                                                                </td>
+                                                                                                            </tr>
+                                                                                                            <tr id="uname">
+                                                                                                                <td class="visiting-name">
+                                                                                                                    <strong>Mobile</strong>
+                                                                                                                </td>
+                                                                                                                <td class="visiting-name">
+                                                                                                                    &nbsp;:&nbsp;
+                                                                                                                </td>
+                                                                                                                <td class="visiting-name">
+                                                                                                                    <span id="lbluname" style="font-weight: bold;">{{lblmobileid}}</span>
+                                                                                                                </td>
+                                                                                                            </tr>
+                                                                                                            <tr id="Tr3">
+                                                                                                                <td colspan="3">
+                                                                                                                    &nbsp;
+                                                                                                                </td>
+                                                                                                            </tr>
+                                                                                                            <tr>
+                                                                                                                <td class="visiting-name">
+                                                                                                                    <strong>DOJ</strong>
+                                                                                                                </td>
+                                                                                                                <td class="visiting-name">
+                                                                                                                    &nbsp;:&nbsp;
+                                                                                                                </td>
+                                                                                                                <td class="visiting-name">
+                                                                                                                    <span id="lbldoj" style="font-weight: bold;">{{lbldateid}}</span>
+                                                                                                                </td>
+                                                                                                            </tr>
+                                                                                                        </tbody>
+                                                                                                    </table>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </div>
+                                                                                <img src="../images/IdCard-1.jpg">
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td colspan="3" style="height: 50px;">
+                                                                            &nbsp;
+                                                                        </td>
+                                                                    </tr>
+                                                                    <!--  <tr id="TR2" style="visibility: visible;">
+                                                                  <td colspan="3" height="5" bgcolor="#FFFFFF" align="right">
+                                                                      <p>
+                                                                          <a onclick="getPrint();" href="javascript:void(0)"><font color="red"><b>[Print]</b></font></a></p>
+                                                                  </td>
+                                                              </tr>-->
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+    
+</div>
+<style type="text/css">
+    .visiting {
+        position: absolute;
+        z-index: 980;
+        width: 425px;
+        height: 285px;
+    }
+
+    .visiting-name {
+        font-family: arial;
+        font-size: 14px;
+        color: #ffffff;
+    }
+
+    .table td, .table th {
+        padding: 0;
+        vertical-align: top;
+        border-top: 1px solid #e4eaec;
+    }
+</style>

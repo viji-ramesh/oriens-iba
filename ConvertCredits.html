@@ -1,0 +1,828 @@
+﻿<div ng-controller="Orders_ctrl" ng-init="Dsummary('productcredits','List')">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row top-row-strip">
+                <div class="col-md-12">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"> Order</li>
+                        <li class="breadcrumb-item active">Convert Product Credits - {{idno2207}}</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-md-12 ">
+                    <div class="card p-3">
+                        <div class="row">
+                            <div class="col-md-8 mx-auto">
+                                <div class="form-group row" style="text-align: center">
+                                    <label class="col-md-12 col-form-label">
+                                        Available Credits :
+                                        <label style="text-align: right; color: red">
+                                            {{totavlcr}}
+                                        </label>
+                                    </label>
+                                </div>
+                                <div class="form-group row" style="text-align: center">
+                                    <div class="col-md-3">
+                                        <input type="radio" name="cnvtype" ng-model="cnvtype" value="1">&nbsp;Repurchase
+                                    </div>
+                                    <div class="col-md-3">
+                                        <!--ng-show="idno2207=='10000225'"-->
+                                        <input type="radio" name="cnvtype" ng-model="cnvtype" value="4">&nbsp;e-Compensation Purchase
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input type="radio" name="cnvtype" ng-model="cnvtype" value="2">&nbsp;Signup
+                                    </div>
+                                    <div class="col-md-3" style="display:nonee">
+                                        <input type="radio" name="cnvtype" ng-model="cnvtype" value="3">&nbsp;Transfer
+                                    </div>
+                                </div>
+                                <div class="form-group row" style="text-align: center" ng-show="cnvtype==1">
+                                    <label class="col-md-6 col-form-label">
+                                        Repurchase Order Thru Product Credit :
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select ng-model="ddlrepur" class="form-control" ng-change="showrepurchaseOrders(ddlrepur)">
+                                            <option value="" selected="true">--Select--</option>
+                                            <option value="5.00">5 PV Only</option>
+                                            <option value="Total">Total PV</option>
+                                            <option value="Others">Others</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row" style="text-align: center" ng-show="cnvtype==4">
+                                    <label class="col-md-6 col-form-label">
+                                        e-Compensation Purchase Order Thru Product Credit :
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select ng-model="ddlrepurPM" class="form-control" ng-change="showrepurchaseOrdersPM(ddlrepurPM)">
+                                            <option value="" selected="true">--Select e-Compensation PV --</option>
+
+                                            <!--<option value="Others">Enter Min 5 - 1000 PV</option>-->
+                                            <option value="Others">Others</option>-->
+                                            <option value="5">Min Purchase - 5 PV</option>
+                                            <option value="100">1 Diamond - 100</option>
+                                            <option value="300">2 Diamond - 300</option>
+                                            <option value="1000">3 Diamond - 1000</option>
+
+
+                                            <!--<option value="10.00">10 PV Only</option>-->
+                                            <!--<option value="Total">Total PV</option>-->
+                                            <!-- <option value="Others">Enter Min 5 - 1000 PV</option>-->
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row" style="text-align: center" ng-show="cnvtype==2">
+                                    <label class="col-md-6 col-form-label">
+                                        SignUp Thru Product Credit :
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select ng-model="ddlsignup" class="form-control" ng-change="DaimondChange(ddlsignup)">
+                                            <option value="" selected="true">--Select--</option>
+                                            <option value="10">New IBA - 10PV</option>
+                                            <option value="100.00">1 Diamond - 100.00</option>
+                                            <option value="300.00">2 Diamond - 300.00</option>
+                                            <option value="1000.00">3 Diamond - 1000.00</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <form name="Form_trans" novalidate ng-show="cnvtype==3">
+                                    <div class="form-group row" style="text-align: left" ng-show="cnvtype==3">
+                                        <label class="col-md-4 col-form-label">
+                                            &nbsp;&nbsp;&nbsp;&nbsp;Transfer Product Credit to Downline :
+                                        </label>
+                                        <div class="col-md-4">
+                                            <input type="text" class="form-control" name="name" ng-model="txtdownto" ng-blur="Chkmemdown(txtdownto)" placeholder="Down line IBA"
+                                                   required />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row" style="text-align: left" ng-show="cnvtype==3">
+                                        <label class="col-md-4 col-form-label">
+                                            &nbsp;&nbsp;&nbsp;&nbsp;Name :
+                                        </label>
+                                        <div class="col-md-4">
+                                            <label class="col-md-12 col-form-label">
+                                                <font color="#ff6600">{{lbltrname}}</font>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row" style="text-align: left" ng-show="cnvtype==3">
+                                        <label class="col-md-4 col-form-label">
+                                            &nbsp;&nbsp;&nbsp;&nbsp;Mobile :
+                                        </label>
+                                        <div class="col-md-4">
+                                            <label class="col-md-12 col-form-label">
+                                                <font color="#ff6600">{{lbltrmobile}}</font>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row" style="text-align: left" ng-show="cnvtype==3">
+                                        <label class="col-md-4 col-form-label">
+                                            &nbsp;&nbsp;&nbsp;&nbsp;State :
+                                        </label>
+                                        <div class="col-md-4">
+                                            <label class="col-md-12 col-form-label">
+                                                <font color="#ff6600">{{lbltrstate}}</font>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row" style="text-align: left" ng-show="cnvtype==3">
+                                        <label class="col-md-4 col-form-label">
+                                            &nbsp;&nbsp;&nbsp;&nbsp;Available Credits for Transfers :
+                                        </label>
+                                        <div class="col-md-4">
+                                            <label class="col-md-12 col-form-label">
+                                                <font color="#ff6600">{{lblavltrpc}}</font>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row" style="text-align: left" ng-show="cnvtype==3">
+                                        <label class="col-md-4 col-form-label">
+                                            &nbsp;&nbsp;&nbsp;&nbsp;Transfer Product Credit :
+                                        </label>
+                                        <div class="col-md-4">
+                                            <input type="text" class="form-control" ng-currency restrict-to="[-0-9.]$" name="txtdwnpc" ng-model="txtdwnpc" placeholder="Product Credits" ng-blur="checktrBal()"
+                                                   required />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row" style="text-align: right">
+                                        <div class="col-md-9">
+                                            <button type="submit" ng-show="Transforing" style="text-align: left" class="btn btn-primary" ng-click="SubmitTransfor(txtdownto)"
+                                                    ng-disabled="Form_trans.$invalid">
+                                                Transfer
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div class="row" ng-show="repurchaseOrders" ng-if="cnvtype==1" style="margin:0px;">
+                                    <div class="col-md-12 col-lg-6">
+                                        <!-- Example Horizontal Form -->
+                                        <div class="form-group row">
+                                            <label class="col-6 col-md-6 col-form-label">
+                                                Product Code :
+                                            </label>
+                                            <div class="col-6 col-md-6">
+                                                <label class="col-md-12 col-form-label">
+                                                    <font color="#ff6600">{{lblpcode}}</font>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-6 col-md-6 col-form-label">
+                                                PV :
+                                            </label>
+                                            <div class="col-6 col-md-6" ng-if="ddlrepur!='Others'">
+                                                <label class="col-md-6 col-form-label">
+                                                    <font color="#ff6600">{{lblbv}}</font>
+                                                </label>
+                                            </div>
+                                            <div class="col-6 col-md-6" ng-if="ddlrepur=='Others'">
+                                                <input type="text" class="form-control" ng-change="txtpvChange(txtPV)" name="txtPV"
+                                                       ng-model="txtPV" placeholder="PV" />
+                                            </div>
+                                        </div>
+                                        <!-- End Example Horizontal Form -->
+                                    </div>
+                                    <div class="col-md-12 col-lg-6">
+                                        <!-- Example Horizontal Form -->
+                                        <div class="form-group row">
+                                            <label class="col-6 col-md-6 col-form-label">
+                                                Product Name :
+                                            </label>
+                                            <div class="col-6 col-md-6">
+                                                <label class="col-md-12 col-form-label">
+                                                    <font color="#ff6600">{{lblpname}}</font>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-6 col-md-6 col-form-label">
+                                                Price :
+                                            </label>
+                                            <div class="col-6 col-md-6">
+                                                <label class="col-md-6 col-form-label">
+                                                    <font color="#ff6600">{{lblprice}}</font>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-md-9">
+                                                <button type="submit" style="text-align: left" ng-show="Transforing" ng-click="ConvertCredit(ddlrepur)"
+                                                        class="btn btn-primary">
+                                                    Submit
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <!-- End Example Horizontal Form -->
+                                    </div>
+                                </div>
+                                <div class="row" ng-show="repurchaseOrders" ng-if="cnvtype==4" style="margin:0px;">
+                                    <div class="col-md-12 col-lg-6">
+                                        <!-- Example Horizontal Form -->
+                                        <div class="form-group row">
+                                            <label class="col-6 col-md-6 col-form-label">
+                                                Product Code :
+                                            </label>
+                                            <div class="col-6 col-md-6">
+                                                <label class="col-md-12 col-form-label">
+                                                    <font color="#ff6600">{{lblpcode}}</font>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-6 col-md-6 col-form-label">
+                                                PV :
+                                            </label>
+                                            <div class="col-6 col-md-6" ng-if="ddlrepurPM!='Others'">
+                                                <label class="col-md-6 col-form-label">
+                                                    <font color="#ff6600">{{lblbv}}</font>
+                                                </label>
+                                            </div>
+                                            <div class="col-6 col-md-6" ng-if="ddlrepurPM=='Others'">
+                                                <input type="text" class="form-control" ng-blur="txtpvChangePM(txtPVPM)" name="txtPVPM"
+                                                       ng-model="txtPVPM" placeholder="PV" />
+                                            </div>
+                                        </div>
+                                        <!-- End Example Horizontal Form -->
+                                    </div>
+                                    <div class="col-md-12 col-lg-6">
+                                        <!-- Example Horizontal Form -->
+                                        <div class="form-group row">
+                                            <label class="col-6 col-md-6 col-form-label">
+                                                Product Name :
+                                            </label>
+                                            <div class="col-6 col-md-6">
+                                                <label class="col-md-12 col-form-label">
+                                                    <font color="#ff6600">{{lblpname}}</font>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-6 col-md-6 col-form-label">
+                                                Price :
+                                            </label>
+                                            <div class="col-6 col-md-6">
+                                                <label class="col-md-6 col-form-label">
+                                                    <font color="#ff6600">{{lblprice}}</font>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-md-9">
+                                                <button type="submit" style="text-align: left" ng-show="Transforing" ng-click="ConvertCreditPM(ddlrepurPM)"
+                                                        class="btn btn-primary">
+                                                    Submit
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <!-- End Example Horizontal Form -->
+                                    </div>
+                                </div>
+                                <div class="panel" ng-show="signupcr">
+                                    <form name="Form_signup" novalidate ng-show="cnvtype==2">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">
+                                                Product Information
+                                            </h3>
+                                        </div>
+                                        <div class="row panel-body" style="margin:0px;">
+                                            <div class="col-md-12 col-lg-6">
+                                                <!-- Example Horizontal Form -->
+                                                <div class="form-group row">
+                                                    <label class="col-md-4 col-form-label">
+                                                        Product Code :
+                                                    </label>
+                                                    <label class="col-md-8 col-form-label">
+                                                        <font color="#ff6600">{{lblspcode}}</font>
+                                                    </label>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-md-4 col-form-label">
+                                                        PV :
+                                                    </label>
+                                                    <label class="col-md-8 col-form-label">
+                                                        <font color="#ff6600">{{lblsbv}}</font>
+                                                    </label>
+                                                </div>
+                                                <!-- End Example Horizontal Form -->
+                                            </div>
+                                            <div class="col-md-12 col-lg-6">
+                                                <!-- Example Horizontal Form -->
+                                                <div class="form-group row">
+                                                    <label class="col-md-4 col-form-label">
+                                                        Product Name :
+                                                    </label>
+                                                    <label class="col-md-8 col-form-label">
+                                                        <font color="#ff6600">{{lblspname}}</font>
+                                                    </label>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-md-4 col-form-label">
+                                                        Price :
+                                                    </label>
+                                                    <label class="col-md-8 col-form-label">
+                                                        <font color="#ff6600">{{lblsprice}}</font>
+                                                    </label>
+                                                </div>
+                                                <!-- End Example Horizontal Form -->
+                                            </div>
+                                        </div>
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">
+                                                Sponsor Information
+                                            </h3>
+                                        </div>
+                                        <div class="row panel-body" style="margin:0px;">
+                                            <div class="col-md-12 col-lg-6">
+                                                <!-- Example Horizontal Form -->
+                                                <div class="form-group row">
+                                                    <label class="col-md-4 col-form-label">
+                                                        Sponsor ID :
+                                                    </label>
+                                                    <label class="col-md-8 col-form-label">
+                                                        <font color="#ff6600">{{lblsprno}}</font>
+                                                    </label>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-md-4 col-form-label">
+                                                        Placement :
+                                                    </label>
+                                                    <div class="col-md-8" ng-show="previewshow==false">
+                                                        <select ng-model="ddlplace" class="form-control" required>
+                                                            <option value="" selected="true">Select</option>
+                                                            <option value="L">LEFT</option>
+                                                            <option value="R">RIGHT</option>
+                                                        </select>
+                                                    </div>
+                                                    <label class="col-md-8 col-form-label" ng-show="previewshow==true">
+                                                        <font color="#ff6600">{{ddlplace}}</font>
+                                                    </label>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-md-4 col-form-label">
+                                                        Stock Point :
+                                                    </label>
+                                                    <label class="col-md-8 col-form-label">
+                                                        <font color="#ff6600">OFFICE</font>
+                                                    </label>
+                                                </div>
+                                                <!-- End Example Horizontal Form -->
+                                            </div>
+                                            <div class="col-md-12 col-lg-6">
+                                                <!-- Example Horizontal Form -->
+                                                <div class="form-group row">
+                                                    <label class="col-md-4 col-form-label">
+                                                        Name :
+                                                    </label>
+                                                    <label class="col-md-8 col-form-label">
+                                                        <font color="#ff6600">{{lblsprname}}</font>
+                                                    </label>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-md-4 col-form-label">
+                                                        Registration Type :
+                                                    </label>
+                                                    <label class="col-md-8 col-form-label">
+                                                        <font color="#ff6600">Normal</font>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">
+                                                Personal Information
+                                            </h3>
+                                        </div>
+                                        <div class="row panel-body" style="margin:0px;">
+                                            <div class="col-md-12 col-lg-6">
+                                                <!-- Example Horizontal Form -->
+                                                <div class="form-group row">
+                                                    <label class="col-md-4 col-form-label">
+                                                        Name :
+                                                    </label>
+                                                    <div class="col-md-8" ng-show="previewshow==false">
+                                                        <input type="text" class="form-control" name="name" ng-model="txtgname" placeholder="Name"
+                                                               required />
+                                                    </div>
+                                                    <label class="col-md-8 col-form-label" ng-show="previewshow==true">
+                                                        <font color="#ff6600">{{txtgname}}</font>
+                                                    </label>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <legend class="col-md-4 col-form-legend">Date of Birth : </legend>
+                                                    <div class="col-md-8" ng-show="previewshow==false">
+                                                        <input type="Date" class="form-control" name="txtdobrr" ng-model="txtdob" required />
+                                                    </div>
+                                                    <label class="col-md-8 col-form-label" ng-show="previewshow==true">
+                                                        <font color="#ff6600">{{txtdob}}</font>
+                                                    </label>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-md-4 col-form-label">
+                                                        Mobile No :
+                                                    </label>
+                                                    <div class="col-md-8" ng-show="previewshow==false">
+                                                        <input type="text" class="form-control" name="txtmobile" ng-model="txtmobile" ng-blur="MobileCheck(txtmobile)"
+                                                               placeholder="Mobile No." allow-Only-Numbers maxlength="10" required />
+                                                    </div>
+                                                    <label class="col-md-8 col-form-label" ng-show="previewshow==true">
+                                                        <font color="#ff6600">{{txtmobile}}</font>
+                                                    </label>
+                                                </div>
+                                                <!-- End Example Horizontal Form -->
+                                            </div>
+                                            <div class="col-md-12 col-lg-6">
+                                                <!-- Example Horizontal Form -->
+                                                <div class="form-group row">
+                                                    <label class="col-md-4 col-form-label">
+                                                        Gender :
+                                                    </label>
+                                                    <div class="col-md-8" required ng-show="previewshow==false">
+                                                        <select ng-model="ddlgender" class="form-control">
+                                                            <option value="" selected="true">Select</option>
+                                                            <option value="Male">Male</option>
+                                                            <option value="Female">Female</option>
+                                                        </select>
+                                                    </div>
+                                                    <label class="col-md-8 col-form-label" ng-show="previewshow==true">
+                                                        <font color="#ff6600">{{ddlgender}}</font>
+                                                    </label>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <legend class="col-md-4 col-form-legend">Email ID : </legend>
+                                                    <div class="col-md-8" ng-show="previewshow==false">
+                                                        <input type="text" class="form-control" name="txtemail" ng-model="txtemail" placeholder="Email ID"
+                                                               autocomplete="off" />
+                                                    </div>
+                                                    <label class="col-md-8 col-form-label" ng-show="previewshow==true">
+                                                        <font color="#ff6600">{{txtemail}}</font>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <!-- End Example Horizontal Form -->
+                                        </div>
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">
+                                                Bank Information
+                                            </h3>
+                                        </div>
+                                        <div class="row panel-body" style="margin:0px;">
+                                            <div class="col-md-12 col-lg-6">
+                                                <!-- Example Horizontal Form -->
+                                                <div class="form-group row">
+                                                    <label class="col-md-4 col-form-label">
+                                                        Payee Name :
+                                                    </label>
+                                                    <div class="col-md-8" ng-show="previewshow==false">
+                                                        <input type="text" class="form-control" name="Payee" ng-model="txtpayeename" placeholder="Payee Name ">
+                                                    </div>
+                                                    <label class="col-md-8 col-form-label" ng-show="previewshow==true">
+                                                        <font color="#ff6600">{{txtpayeename}}</font>
+                                                    </label>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-md-4 col-form-label">
+                                                        Account No :
+                                                    </label>
+                                                    <div class="col-md-8" ng-show="previewshow==false">
+                                                        <input type="text" class="form-control" name="Account" ng-model="txtaccno" placeholder="Account No " allow-Only-Numbers>
+                                                    </div>
+                                                    <label class="col-md-8 col-form-label" ng-show="previewshow==true">
+                                                        <font color="#ff6600">{{txtaccno}}</font>
+                                                    </label>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-md-4 col-form-label">
+                                                        IFSC Code:
+                                                    </label>
+                                                    <div class="col-md-8" ng-show="previewshow==false">
+                                                        <input type="text" class="form-control" name="IFSCCode" ng-model="txtifscode" placeholder="IFSC Code">
+                                                    </div>
+                                                    <label class="col-md-8 col-form-label" ng-show="previewshow==true">
+                                                        <font color="#ff6600">{{txtifscode}}</font>
+                                                    </label>
+                                                </div>
+                                                <!-- End Example Horizontal Form -->
+                                            </div>
+                                            <div class="col-md-12 col-lg-6">
+                                                <!-- Example Horizontal Form -->
+                                                <div class="form-group row">
+                                                    <label class="col-md-4 col-form-label">
+                                                        Pan No :
+                                                    </label>
+                                                    <div class="col-md-8" ng-show="previewshow==false">
+                                                        <input type="text" class="form-control" name="Panno" ng-model="txtPANNo" ng-blur="CheckMobileNo('Pan')" placeholder="Pan No ">
+                                                    </div>
+                                                    <label class="col-md-8 col-form-label" ng-show="previewshow==true">
+                                                        <font color="#ff6600">{{txtPANNo}}</font>
+                                                    </label>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-md-4 col-form-label">
+                                                        Bank Name :
+                                                    </label>
+                                                    <div class="col-md-8" ng-show="previewshow==false">
+                                                        <input type="text" class="form-control" name="Bank" ng-model="txtbank" placeholder="Bank Name">
+                                                    </div>
+                                                    <label class="col-md-8 col-form-label" ng-show="previewshow==true">
+                                                        <font color="#ff6600">{{txtbank}}</font>
+                                                    </label>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-md-4 col-form-label">
+                                                        Branch Name:
+                                                    </label>
+                                                    <div class="col-md-8" ng-show="previewshow==false">
+                                                        <input type="text" class="form-control" name="Branch" ng-model="txtbranch" placeholder="Branch Name">
+                                                    </div>
+                                                    <label class="col-md-8 col-form-label" ng-show="previewshow==true">
+                                                        <font color="#ff6600">{{txtbranch}}</font>
+                                                    </label>
+                                                </div>
+                                                <!-- End Example Horizontal Form -->
+                                            </div>
+                                        </div>
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">
+                                                Address Information
+                                            </h3>
+                                        </div>
+                                        <div class="row panel-body" style="margin:0px;">
+                                            <div class="col-md-12 col-lg-6">
+                                                <!-- Example Horizontal Form -->
+                                                <div class="form-group row">
+                                                    <label class="col-md-4 col-form-label">
+                                                        Door No :
+                                                    </label>
+                                                    <div class="col-md-8" ng-show="previewshow==false">
+                                                        <input type="text" class="form-control" name="txtdrno" ng-model="txtdrno" placeholder="Door No."
+                                                               required />
+                                                    </div>
+                                                    <label class="col-md-8 col-form-label" ng-show="previewshow==true">
+                                                        <font color="#ff6600">{{txtdrno}}</font>
+                                                    </label>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <legend class="col-md-4 col-form-legend">Address : </legend>
+                                                    <div class="col-md-8" ng-show="previewshow==false">
+                                                        <input type="text" class="form-control" name="Address" ng-model="txtAddress" placeholder="Address"
+                                                               required />
+                                                    </div>
+                                                    <label class="col-md-8 col-form-label" ng-show="previewshow==true">
+                                                        <font color="#ff6600">{{txtAddress}}</font>
+                                                    </label>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-md-4 col-form-label">
+                                                        City :
+                                                    </label>
+                                                    <div class="col-md-8" ng-show="previewshow==false">
+                                                        <input type="text" class="form-control" name="City" ng-model="txtCity" placeholder="City"
+                                                               required />
+                                                    </div>
+                                                    <label class="col-md-8 col-form-label" ng-show="previewshow==true">
+                                                        <font color="#ff6600">{{txtCity}}</font>
+                                                    </label>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-md-4 col-form-label">
+                                                        Nationality :
+                                                    </label>
+                                                    <label class="col-md-8 col-form-label">
+                                                        <font color="#ff6600">INDIA</font>
+                                                    </label>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-md-4 col-form-label">
+                                                        PIN Code :
+                                                    </label>
+                                                    <div class="col-md-8" ng-show="previewshow==false">
+                                                        <input type="text" class="form-control" name="PINCode" ng-model="txtPINCode" placeholder="PIN Code"
+                                                               autocomplete="off" required />
+                                                    </div>
+                                                    <label class="col-md-8 col-form-label" ng-show="previewshow==true">
+                                                        <font color="#ff6600">{{txtPINCode}}</font>
+                                                    </label>
+                                                </div>
+                                                <!-- End Example Horizontal Form -->
+                                            </div>
+                                            <div class="col-md-12 col-lg-6">
+                                                <!-- Example Horizontal Form -->
+                                                <div class="form-group row">
+                                                    <legend class="col-md-4 col-form-legend">Street : </legend>
+                                                    <div class="col-md-8" ng-show="previewshow==false">
+                                                        <input type="text" class="form-control" name="Street" ng-model="txtStreet" placeholder="Street"
+                                                               autocomplete="off" required />
+                                                    </div>
+                                                    <label class="col-md-8 col-form-label" ng-show="previewshow==true">
+                                                        <font color="#ff6600">{{txtStreet}}</font>
+                                                    </label>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-md-4 col-form-label">
+                                                        District :
+                                                    </label>
+                                                    <div class="col-md-8" ng-show="previewshow==false">
+                                                        <input type="text" ng-model="txtDistrict" class="form-control" name="District" placeholder="District"
+                                                               autocomplete="off" required />
+                                                    </div>
+                                                    <label class="col-md-8 col-form-label" ng-show="previewshow==true">
+                                                        <font color="#ff6600">{{txtDistrict}}</font>
+                                                    </label>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-md-4 col-form-label">
+                                                        State :
+                                                    </label>
+                                                    <div class="col-md-8" ng-show="previewshow==false">
+                                                        <select ng-model="txtState" class="form-control" ng-change="getNewUserIdno(txtState)"
+                                                                required>
+                                                            <option value="">Select State</option>
+                                                            <option ng-repeat="x in states" value="{{x.states}}">{{x.states}}</option>
+                                                        </select>
+                                                    </div>
+                                                    <label class="col-md-8 col-form-label" ng-show="previewshow==true">
+                                                        <font color="#ff6600">{{txtState}}</font>
+                                                    </label>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-md-4 col-form-label">
+                                                        ID Proof :
+                                                    </label>
+                                                    <div class="col-md-8" ng-show="previewshow==false">
+                                                        <select ng-model="txtidproof" class="form-control"
+                                                                required>
+                                                            <option value="">Select ID Proof</option>
+                                                            <option value="Pan Card">Pan Card</option>
+                                                            <option value="Driving Liciense">Driving Liciense</option>
+                                                            <option value="Aadhar Card">Aadhar Card</option>
+                                                            <option value="Ration Card">Ration Card</option>
+                                                            <option value="Passport">Passport</option>
+                                                            <option value="Voter Id">Voter Id</option>
+                                                        </select>
+                                                    </div>
+                                                    <label class="col-md-8 col-form-label" ng-show="previewshow==true">
+                                                        <font color="#ff6600">{{txtidproof}}</font>
+                                                    </label>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-md-4 col-form-label">
+                                                        ID Proof No:
+                                                    </label>
+                                                    <div class="col-md-8" ng-show="previewshow==false">
+                                                        <input type="text" ng-model="idproofno" class="form-control" name="idproofno" placeholder="ID Proof"
+                                                               autocomplete="off" required />
+                                                    </div>
+                                                    <label class="col-md-8 col-form-label" ng-show="previewshow==true">
+                                                        <font color="#ff6600">{{idproofno}}</font>
+                                                    </label>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-md-4 col-form-label">
+                                                        User Id :
+                                                    </label>
+                                                    <div class="col-md-8" ng-show="previewshow==false">
+                                                        <select class="form-control" ng-model="ddlnewidno" required>
+                                                            <option value="">Select Idno</option>
+                                                            <option ng-repeat="option in newUserIdno" value="{{option.midno}}">{{option.dmidno}}</option>
+                                                        </select>
+                                                    </div>
+                                                    <label class="col-md-8 col-form-label" ng-show="previewshow==true">
+                                                        <font color="#ff6600">{{ddlnewidno}}</font>
+                                                    </label>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-md-4 col-form-label">
+                                                    </label>
+                                                    <div class="col-md-8">
+                                                    </div>
+                                                </div>
+
+                                                <!-- End Example Horizontal Form -->
+                                            </div>
+                                        </div>
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">
+                                                Nominee Information
+                                            </h3>
+                                        </div>
+                                        <div class="row panel-body" style="margin:0px;">
+                                            <div class="col-md-12 col-lg-6">
+                                                <!-- Example Horizontal Form -->
+                                                <div class="form-group row">
+                                                    <label class="col-md-4 col-form-label">
+                                                        Nominee Name :
+                                                    </label>
+                                                    <div class="col-md-8" ng-show="previewshow==false">
+                                                        <input type="text" class="form-control" name="txtNomname" ng-model="txtNomname" placeholder="Nominee Name"
+                                                               required />
+                                                    </div>
+                                                    <label class="col-md-8 col-form-label" ng-show="previewshow==true">
+                                                        <font color="#ff6600">{{txtNomname}}</font>
+                                                    </label>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <legend class="col-md-4 col-form-legend">Nominee Age : </legend>
+                                                    <div class="col-md-8" ng-show="previewshow==false">
+                                                        <input type="text" class="form-control" name="txtnomage" ng-model="txtnomage" placeholder="Nominee Age" />
+                                                    </div>
+                                                    <label class="col-md-8 col-form-label" ng-show="previewshow==true">
+                                                        <font color="#ff6600">{{txtnomage}}</font>
+                                                    </label>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-md-4 col-form-label">
+                                                        Relation :
+                                                    </label>
+                                                    <div class="col-md-8" ng-show="previewshow==false">
+                                                        <select ng-model="ddnomrelation" class="form-control">
+                                                            <option value="">Select Relation</option>
+                                                            <option value="Mother">Mother</option>
+                                                            <option value="Father">Father</option>
+                                                            <option value="Wife">Wife</option>
+                                                            <option value="Brother">Brother</option>
+                                                            <option value="Sister">Sister</option>
+                                                            <option value="Son">Son</option>
+                                                            <option value="Daughter">Daughter</option>
+                                                            <option value="Friend">Friend</option>
+                                                            <option value="Grand Son">Grand Son</option>
+                                                            <option value="Grand Daughter">Grand Daughter</option>
+                                                            <option value="Son In Law">Son In Law</option>
+                                                            <option value="Daughter In Law">Daughter In Law</option>
+                                                            <option value="Brother In Law">Brother In Law</option>
+                                                            <option value="Sister In Law">Sister In Law</option>
+                                                            <option value="Husband">Husband</option>
+                                                            <option value="Propreitor">Propreitor</option>
+                                                            <option value="Partner">Partner</option>
+                                                            <option value="Director">Director</option>
+                                                        </select>
+                                                    </div>
+                                                    <label class="col-md-8 col-form-label" ng-show="previewshow==true">
+                                                        <font color="#ff6600">{{ddnomrelation}}</font>
+                                                    </label>
+                                                </div>
+
+                                                <div class="form-group row" ng-show="previewshow==false">
+                                                    <div class="col-md-9">
+                                                        <button type="submit" style="text-align: left" class="btn btn-primary" ng-click="ShowPreview()"
+                                                                ng-disabled="Form_signup.$invalid">
+                                                            Preview
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row" ng-show="previewshow==true">
+                                                    <div class="col-md-9">
+                                                        <button type="submit" style="text-align: left" class="btn btn-primary" ng-click="SignupProduct()">
+                                                            Submit
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <!-- End Example Horizontal Form -->
+                                            </div>
+
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--<div class="overlay-loader" ng-show="loader">
+                        <img src="../Images/loader.gif" />
+                    </div>
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            Convert Product Credits - {{idno2207}}
+                        </h3>
+                    </div>-->
+                    <br />
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .panel-body {
+        padding: 0px !important;
+    }
+
+    .overlay-loader {
+        background: rgba(0, 0, 0, 0.6) none repeat scroll 0 0;
+        bottom: 0;
+        height: 100%;
+        left: 0;
+        position: fixed;
+        right: 0;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+    }
+
+        .overlay-loader img {
+            left: 50%;
+            position: absolute;
+            top: 50%;
+        }
+</style>

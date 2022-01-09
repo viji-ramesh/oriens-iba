@@ -1,0 +1,92 @@
+﻿<!--<script src="../Scripts_AJ/angular-sanitize.js"> </script>-->
+<div class="" ng-controller="MailBox_ctrl" ng-init="getInbox('Inbox')">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row top-row-strip">
+                <div class="col-md-12">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"> Mail Box</li>
+                        <li class="breadcrumb-item active">Inbox</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel" ng-model="panel1" ng-show="inxshow">
+        <div class="row">
+            <div class="col-md-12">
+                <div class=" table-responsive">
+                    <table class="table table-bordered table-striped f-14">
+                        <thead>
+                            <tr class="table-header">
+                                <th>
+                                    <input type="checkbox" ng-model="chkhead" />
+                                </th>
+                                <th>
+                                    From
+                                </th>
+                                <th>
+                                    Subject
+                                </th>
+                                <th>
+                                    Date
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="x in inboxmails">
+                                <td>
+                                    <input type="checkbox" ng-model="x.Status" ng-checked="x.Status==1" ng-click="CheckBoxVal($index,$event,x.MAILID)" />
+                                </td>
+                                <td>
+                                    {{x.MAILFROM}}
+                                </td>
+                                <td>
+                                    <span>
+                                        <label ng-click="getInboxbody(x.Subject,x.MAILID)" style="color: Blue">
+                                            {{x.Subject}}
+                                        </label>' <span ng-bind-html="x.Message | limitTo:50 | unsafe">
+                                        </span>...
+                                    </span>
+                                </td>
+                                <td>
+                                    {{x.Dated}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="col-md-12" style="text-align:right">
+                        <button type="submit" class="btn btn-primary" ng-click="DeleteInbox(inboxmails)">
+                            Delete
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel" ng-model="panel2" ng-show="inmsgshow">
+        <div class="row ">
+            <div class="col-md-12 ">
+                <div class="card p-3">
+                    <div class="row">
+                        <div class="col-md-8 mx-auto">
+                            <div class="panel-body">
+                                Subject : {{inboxsub}}
+                                <br />
+                                <br />
+                                Message :<span ng-bind-html="inboxbody | unsafe"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-12" style="text-align:right">
+                            <button type="button" class="btn btn-primary" ng-click="getInbox('Inbox')">
+                                Back
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

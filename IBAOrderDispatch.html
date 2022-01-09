@@ -1,0 +1,144 @@
+﻿<div class="page-content" ng-controller="Orders_ctrl">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row top-row-strip">
+                <div class="col-md-12">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"> Order</li>
+                        <li class="breadcrumb-item active">IBA ORDERS DISPATCH</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row " ng-show="showpList2==false">
+        <div class="col-md-12 ">
+            <div class="card p-3">
+                <div class="row">
+                    <div class="col-md-8 mx-auto">
+                        <div class="example-wrap" ng-show="showpList2==false">
+                            <div class="example">
+                                <form name="Form">
+                                    <div class="form-group row">
+                                        <label class="col-md-1 col-form-label">
+                                            <input type="radio" ng-model="rtype" value="All" checked="true">&nbsp; All
+                                        </label>
+                                        <div class="col-md-8">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-1 col-form-label">
+                                            <input type="radio" ng-model="rtype" value="On">&nbsp;On
+                                        </label>
+                                        <div class="col-md-3">
+                                            <input type="Date" class="form-control" name="txtondate" ng-model="txtondate" placeholder="On Date">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-1 col-form-label">
+                                            <input type="radio" ng-model="rtype" value="Frm">&nbsp;From
+                                        </label>
+                                        <div class="col-md-3">
+                                            <input type="Date" class="form-control" name="txtfrmdate" ng-model="txtondate" placeholder="From Date">
+                                        </div>
+                                        <label class="col-md-1 col-form-label">
+                                            To
+                                        </label>
+                                        <div class="col-md-3">
+                                            <input type="Date" class="form-control" name="txttodate" ng-model="txttodate" placeholder="To Date">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-4 col-form-label">
+                                        </label>
+                                        <div class="col-md-8">
+                                            <button type="submit" class="btn btn-primary" ng-click="getOnlineOrders('IBAOrdDispatchRpt',rtype)">
+                                                Submit
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" ng-show="showpList2">
+        <div class="col-md-4">
+            <img src="images/backimg.jpg" style="width: 80px; height: 35px" ng-click="backOnlineOrders()" />
+        </div>
+        <div class="col-md-4 col-md-offset-3" style="float: right">
+        </div>
+        <div class="col-md-4">
+            <input type="text" ng-model="search" class="form-control" placeholder="Search">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class=" table-responsive">
+                <table class="table table-bordered table-striped f-14"
+                       ng-show="showpList2==true">
+                    <thead>
+                        <tr class="table-header">
+                            <th>
+                                Bill No.
+                            </th>
+                            <th>
+                                Bill Date
+                            </th>
+                            <th>
+                                Batch No
+                            </th>
+                            <th>
+                                Courier
+                            </th>
+                            <th>
+                                Docket No
+                            </th>
+                            <th>
+                                Docket Date
+                            </th>
+                            <th>
+                                Status
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr dir-paginate="x in ibaords | filter:search | itemsPerPage:ItemsperPage track by $index">
+                            <td>
+                                {{x.BillNo}}
+                            </td>
+                            <td>
+                                {{x.BillDate}}
+                            </td>
+                            <td>
+                                {{x.BatchNo}}
+                            </td>
+                            <td>
+                                {{x.Courier}}
+                            </td>
+                            <td>
+                                {{x.DocketNo}}
+                            </td>
+                            <td>
+                                {{x.DocketDate}}
+                            </td>
+                            <td>
+                                {{x.Status}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row form-group" ng-show="showpList2==true">
+                <div class="col-md-11">
+                    <dir-pagination-controls max-size="15" direction-links="true" boundary-links="true">
+                    </dir-pagination-controls>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,153 @@
+﻿<div class="page-content" ng-controller="SetMyGoal_ctrl" ng-init="GetDegn()">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row top-row-strip">
+                <div class="col-md-12">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"> Genealogy</li>
+                        <li class="breadcrumb-item active">SET MY GOAL</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="row ">
+            <div class="col-md-12 ">
+                <div class="card p-3">
+                    <div class="row">
+                        <div class="col-md-8 mx-auto">
+                            <form name="Form">
+                                <div class="form-group row">
+                                    <label class="col-6 col-md-6 text-sm-left text-xl-right col-form-label" style="text-align: right">
+                                        My Present Designation :
+                                    </label>
+                                    <label class="col-6 col-md-6 col-form-label">
+                                        {{lblmydeg}}
+                                    </label>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-6 col-md-6 text-sm-left text-xl-right col-form-label" style="text-align: right">
+                                        My Designation Goal :
+                                    </label>
+                                    <div class="col-6 col-md-3">
+
+                                        <select ng-model="ddlmygoal" id="desgid" class="form-control" ng-change="GetGoalDesg()">
+                                            <option selected="true">Select Goal</option>
+                                            <option ng-repeat="goal in mygoals" value="{{goal.Desgno}}">{{goal.DesgName}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row" ng-show="GshowDetails">
+                                    <label class="col-6 col-md-6 text-sm-left text-xl-right col-form-label" style="text-align: right">
+                                        Current Designation :
+                                    </label>
+                                    <label class="col-6 col-md-6 col-form-label">
+                                        {{lblmycurdeg}}
+                                    </label>
+                                </div>
+                                <div class="form-group row" ng-show="GshowDetails">
+                                    <label class="col-6 col-md-6 text-sm-left text-xl-right col-form-label" style="text-align: right">
+                                        Target Designation :
+                                    </label>
+                                    <label class="col-6 col-md-6 col-form-label">
+                                        {{lbltardeg}}
+                                    </label>
+                                </div>
+                                <div class="form-group row" ng-show="GshowDetails">
+                                    <label class="col-6 col-md-6 text-sm-left text-xl-right col-form-label" style="text-align: right">
+                                        Left Side Designation :
+                                    </label>
+                                    <label class="col-6 col-md-6 col-form-label">
+                                        {{lblLSdeg}}
+                                    </label>
+                                </div>
+                                <div class="form-group row" ng-show="GshowDetails">
+                                    <label class="col-6 col-md-6 text-sm-left text-xl-right col-form-label" style="text-align: right">
+                                        Right Side Designation :
+                                    </label>
+                                    <label class="col-6 col-md-6 col-form-label">
+                                        {{lblRSdeg}}
+                                    </label>
+                                </div>
+                                <div class="form-group row" ng-show="GshowDetails">
+                                    <label class="col-6 col-md-6 text-sm-left text-xl-right col-form-label" style="text-align: right">
+                                        Target Left Side Designation :
+                                    </label>
+                                    <label class="col-6 col-md-6 col-form-label">
+                                        {{lblTLSdeg}}
+                                    </label>
+                                </div>
+                                <div class="form-group row" ng-show="GshowDetails">
+                                    <label class="col-6 col-md-6 text-sm-left text-xl-right col-form-label" style="text-align: right">
+                                        Target Right Side Designation :
+                                    </label>
+                                    <label class="col-6 col-md-6 col-form-label">
+                                        {{lblTRSdeg}}
+                                    </label>
+                                </div>
+                                <div class="form-group row" ng-show="GshowDetails">
+                                    <label class="col-6 col-md-6 text-sm-left text-xl-right col-form-label" style="text-align: right">
+                                        Available CPV :
+                                    </label>
+                                    <label class="col-6 col-md-6 col-form-label">
+                                        {{lblCPV}}
+                                    </label>
+                                </div>
+                                <div class="form-group row" ng-show="GshowDetails && ddlmygoal <=7">
+                                    <label class="col-6 col-md-6 text-sm-left text-xl-right col-form-label" style="text-align: right">
+                                        Next Designation Target :
+                                    </label>
+                                    <label class="col-6 col-md-6 col-form-label">
+                                        {{lblNextdeg}}
+                                    </label>
+                                </div>
+                                <div class="form-group row" ng-show="GshowDetails && ddlmygoal=='8'">
+                                    <label class="col-6 col-md-6 text-sm-left text-xl-right col-form-label" style="text-align: right">
+                                        Required Compensation Groups :
+                                    </label>
+                                    <label class="col-6 col-md-6 col-form-label">
+                                        {{lblreqcomp1}}
+                                    </label>
+                                </div>
+                                <div class="form-group row" ng-show="GshowDetails && ddlmygoal=='9'">
+                                    <label class="col-6 col-md-6 text-sm-left text-xl-right col-form-label" style="text-align: right">
+                                        Required Compensation Groups :
+                                    </label>
+                                    <label class="col-6 col-md-6 col-form-label">
+                                        {{lblreqcomp2}}
+                                    </label>
+                                </div>
+                                <div class="form-group row" ng-show="GshowDetails && ddlmygoal=='10'">
+                                    <label class="col-6 col-md-6 text-sm-left text-xl-right col-form-label" style="text-align: right">
+                                        Required Compensation Groups :
+                                    </label>
+                                    <label class="col-6 col-md-6 col-form-label">
+                                        {{lblreqcomp3}}
+                                    </label>
+                                </div>
+                                <div class="form-group row" ng-show="GshowDetails && ddlmygoal=='11'">
+                                    <label class="col-6 col-md-6 text-sm-left text-xl-right col-form-label" style="text-align: right">
+                                        Required Compensation Groups :
+                                    </label>
+                                    <label class="col-6 col-md-6 col-form-label">
+                                        {{lblreqcomp4}}
+                                    </label>
+                                </div>
+                                <div class="form-group row" ng-show="GshowDetails && ddlmygoal <=7 ">
+                                    <label class="col-6 col-md-6 text-sm-left text-xl-right col-form-label" style="text-align: right">
+                                        Required CPV :
+                                    </label>
+                                    <label class="col-6 col-md-6 col-form-label">
+                                        {{lblreqpv}}
+                                    </label>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

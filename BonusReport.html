@@ -1,0 +1,107 @@
+﻿<div class="page-content" ng-controller="Payout_ctrl" ng-init="BonusRpts()">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row top-row-strip">
+                <div class="col-md-12">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"> Payout</li>
+                        <li class="breadcrumb-item active">IBA BONUS REPORT</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-model="panel1">
+        <div class="row">
+            <div class="col-md-12">
+                <div class=" table-responsive">
+                    <table class="table table-bordered table-striped f-14">
+                        <thead>
+                            <tr class="table-header">
+                                <th rowspan="2">
+                                    Business Count
+                                </th>
+                                <th rowspan="2">
+                                    Fast Track Count
+                                </th>
+                                <th colspan="2">
+                                    Compensation Sales
+                                </th>
+                                <th colspan="2">
+                                    Bonus Eligible
+                                </th>
+                                <th colspan="2">
+                                    PPV
+                                </th>
+                                <th rowspan="2">
+                                    Compensation Bonus
+                                </th>
+                                <th rowspan="2">
+                                    Designation
+                                </th>
+                            </tr>
+                            <tr class="table-header">
+                                <th>
+                                    Left
+                                </th>
+                                <th>
+                                    Right
+                                </th>
+                                <th>
+                                    Left
+                                </th>
+                                <th>
+                                    Right
+                                </th>
+                                <th>
+                                    Left
+                                </th>
+                                <th>
+                                    Right
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr dir-paginate="x in BonusRpt  | itemsPerPage:ItemsperPage track by $index">
+                                <td>
+                                </td>
+                                <td>
+                                </td>
+                                <td>
+                                    {{x.LSprCnt}}
+                                </td>
+                                <td>
+                                    {{x.RSprCnt}}
+                                </td>
+                                <td>
+                                    {{x.BinLeft}}
+                                </td>
+                                <td>
+                                    {{x.BinRight}}
+                                </td>
+                                <td>
+                                    {{x.EPairs}}
+                                </td>
+                                <td>
+                                    {{x.SelfBV}}
+                                </td>
+                                <td>
+                                    {{x.EPairs}}
+                                </td>
+                                <td>
+                                    {{x.ViewDesg}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-11">
+                        <dir-pagination-controls max-size="15" direction-links="true" boundary-links="true">
+                        </dir-pagination-controls>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

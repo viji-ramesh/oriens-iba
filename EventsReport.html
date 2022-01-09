@@ -1,0 +1,213 @@
+﻿
+<div class="container-fluid" ng-controller="Events_ctrl" ng-init="getEventsReport()">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row top-row-strip">
+                <div class="col-md-12">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"> Profile</li>
+                        <li ng-show="pgrmdt1" class="breadcrumb-item active">TICKET SALES SUMMARY</li>
+                        <li ng-show="pgrmdt2" class="breadcrumb-item active">TICKET TRANSFER</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-show="pgrmdt1">
+        <label ng-model="lblmobile" style="display:none"></label>
+        <label ng-model="lblname" style="display:none"></label>
+        <label ng-model="lblemail" style="display:none"></label>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class=" table-responsive">
+                    <table class="table table-bordered table-striped f-14">
+                        <thead>
+                            <tr class="table-header">
+                                <th>
+                                    S No.
+                                </th>
+                                <th>
+                                    Billno
+                                </th>
+                                <th>
+                                    Bill Date
+                                </th>
+                                <th>
+                                    Program Details
+                                </th>
+                                <th>
+                                    No. Of Tickets
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr dir-paginate="x in Eventrpts  | itemsPerPage:ItemsperPage track by $index">
+                                <td>
+                                    {{$index+1}}
+                                </td>
+                                <td>
+                                    <label ng-model="Billno" style="color:Blue" ng-click="GetInvoice(x.Billno)">{{x.Billno}}</label>
+                                </td>
+                                <td>
+                                    {{x.BillDate}}
+                                </td>
+                                <td>
+                                    <p ng-bind-html="x.Program_Details | unsafe"></p>
+                                </td>
+                                <td>
+                                    <label ng-model="NoTickets" ng-click="GetPrgrmDetails(x.Billno)" style="color:Blue">{{x.NoTickets}}</label>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel" ng-show="pgrmdt2">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class=" table-responsive">
+                    <table class="table table-bordered table-striped f-14">
+                        <thead>
+                            <tr class="table-header">
+                                <th>
+                                    <input type="checkbox" id="Checkbox1" />
+                                </th>
+                                <th>
+                                    Ticket No
+                                </th>
+                                <th>
+                                    Program Name
+                                </th>
+                                <th>
+                                    Program Date
+                                </th>
+                                <th>
+                                    Venue
+                                </th>
+                                <th>
+                                    City
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr dir-paginate="x in PrgrmDetails  | itemsPerPage:ItemsperPage track by $index">
+                                <td>
+                                    <input type="checkbox" id="Checkbox2" />
+                                </td>
+                                <td>
+                                    {{x.ticketno}}
+                                </td>
+                                <td>
+                                    {{x.PrgmName}}
+                                </td>
+                                <td>
+                                    {{x.pdate}}
+                                </td>
+                                <td>
+                                    {{x.venue}}
+                                </td>
+                                <td>
+                                    {{x.City}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="form-group row">
+                        <label class="col-md-4 col-form-label">
+                            Transfer To :
+                        </label>
+                        <div class="col-md-8">
+                            <input type="radio" ng-model="mtype" ng-change="ShowType(mtype)" value="member"> Member
+                            <input type="radio" ng-model="mtype" ng-change="ShowType(mtype)" value="guest"> Guest
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="example-wrap">
+                <div class="example" ng-show="membershow">
+                    <form name="Form">
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label">
+                                Transfer To :
+                            </label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" name="txttrnsto" ng-model="txtoldpwd" placeholder="IDNO"
+                                       autocomplete="off" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label">
+                                Transaction Password :
+                            </label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" name="txttpwd" ng-model="txtconpwd" placeholder="Transaction Password"
+                                       autocomplete="off" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label">
+                            </label>
+                            <div class="col-md-8">
+                                <button type="submit" class="btn btn-primary" ng-disabled="Form.$invalid">
+                                    Submit
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="example" ng-show="guestshow">
+                    <form name="Form2">
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label">
+                                Name :
+                            </label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" name="txtname" ng-model="txtname" placeholder="Name"
+                                       autocomplete="off" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label">
+                                Mobile :
+                            </label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" name="txtmobile" ng-model="txtmobile" placeholder="Mobile No."
+                                       autocomplete="off" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label">
+                                Email :
+                            </label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" name="txtemail" ng-model="txtemail" placeholder="Email"
+                                       autocomplete="off" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label">
+                            </label>
+                            <div class="col-md-8">
+                                <button type="submit" class="btn btn-primary" ng-disabled="Form2.$invalid">
+                                    Submit
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+

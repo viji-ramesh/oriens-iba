@@ -1,0 +1,253 @@
+﻿<div class="" ng-controller="PrintPreview_ctrl">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row top-row-strip">
+                <div class="col-md-12">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"> Genealogy</li>
+                        <li class="breadcrumb-item active">PRINT PREVIEW</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="panel panel-body">
+
+            <div class="row " ng-show="showprintview1">
+                <div class="col-md-12 ">
+                    <div class="card p-3">
+                        <div class="row">
+                            <div class="col-md-8 mx-auto">
+                                <div class="example-wrap" ng-show="showprintview1">
+                                    <div class="example">
+                                        <form name="Form">
+                                            <div class="form-group row">
+                                                <label class="col-md-1 col-form-label">
+                                                    <input type="radio" ng-model="rtype" value="All" ng-checked="true">&nbsp; All
+                                                </label>
+                                                <div class="col-md-8">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-md-1 col-form-label">
+                                                    <input type="radio" ng-model="rtype" value="On">&nbsp;On
+                                                </label>
+                                                <div class="col-md-3">
+                                                    <input type="Date" class="form-control" name="txtondate" ng-model="txtondate" placeholder="On Date">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-md-1 col-form-label">
+                                                    <input type="radio" ng-model="rtype" value="From">&nbsp;From
+                                                </label>
+                                                <div class="col-md-3">
+                                                    <input type="Date" class="form-control" name="txtfrmdate" ng-model="txtondate" placeholder="From Date">
+                                                </div>
+                                                <label class="col-md-1 col-form-label">
+                                                    To
+                                                </label>
+                                                <div class="col-md-3">
+                                                    <input type="Date" class="form-control" name="txttodate" ng-model="txttodate" placeholder="To Date">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-md-4 col-form-label">
+                                                </label>
+                                                <div class="col-md-8">
+                                                    <button type="submit" class="btn btn-primary" ng-click="getPrintViereport('Left')">
+                                                        Submit
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row form-group ml-4" ng-show="showprintview2">
+                <ul class="nav nav-tabs">
+                    <li><a class="btn btn-primary btn-sm mr-3" href="" ng-click="getPrintViereport('Left')">Left Team</a></li>
+                    <li><a class="btn btn-primary btn-sm" href="" ng-click="getPrintViereport('Right')">Right Team</a></li>
+                </ul>
+            </div>
+
+
+            <div class="row" ng-show="showprintview2 && showleft==true">
+                <div class="col-md-12">
+                    <div class="row form-group ml-4" style="float:right" ng-show="showprintview2 && showleft==true">
+                        <ul class="nav nav-tabs">
+                            <li><a class="btn btn-primary btn-sm mr-3" href="" ng-click="ExportLeftTeam()">Export Excel</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 col-md-offset-9" style="float: right" ng-show="showprintview2 && showleft==true">
+                        <input type="text" ng-model="search" class="form-control" placeholder="Search">
+
+                    </div>
+                    <div class=" table-responsive">
+                        <table class="table table-bordered table-striped f-14"
+                               ng-show="showprintview2 && showleft==true" cellspacing="3">
+                            <thead>
+                                <tr class="table-header">
+                                    <th>
+                                        S No.
+                                    <th>
+                                        IBA NO.
+                                    </th>
+                                    <th style="width:320px;">
+                                        Name
+                                    </th>
+                                    <th>
+                                        Sponsor
+                                    </th>
+                                    <th style="width:10%">
+                                        DOJ
+                                    </th>
+                                    <th>
+                                        Downto
+                                    </th>
+                                    <th>
+                                        Cadre
+                                    </th>
+                                    <th>
+                                        Status
+                                    </th>
+                                    <th>
+                                        PV
+                                    </th>
+                                    <th>
+                                        Pin PV
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="x in LPView | filter:search">
+                                    <td>
+                                        {{$index+1}}
+                                    </td>
+                                    <td>
+                                        {{x.idno}}
+                                    </td>
+                                    <td>
+                                        {{x.name}}
+                                    </td>
+                                    <td>
+                                        {{x.sponsor}}
+                                    </td>
+                                    <td style="width:10%">
+                                        {{x.stsdate}}
+                                    </td>
+                                    <td>
+                                        {{x.upline}}
+                                    </td>
+                                    <td>
+                                        {{x.SysDesgNo}}
+                                    </td>
+                                    <td>
+                                        {{x.status}}
+                                    </td>
+                                    <td>
+                                        {{x.bv}}
+                                    </td>
+                                    <td>
+                                        {{x.SP}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row" ng-show="showprintview2 && showright==true">
+                <div class="col-md-12">
+                    <div class="row form-group ml-4" style="float:right" ng-show="showprintview2 && showright==true">
+                        <ul class="nav nav-tabs">
+                            <li><a class="btn btn-primary btn-sm mr-3" href="" ng-click="ExportLeftTeam()">Export Excel</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 col-md-offset-9" style="float: right" ng-show="showprintview2 && showright==true">
+                        <input type="text" ng-model="search" class="form-control" placeholder="Searchr">
+                    </div>
+                    <div class=" table-responsive">
+                        <table class="table table-bordered table-striped f-14"
+                               ng-show="showprintview2 && showright==true">
+                            <thead>
+                                <tr class="table-header">
+                                    <th>
+                                        S No.
+                                    </th>
+                                    <th>
+                                        IBA NO.
+                                    </th>
+                                    <th>
+                                        Name
+                                    </th>
+                                    <th>
+                                        Sponsor
+                                    </th>
+                                    <th style="width:10%">
+                                        DOJ
+                                    </th>
+                                    <th>
+                                        Downto
+                                    </th>
+                                    <th>
+                                        Cadre
+                                    </th>
+                                    <th>
+                                        Status
+                                    </th>
+                                    <th>
+                                        PV
+                                    </th>
+                                    <th>
+                                        Pin PV
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="x in RPView | filter:searchr">
+                                    <td>
+                                        {{$index+1}}
+                                    </td>
+                                    <td>
+                                        {{x.idno}}
+                                    </td>
+                                    <td>
+                                        {{x.name}}
+                                    </td>
+                                    <td>
+                                        {{x.sponsor}}
+                                    </td>
+                                    <td style="width:10%">
+                                        {{x.stsdate}}
+                                    </td>
+                                    <td>
+                                        {{x.upline}}
+                                    </td>
+                                    <td>
+                                        {{x.SysDesgNo}}
+                                    </td>
+                                    <td>
+                                        {{x.status}}
+                                    </td>
+                                    <td>
+                                        {{x.bv}}
+                                    </td>
+                                    <td>
+                                        {{x.SP}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

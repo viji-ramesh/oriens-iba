@@ -1,0 +1,456 @@
+﻿<script type="text/javascript" src="../scripts/qrcode.js">
+</script>
+<script type="text/javascript" src="../scripts/html5-qrcode.js">
+</script>
+<script type="text/javascript">
+    function updateQRCode(text) {
+
+        var element = document.getElementById("qrcode");
+
+        var bodyElement = document.body;
+        if (element.lastChild)
+            element.replaceChild(showQRCode(text), element.lastChild);
+        else
+            element.appendChild(showQRCode(text));
+
+    }
+
+    //updateQRCode('www.tutorialspoint.com');
+</script>
+<div class="" ng-controller="getSession">
+    <!-- Panel Basic -->
+    <div class="panel" style="margin-bottom: 0; text-align: center; box-shadow: unset;">
+        <div class="panel-body" style="margin: 0px auto; padding-top: 0; float: left; width: 100%;">
+            <div class="row">
+                <div class="col-md-12">
+                    <div style="background: #94c83d; padding: 7px 0; border-radius: 5px; float: left;
+                        width: 100%;">
+                        <ul class="dashbord-ul">
+                            <li><span class="listtitle" style="font-family: Absara TF Light SC; padding: 0px;
+                                border-right: 1px solid #fff;">&nbsp;&nbsp;Time Left :
+                                <label id="demo">
+                                </label>
+                            </span></li>
+                            <li><span class="listtitle" style="font-family: Absara TF Light SC; padding: 0px;
+                                border-right: 1px solid #fff;">Welcome {{lblname}}</span> </li>
+                            <li><span class="listtitle" style="font-family: Absara TF Light SC; padding: 0px;">Desg
+                                : {{lbldesg}}
+                                <img src="images/{{lbldesgimg}}" style="width: 24px; margin-right: 7px;" /></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <!--<div class="row">
+                <div class="col-md-12">
+                    <div class="bonas" ng-show="PCEX">
+                        <blink><font color="Red">{{PCEXPMSG}}</font></blink>
+                    </div>
+                </div>
+            </div>-->
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="notifcations" ng-init="Fillnews()">
+                        <span class="listtitle mberlogin-title">Member News</span>
+                        <marquee behavior="scroll" direction="up" scrollamount="2" onmouseover="stop()" onmouseout="start()"
+                            style="border: 1px solid #c7c7c9; height: 346px; padding: 0 9px; background: #fff;
+                            margin-top: 8px; border-radius: 5px;">
+                                 <label class="listnotifcationbdy" ng-bind-html="Membernews | unsafe"> 
+                                 </label>                             
+                                </marquee>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="notifcations" style="background: none;">
+                        <span class="listtitle mberlogin-title" style="width: 49%; margin-right: 5px;">Required
+                            PPV</span> <span class="listtitle mberlogin-title" style="width: 49%;">Total PPV</span>
+                        <ul style="width: 100%;">
+                            <li class="listnotifcationbdy" style="width: 49%; margin-right: 5px; text-align: center;">
+                                {{lblReqPV}} </li>
+                            <li class="listnotifcationbdy" style="width: 49%; text-align: center;">{{totPV}}
+                            </li>
+                            <!--Hide Temp-->
+                            <!--<li class="listnotifcationbdy" style="margin-top: 1px; background: #94999d; padding: 4px 0px;
+                                color: #fff; margin-bottom: 40px;" ng-show="desg>4 && ReqPV>0">You Need to do {{ReqPV}} PV
+                                for Closing Eligibility </li>-->
+                            <!--Hide Temp-->
+                        </ul>
+                    </div>
+                    <div class="notifcations" style="background: none;">
+                        <span class="listtitle mberlogin-title" style="width: 39%; margin-right: 5px; text-align: center;">
+                            Downline</span> <span class="listtitle mberlogin-title" style="width: 28%; margin-right: 5px;
+                                text-align: center;">Today</span> <span class="listtitle mberlogin-title" style="width: 29%;">
+                                    Total</span>
+                        <ul style="width: 100%;">
+                            <li class="listnotifcationbdy" style="width: 39%; margin-right: 5px; text-align: center;">
+                                Left</li>
+                            <li class="listnotifcationbdy" style="width: 28%; margin-right: 5px; text-align: center;">
+                                {{LTodCnt}} </li>
+                            <li class="listnotifcationbdy" style="width: 29%;">{{LTotCnt}}</li>
+                            <li class="listnotifcationbdy" style="width: 39%; margin-right: 5px; margin-top: -3px;
+                                text-align: center;">Right</li>
+                            <li class="listnotifcationbdy" style="width: 28%; margin-right: 5px; margin-top: -3px;
+                                text-align: center;">{{RTodCnt}} </li>
+                            <li class="listnotifcationbdy" style="width: 29%; margin-top: -3px;">{{RTotCnt}}</li>
+                        </ul>
+                    </div>
+                    <div class="notifcations" style="background: none; display: none">
+                        <span class="listtitle mberlogin-title" style="width: 100%; margin-right: 5px; text-align: center;">
+                            Downline Product Credits</span>
+                        <ul style="width: 100%;">
+                            <li class="listnotifcationbdy" style="width: 39%; margin-right: 5px; text-align: center;">
+                                Left</li>
+                            <li class="listnotifcationbdy" style="width: 57%; margin-right: 5px; text-align: center;">
+                                {{LeftDPC}} </li>
+                            <li class="listnotifcationbdy" style="width: 39%; margin-right: 5px; margin-top: -3px;
+                                text-align: center;">Right</li>
+                            <li class="listnotifcationbdy" style="width: 57%; margin-right: 5px; margin-top: -3px;
+                                text-align: center;">{{RightDPC}} </li>
+                        </ul>
+                    </div>
+                    <div class="bonas" ng-show="InElg>0">
+                        <blink><font color="Red">Bonus On Hold</font></blink>
+                    </div>
+                    <!--KR-->
+                    <div>
+                        <a class="btn btn-healux btn-xs pull-right filter" data-toggle="modal" data-target="#myModal"
+                            ng-show="ISShowReword==0 ">
+                            <img src="../img/rewclaim.gif" /></a>
+                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                            <div class="modal-dialog" role="document">
+                                <form name="MenuForm" ng-submit="GetSalesReport()" novalidate>
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">
+                                            <span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabel">
+                                            Claim Reward Coupons</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <table class="table table-bordered table-striped">
+                                                    <tr>
+                                                        <th>
+                                                            Designation
+                                                        </th>
+                                                        <th>
+                                                            Coupon Code
+                                                        </th>
+                                                        <th>
+                                                            Dated
+                                                        </th>
+                                                        <th>
+                                                            Redeem On
+                                                        </th>
+                                                    </tr>
+                                                    <tr ng-repeat="r in RewCoupons">
+                                                        <td ng-hide="r.Status==0" class="label-center">
+                                                            <a style="color: Red;">{{r.Desg}}</a>
+                                                        </td>
+                                                        <td ng-show="r.Status==0" class="label-center">
+                                                            <a ng-click="GetDesgCoup(r.DesgNo)" style="color: Red;">{{r.Desg}}</a>
+                                                        </td>
+                                                        <td class="label-center">
+                                                            {{r.CoupCode}}
+                                                        </td>
+                                                        <td class="label-center">
+                                                            {{r.PostedDate}}
+                                                        </td>
+                                                        <td class="label-center">
+                                                            {{r.DipatchDate}}
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <span>Note : Click On Designation for details</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                            <div class="modal-dialog" role="document">
+                                <form name="MenuForm" ng-submit="GetSalesReport()" novalidate>
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">
+                                            <span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabel">
+                                            Reward Redemption Form</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="col-md-12 Reward-form">
+                                            <div class="row form-group">
+                                                <div class="col-md-8">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <label>
+                                                                        IBA No :</label>
+                                                                    <span>{{RewCouponsDet[0]["IdNo"]}}</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <label>
+                                                                        Name :</label>
+                                                                    <span>{{RewCouponsDet[0]["Name"]}}</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <img ng-src="{{ImgPath}}" class="img-responsive center-block" style="width: 50px;
+                                                        height: 50px; border: 1px solid #ddd">
+                                                </div>
+                                            </div>
+                                            <div class="row form-group">
+                                                <div class="col-md-6">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <label>
+                                                                DOJ :</label>
+                                                            <span>{{RewCouponsDet[0]["MemDate"]}}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <label>
+                                                                DOA :</label>
+                                                            <span>{{RewCouponsDet[0]["ActDate"]}}</span>
+                                                            <div id="qrcode" style="position: absolute; top: 100px; left: 50px; z-index: 999">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row form-group">
+                                                <div class="col-md-12">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <label>
+                                                                Mobile :</label>
+                                                            <span>{{RewCouponsDet[0]["Mobile"]}}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row form-group">
+                                                <div class="col-md-12">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <label>
+                                                                State :
+                                                            </label>
+                                                            <span>{{RewCouponsDet[0]["State"]}}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row form-group">
+                                                <div class="col-md-12">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <label>
+                                                                Current Designation :
+                                                            </label>
+                                                            <span>{{RewCouponsDet[0]["Desg"]}}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row form-group">
+                                                <div class="col-md-12">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <label>
+                                                                Eligibile For Reward :</label>
+                                                            <span>{{RewCouponsDet[0]["Desg"]}}</span></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row form-group">
+                                                <div class="col-md-12">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <label>
+                                                                Coupon Code :</label>
+                                                            <span>{{RewCouponsDet[0]["CoupCode"]}}</span><!--<img src="images/{{RewCouponsDet[0].CoupCode}}@{{RewCouponsDet[0].Desg}}.png" style="width: 140px; height: 138px;">-->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row form-group">
+                                                <div class="col-md-12">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <label>
+                                                                Terms & Conditions :</label>
+                                                            <label ng-bind-html="Terms | unsafe">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--
+                                                <div class="row form-group">
+                                                    <div class="col-md-8">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="row">
+                                                                    <div class="col-md-5"><label>  Station :</label> </div>
+
+                                                                    <div class="col-md-5"></div>
+
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-5"> <label>Date :</label> </div>
+
+                                                                    <div class="col-md-5"></div>
+
+                                                                </div>
+                                                            </div>
+
+
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+
+                                                        <div class="col-md-12"> <label>Signature </label> </div>
+                                                    </div>
+
+                                                </div>-->
+                                        </div>
+                                    </div>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!--KR-->
+                </div>
+                <div class="col-md-4">
+                    <div class="notifcations">
+                        <span class="listtitle mberlogin-title">Top Achievers</span>
+                        <marquee behavior="scroll" direction="up" scrollamount="8" onmouseover="stop()" onmouseout="start()"
+                            style="border: 1px solid #c7c7c9; height: 346px; padding: 0 9px; background: #fff;
+                            margin-top: 8px; border-radius: 5px;">
+                          <label class="listnotifcationbdy" ng-repeat="x in TopAchievers">
+                                <img src="{{x.path}}?v=1.0" style="width:25%; height:80px; float:left; margin-right:10px;" />
+                                <p style="width:70%; float:left" >
+                                    <ul class="chieversul" style="margin-top: -16px;">
+
+                                       <li style="background-image:url(images/id.jpg)">  <span>{{x.idno}}</span></li>
+                                        <li style="background-image:url(images/user.jpg)">  <span>{{x.Name}}</span></li>
+                                        <li style="background-image:url(images/bag.jpg)">  <span> {{x.Desg}} Diamond</span></li>
+                                    </ul>
+                                </p>
+                          </label>
+                          <!--<label class="listnotifcationbdy">
+                                <img src="images/icon.jpg" style="width:25%; float:left; margin-right:10px;" />
+                                <p style="width:70%; float:left" >
+                                <ul class="chieversul" style="margin-top: -16px;">
+                                         <li style="background-image:url(images/id.jpg)">  <span>000123</span></li>
+                                        <li style="background-image:url(images/user.jpg)">  <span>xxxxxx</span></li>
+                                        <li style="background-image:url(images/bag.jpg)">  <span> 5</span></li>
+                                    </ul>
+                                </p>
+                          </label>
+                          <label class="listnotifcationbdy">
+                                <img src="images/icon.jpg" style="width:25%; float:left; margin-right:10px;" />
+                                <p style="width:70%; float:left" >
+                              <ul class="chieversul" style="margin-top:-16px;">
+                                        <li style="background-image:url(images/id.jpg)">  <span>000123</span></li>
+                                        <li style="background-image:url(images/user.jpg)">  <span>xxxxxx</span></li>
+                                        <li style="background-image:url(images/bag.jpg)">  <span> 5</span></li>
+                                    </ul>
+                                </p>
+                          </label>
+                          <label class="listnotifcationbdy">
+                                <img src="images/icon.jpg" style="width:25%; float:left; margin-right:10px;" />
+                                <p style="width:70%; float:left" >
+                                <ul class="chieversul" style="margin-top: -16px;">
+
+                                        <li style="background-image:url(images/id.jpg)">  <span>000123</span></li>
+                                        <li style="background-image:url(images/user.jpg)">  <span>xxxxxx</span></li>
+                                        <li style="background-image:url(images/bag.jpg)">  <span> 5</span></li>
+                                    </ul>
+                                </p>
+                          </label>
+                          <label class="listnotifcationbdy">
+                                <img src="images/icon.jpg" style="width:25%; float:left;  margin-right:10px;" />
+                                <p style="width:70%; float:left" >
+                                <ul class="chieversul" style="margin-top: -16px;">
+
+                                        <li style="background-image:url(images/id.jpg)">  <span>000123</span></li>
+                                        <li style="background-image:url(images/user.jpg)">  <span>xxxxxx</span></li>
+                                        <li style="background-image:url(images/bag.jpg)">  <span> 5</span></li>
+                                    </ul>
+                                </p>
+                          </label>-->
+                        </marquee>
+                    </div>
+                </div>
+            </div>
+            <!--<div class="message">
+                <div class="image_div">
+                    <img src="images/gift_marvel.gif" /></div>
+                <span>Congratulations! You have achieved {{lbldesg}} Designation in {{desgpayno}} Cycle</span>
+            </div>-->
+        </div>
+    </div>
+    <!--<div class="modal fade show" id="divDetails" role="dialog" ng-init="GetPopupImages()">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        &times;</button>
+                </div>
+                <div class="w3-content w3-display-container">
+                    <img class="mySlides" ng-src="../Admin/PopupImages/{{x.Image}}" style="width: 100%;display: {{x.$index==0?'block':'none'}}" ng-repeat="x in GetPopupImgs" onload="plusDivs(-1)">
+                    <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">
+                        &#10094;</button>
+                    <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">
+                        &#10095;</button>
+                </div>
+                <br />
+            </div>
+        </div>
+    </div>-->
+</div>
+<script> $(document).ready(function () { //$('#divDetails').modal('show'); $('marquee').marquee({
+//speed in milliseconds of the marquee duration: 5000, //gap in pixels between the
+tickers gap: 50, //time in milliseconds before the marquee will start animating
+delayBeforeStart: 0, //'left' or 'right' direction: 'left', //true or false - should
+the marquee be duplicated to show an effect of continues flow duplicated: true });
+}); var slideIndex = 1; showDivs(slideIndex); function plusDivs(n) { showDivs(slideIndex
++= n); } function showDivs(n) { var i; var x = document.getElementsByClassName("mySlides");
+if (n > x.length) { slideIndex = 1 } if (n < 1) { slideIndex = x.length } for (i
+= 0; i < x.length; i++) { x[i].style.display = "none"; } x[slideIndex - 1].style.display
+= "block"; } </script>
+<style>
+    .Reward-form
+    {
+        border: 1px solid #ddd;
+        min-height: 450px;
+        text-align: left !important;
+        padding-bottom: 15px;
+        padding-top: 10px;
+    }
+    .Reward-form .form-group
+    {
+        margin-bottom: 1.1rem !important;
+    }
+    .Reward-form h4
+    {
+        text-align: center;
+        text-decoration: underline;
+    }
+</style>

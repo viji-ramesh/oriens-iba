@@ -1,0 +1,50 @@
+﻿<!--<script src="../Scripts_AJ/angular-sanitize.js"> </script>-->
+<div class="" ng-controller="MailBox_ctrl" ng-init="GetDocumentsDataPB()">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row top-row-strip">
+                <div class="col-md-12">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"> Downloads</li>
+                        <li class="breadcrumb-item active">Passion Book</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class=" table-responsive">
+                <table class="table table-bordered table-striped f-14">
+                    <thead>
+                        <tr>
+                            <th>
+                                File Type
+                            </th>
+                            <th>
+                                Name
+                            </th>
+                            <th>
+                                Action
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="x in Downloads">
+                            <td>
+                                <img src="http://oriensworld.in/members/images/{{x.DocType}}.png" style="width:30px;height:30px" />
+                            </td>
+                            <td>
+                                {{x.DocumentName}}
+                            </td>
+                            <td>
+                                <a ng-click="DocumentDownload(x.DocumentID)"><font color="blue">Download</font></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>

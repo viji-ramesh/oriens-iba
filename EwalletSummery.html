@@ -1,0 +1,107 @@
+﻿<div class="container-fluid" ng-controller="Payout_ctrl" ng-init="EwalletSummery()">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row top-row-strip">
+                <div class="col-md-12">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"> Payout</li>
+                        <li class="breadcrumb-item active">EWALLET SUMMARY</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>    
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-md-4">
+                <h3 class="panel-title">
+                    Total Available Amount :
+                    <label style="text-align: right; color: Green">
+                        {{totavlamt}}
+                    </label>
+                </h3>
+            </div>
+            <div class="col-md-4">
+                <h3 class="panel-title">
+                    Added Amount :
+                    <label style="text-align: right; color: red">
+                        {{totaddamt}}
+                    </label>
+                </h3>
+            </div>
+            <div class="col-md-4">
+                <h3 class="panel-title">
+                    Deducted Amount
+                    <label style="text-align: right; color: red">
+                        {{totdbamt}}
+                    </label>
+                </h3>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="panel" ng-model="panel1">
+        <br />
+        <div class="row">
+            <div class="col-md-12" style="text-align:right">
+                <!--<button type="submit" class="btn btn-primary" ng-show="GetValues=='M'" ng-click="EwalletPaymentreq(totavlamt)">
+                Click Here For Ewallet Payment Request
+            </button>-->
+                <label ng-show="GetValues=='A'"><font color="red">You have choosen the Automatic Payment Request.</font></label>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class=" table-responsive">
+                    <table class="table table-bordered table-striped f-14">
+                <thead>
+                    <tr class="table-header">
+                        <th>
+                            S No.
+                        </th>
+                        <th>
+                            Description
+                        </th>
+                        <th>
+                            Credit Amount
+                        </th>
+                        <th>
+                            Debit Amount
+                        </th>
+                        <th>
+                            Status Date
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr dir-paginate="x in ewallet  | itemsPerPage:ItemsperPage track by $index">
+                        <td>
+                            {{$index+1}}
+                        </td>
+                        <td>
+                            {{x.descr}}
+                        </td>
+                        <td>
+                            {{x.inamt}}
+                        </td>
+                        <td>
+                            {{x.outamt}}
+                        </td>
+                        <td>
+                            {{x.dated}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+                    <div class="row form-group">
+                        <div class="col-md-11">
+                            <dir-pagination-controls max-size="15" direction-links="true" boundary-links="true">
+                            </dir-pagination-controls>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>

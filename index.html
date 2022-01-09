@@ -1,0 +1,575 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Oriens</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <link rel='shortcut icon' href="images/fan-icon.png" />
+
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/custome.js"></script>
+
+    <!-- AlertMsg Css  -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="bootstrap admin template">
+    <meta name="author" content="">
+    <title>Dashboard | Oriens</title>
+    <link href="../AlertMsg/alertify.bootstrap.css" rel="stylesheet" />
+    <link href="../AlertMsg/alertify.core.css" rel="stylesheet" />
+    <link href="../AlertMsg/alertify.default.css" rel="stylesheet" />
+    <script type="text/javascript" src="../AlertMsg/alertify.min.js"></script>
+
+    <link href="../Styles/datetimepicker.min.css" rel="stylesheet" />
+    <link href="../Styles/AutoComplete.css" rel="stylesheet" />
+    <link href="../css/Validations.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="css/css-genealogy/hierarchy-view.css" />
+    <link rel="stylesheet" type="text/css" href="css/css-genealogy/main.css" />
+    <link href="css/popupDeasidn.css" rel="stylesheet" type="text/css" />
+    <script src="js/breakpoints.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="css/css-genealogy/hierarchy-view.css" />
+    <link rel="stylesheet" type="text/css" href="css/css-genealogy/main.css" />
+    <link href="css/popupDeasidn.css" rel="stylesheet" type="text/css" />    
+    <script src="js/breakpoints.min.js"></script>
+
+</head>
+
+<body class="bg-light" ng-app="NewmemberApp" ng-controller="getSession" style="height:auto;">
+    <header>
+        <div class="bg-white py-2">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col logo sidebar-width">
+                        <div class="pb-2">
+                            <div class="menu-toogle-btn">
+                                <i class="las la-bars"></i>
+                            </div>
+                            <a href="index.html#/Dash-Board">
+                                <img src="images/logo.png" style="width: 150px;" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col d-flex align-items-left">
+                        <div class="w-100">
+                            <div class="row">
+                                <div class="col-md-4 ml-auto d-none d-md-block">
+
+                                    <input type="text" name="LinkName" ng-model="txtLinkName" class="form-control" placeholder="Search Links..." style="background-color: #A1FFD4; border-radius: 5px;"
+                                           typeahead="sl as sl.LinkName for sl in SubLinks | filter:$viewValue | limitTo:8"
+                                           typeahead-editable="false" typeahead-min-length="1" typeahead-on-select='PageRedirection(txtLinkName.Lid,txtLinkName.DispPage)'
+                                           autocomplete="off">
+                                    <span class="input-autocomplete"></span>
+                                </div>
+                                <div class="col-3 offset-9 offset-md-0 col-md-1">
+                                    <div class="btn-group float-right">
+                                        <a class="btn btn-secondary dropdown-toggle user-profile" ng-click="logoutdivshow()" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="las la-user-circle"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right" id="logoutdiv" ng-mouseleave="logoutdivhide()">
+                                            <a class="dropdown-item">User Name  : {{lblname}}</a>
+                                            <a class="dropdown-item">Distributor ID : {{lblidno}}</a>
+                                            <a class="dropdown-item">IP : {{lblip}}</a>
+                                            <a class="dropdown-item">Last Seen : {{lbldate}}</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" style="cursor:pointer" ng-click="LogOut()">Logout</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-middle bg-theam pt-3 pb-4">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h5 class="text-uppercase text-white">IBA LOGIN</h5><!--{{LinkName}}-->
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb bg-transparent p-0 mb-4">
+                                <li class="breadcrumb-item"><a class="text-white" href="#/">Home</a></li>
+                                <li class="breadcrumb-item  text-white active" aria-current="page">Home</li><!--{{LinkName}}-->
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid ">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="main-menu-sec">
+                        <div class="card header-bottom h-100">
+                            <ul class="main-links">
+                                <li class="active">
+                                    <a href=""><i class=" las la-tachometer-alt"></i>Dashboard</a>
+                                </li>
+                                <li class="active">
+                                    <a href="" ng-mouseenter="true" ng-mouseleave="false"><i class="lar la-user"></i>Profile Tools</a>
+                                    <ul class="submneu" ng-mouseenter="true" ng-mouseleave="false">
+                                        <li class="site-menu-item sumenu-li">
+                                            <a href='MyProfile' onclick="javascript:postwith('Body','MyProfile.html')">
+                                                My Profile
+                                            </a>
+                                        </li>
+                                        <li class="site-menu-item sumenu-li">
+                                            <a href='index.html#/MyPassword' onclick="javascript:postwith('Body','MyPassword.htm')">
+                                                My Password
+                                            </a>
+                                        </li>
+                                        <!--<li class="site-menu-item sumenu-li">
+                                            <a href='index.html#/MyTPassword' onclick="javascript:postwith('Body','MyTPassword.htm')">
+                                                Transaction Password
+                                            </a>
+                                        </li>-->
+                                        <li class="site-menu-item sumenu-li">
+                                            <a href='index.html#/ConfirmationNote' onclick="javascript:postwith('Body','ConfirmationNote.htm')">
+                                                Confirmation Note
+                                            </a>
+                                        </li>
+                                        <li class="site-menu-item sumenu-li">
+                                            <a href='index.html#/PhotoUpload' onclick="javascript:postwith('Body','PhotoUpload.htm')">
+                                                Photo Upload
+                                            </a>
+                                        </li>
+					<li class="site-menu-item sumenu-li">
+                                            <a href='index.html#/IDCard' onclick="javascript:postwith('Body','IDCard.htm')">
+                                                Id Card
+                                            </a>
+                                        </li>     
+                                        
+                                        <!--<li class="site-menu-item sumenu-li">
+                                            <a href='index.html#/LValidateAcc' onclick="javascript:postwith('Body','L_ValidateAcc.html')">
+                                                Validate Account
+                                            </a>
+                                        </li>
+                                        <li class="site-menu-item sumenu-li">
+                                            <a href='index.html#/GuestReport' onclick="javascript:postwith('Body','L_GueRpt.aspx')">
+                                                Guest Report
+                                            </a>
+                                        </li>
+                                        <li class="site-menu-item sumenu-li" id="appgue" runat="server">
+                                            <a href='index.html#/ProGuestRpt'>
+                                                Approve Guest
+                                            </a>
+                                        </li>
+                                        <li class="site-menu-item sumenu-li" id="Li23" runat="server" ng-show="showcust==true">
+                                            <a href='index.html#/GetCustomer' onclick="javascript:postwith('Body','CustomerReport.htm')">
+                                                Customer Report
+                                            </a>
+                                        </li>
+                                        <li class="site-menu-item sumenu-li" id="Li4" runat="server" ng-show="showcust==true">
+                                            <a href='index.html#/GetDeletedCustomer' onclick="javascript:postwith('Body','DeletedCustomers.htm')">
+                                                Deleted Customers
+                                            </a>
+                                        </li>-->                                        
+                                                                          
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="" ng-mouseenter="true" ng-mouseleave="false"><i class=" las la-users"></i>Genealogy</a>
+                                    <ul class="submneu" ng-mouseenter="true" ng-mouseleave="false">
+                                        <li class="site-menu-item sumenu-li">
+                                            <a href='index.html#/TreeView' onclick="javascript:postwith('Body','Treeview.htm')">
+                                                Tree View
+                                            </a>
+                                        </li>
+                                        <li class="site-menu-item sumenu-li">
+                                            <a href='index.html#/PrintPreview' onclick="javascript:postwith('Body','PrintPreview.htm')">
+                                                Print View
+                                            </a>
+                                        </li>
+                                        <li class="site-menu-item sumenu-li">
+                                            <a href='index.html#/TreeTypeSetup' onclick="javascript:postwith('Body','TreeTypeSetup.htm')">
+                                                Tree Type Setup
+                                            </a>
+                                        </li>
+                                        <li class="site-menu-item sumenu-li">
+                                            <a href='index.html#/InterducerReport' onclick="javascript:postwith('Body','InterducerReport.htm')">
+                                                Introducer Report
+                                            </a>
+                                        </li>                                        
+                                        <li class="site-menu-item sumenu-li">
+                                            <a href='index.html#/SetMyGoal' onclick="javascript:postwith('Body','SetMyGoal.htm')">
+                                                Set My Goal
+                                            </a>
+                                        </li>
+                                        
+                                        <li class="site-menu-item sumenu-li">
+                                            <a href='index.html#/InActiveDownline' onclick="javascript:postwith('Body','InActiveDownline.htm')">
+                                                InActive DownLine
+                                            </a>
+                                        </li>
+                                        
+                                        <li class="site-menu-item sumenu-li" ng-show="lblidno=='99999999'">
+                                            <a href='index.html#/GRPTreeView' onclick="javascript:postwith('Body','GrpTreeView.htm')">
+                                                Graphical View
+                                            </a>
+                                        </li>
+                                        <li class="site-menu-item sumenu-li" ng-show="Daimond5" runat="server">
+                                            <a href='index.html#/Diamond5NA' onclick="javascript:postwith('Body','Diamond5NA.htm')">
+                                                5 Diamond Report
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="" ng-mouseenter="true" ng-mouseleave="false"><i class=" lar la-list-alt"></i>Order Menu</a>
+                                    <ul class="submneu" ng-mouseenter="true" ng-mouseleave="false">
+
+					<li class="site-menu-item sumenu-li">
+                                            <a href='index.html#/ProductSharing' onclick="javascript:postwith('Body','ProductSharing.htm')">
+                                                Product Sharing
+                                            </a>
+                                        </li>
+
+                                        <li class="site-menu-item sumenu-li">
+                                            <a href='index.html#/OnlineOrders' onclick="javascript:postwith('Body','OnlineOrders.htm')">
+                                                Online Orders
+                                            </a>
+                                        </li>
+                                        <li class="site-menu-item sumenu-li" ng-controller="Orders_ctrl">
+                                            <!--<a href='javascript:void(0)' onclick="javascript:postwith('Body','SelfOrder.aspx')">-->
+                                            <a href='javascript:void(0)' ng-click="SelfDownLineOrders('','Self')">
+                                                Self Order
+                                            </a>
+                                        </li>
+                                        <li class="site-menu-item sumenu-li">
+                                            <a href='index.html#/DownlineOrd' onclick="javascript:postwith('Body','DownlineOrders.html')">
+                                                Downline Order
+                                            </a>
+                                        </li>
+                                        <!--<li class="site-menu-item sumenu-li">
+                                            <a href='index.html#/IVROrders' onclick="javascript:postwith('Body','CustomerOrders.htm')">
+                                                Customer IVR Orders
+                                            </a>
+                                        </li>
+                                        <li class="site-menu-item sumenu-li">
+                                            <a href='index.html#/IVRKit' onclick="javascript:postwith('Body','IVRKitReport.htm')">
+                                                IVR KIT Report
+                                            </a>
+                                        </li>-->
+                                        <li class="site-menu-item sumenu-li">
+                                            <a href='index.html#/ProductCredits' onclick="javascript:postwith('Body','ProductCreditsSummery.html')">
+                                                Product Credits
+                                            </a>
+                                        </li>
+                                        <li class="site-menu-item sumenu-li">
+                                            <a href='index.html#/ConvertCredits' onclick="javascript:postwith('Body','ConvertCredits.html')">
+                                                Convert Credits
+                                            </a>
+                                        </li>
+                                        <li class="site-menu-item sumenu-li">
+                                            <a href='index.html#/CreditOrders' onclick="javascript:postwith('Body','CreditOrders.html')">
+                                                Credits Orders
+                                            </a>
+                                        </li>
+                                        <li class="site-menu-item sumenu-li">
+                                            <a href='index.html#/ProductCreditsTrans' onclick="javascript:postwith('Body','ProductcreditsTransferReport.html')">
+                                                Product Credits Transfer
+                                            </a>
+                                        </li>
+                                        <li class="site-menu-item sumenu-li">
+                                            <a href='index.html#/IBAOrders' onclick="javascript:postwith('Body','IBAOrders.html')">
+                                                IBA Orders
+                                            </a>
+                                        </li>
+                                        <li class="site-menu-item sumenu-li">
+                                            <a href='index.html#/IBAOrderDispatch' onclick="javascript:postwith('Body','IBAOrderDispatch.html')">
+                                                IBA Order Dispatch
+                                            </a>
+                                        </li>
+					<li class="site-menu-item sumenu-li">
+                                            <a href='index.html#/DocDispatch' onclick="javascript:postwith('Body','DocDispatch.htm')">
+                                                Docket Dispatch
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="" ng-mouseenter="true" ng-mouseleave="false"><i class=" lar la-list-alt"></i>Pins Menu</a>
+                                    <ul class="submneu" ng-mouseenter="true" ng-mouseleave="false">
+                                        <li class="site-menu-item sumenu-li" id="Li18" runat="server">
+                                            <a href='index.html#/UsedPins'
+                                               onclick="javascript:postwith('Body','UsedPins.htm')">Used Pins </a>
+                                        </li>
+                                        <li class="site-menu-item sumenu-li" id="Li19" runat="server">
+                                            <a href='index.html#/ValidPinRpt'
+                                               onclick="javascript:postwith('Body','ValidPinRpt.htm')">Valid Pins </a>
+                                        </li>
+                                        <li class="site-menu-item sumenu-li" id="Li20" runat="server">
+                                            <a href='index.html#/Repvoucherrpt'
+                                               onclick="javascript:postwith('Body','Repvoucherrpt.htm')">Repurchase Vouchers </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="" ng-mouseenter="true" ng-mouseleave="false"><i class=" las la-credit-card"></i>Payout Menu</a>
+                                    <ul class="submneu" ng-mouseenter="true" ng-mouseleave="false">
+                                        <li class="site-menu-item sumenu-li" id="Li2" runat="server">
+                                            <a href='index.html#/ScheduleReport'
+                                               onclick="javascript:postwith('Body','ScheduleReport.htm')">Schedule Report </a>
+                                        </li>
+                                        <li class="site-menu-item sumenu-li" id="Li3" runat="server">
+                                            <a href='index.html#/IncomeDetails'
+                                               onclick="javascript:postwith('Body','IncomeDetails.htm')">Income Details </a>
+                                        </li>
+                                        <li class="site-menu-item sumenu-li" id="Li7" runat="server">
+                                            <a href='index.html#/CBDetails'
+                                               onclick="javascript:postwith('Body','CBDetails.htm')">CB Details </a>
+                                        </li>
+                                        <li class="site-menu-item sumenu-li" id="Li13" runat="server">
+                                            <a href='index.html#/EwalletSummery'
+                                               onclick="javascript:postwith('Body','EwalletSummery.htm')">Ewallet Summary </a>
+                                        </li>
+                                        <li class="site-menu-item sumenu-li" id="Li14" runat="server">
+                                            <a href='index.html#/BonusReport'
+                                               onclick="javascript:postwith('Body','BonusReport.htm')">Bonus Report </a>
+                                        </li>
+					<li class="site-menu-item sumenu-li">
+                                            <a href='index.html#/RankwiseSummary' onclick="javascript:postwith('Body','RankwiseSummary.htm')">
+                                                Rankwise Summary
+                                            </a>
+                                        </li>
+					<li class="site-menu-item sumenu-li">
+                                            <a href='index.html#/ITRUpload' onclick="javascript:postwith('Body','ITRUpload.html')">
+                                                ITR Upload
+                                            </a>
+                                        </li>
+					<li class="site-menu-item sumenu-li">
+                                            <!--<a href='index.html#/RewardMenu' onclick="javascript:postwith('Body','RewardMenu.htm')">
+                                                Reward Menu
+                                            </a>-->
+                                        </li>
+                                    </ul>
+                                </li>
+				<!--<li>
+                                    <a href="" ng-mouseenter="true" ng-mouseleave="false"><i class=" las la-bars"></i>Event Menu</a>
+                                    <ul class="submneu" ng-mouseenter="true" ng-mouseleave="false">                                        
+
+					<li class="site-menu-item sumenu-li" id="tprm" runat="server" visible="false">
+                                            <a href='index.html#/NewProgram' onclick="javascript:postwith('Body','NewEvenReport.htm')">
+                                                New Event
+                                            </a>
+                                        </li>
+                                        <li class="site-menu-item sumenu-li" id="Li9" runat="server" visible="false">
+                                            <a href='index.html#/EventsReport'
+                                               onclick="javascript:postwith('Body','EventsReport.htm')">Events Report </a>
+                                        </li>
+                                        <li class="site-menu-item sumenu-li" id="Li10" runat="server" visible="false">
+                                            <a href='index.html#/TicketTransfer' onclick="javascript:postwith('Body','TicketTransferReport.htm')">
+                                                Transfer Ticket Rpt
+                                            </a>
+                                        </li>
+                                        <li class="site-menu-item sumenu-li" id="Li11" runat="server" visible="false">
+                                            <a href='index.html#/EventAttends' onclick="javascript:postwith('Body','EventAttendReport.htm')">
+                                                Tickets Report
+                                            </a>
+                                        </li>					
+                                    </ul>
+                                </li>-->
+                                <li>
+                                    <a href="" ng-mouseenter="true" ng-mouseleave="false"><i class=" las la-bars"></i>Mail Box</a>
+                                    <ul class="submneu" ng-mouseenter="true" ng-mouseleave="false">
+                                        <li class="site-menu-item sumenu-li">
+                                            <a href='index.html#/Inbox' onclick="javascript:postwith('Body','Inbox.html')">
+                                                Inbox
+                                            </a>
+                                        </li>
+                                        <li class="site-menu-item sumenu-li">
+                                            <a href='index.html#/Compose' onclick="javascript:postwith('Body','Compose.html')">
+                                                ComposeMail
+                                            </a>
+                                        </li>
+                                        <li class="site-menu-item sumenu-li">
+                                            <a href='index.html#/Outbox' onclick="javascript:postwith('Body','Outbox.html')">
+                                                Outbox
+                                            </a>
+                                        </li>
+                                        <li class="site-menu-item sumenu-li">
+                                            <a href='index.html#/Bulkmails' onclick="javascript:postwith('Body','bulkmails.html')">
+                                                Bulkmail
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="" ng-mouseenter="true" ng-mouseleave="false"><i class=" las la-bars"></i>Downloads</a>
+                                    <ul class="submneu" ng-mouseenter="true" ng-mouseleave="false">
+                                        <li class="site-menu-item sumenu-li" id="Li5" runat="server">
+                                            <a href='index.html#/Downloads'
+                                               onclick="javascript:postwith('Body','Downloads.html')">Downloads </a>
+                                        </li>
+                                        <li class="site-menu-item sumenu-li" id="Li6" runat="server">
+                                            <a href='index.html#/Form16'
+                                               onclick="javascript:postwith('Body','Form16.html')">Form 16 </a>
+                                        </li>
+                                        <!--<li class="site-menu-item sumenu-li" id="Li8" runat="server">
+                                            <a href='javascript:void(0)'
+                                               onclick="javascript:postwith('Body','photored.aspx')">Photo/Video </a>
+                                        </li>-->
+                                        <li class="site-menu-item sumenu-li" id="Li1" runat="server">
+                                            <a href='index.html#/DownloadsPB'
+                                               onclick="javascript:postwith('Body','DownloadsPB.html')">Passion Book </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div ng-view=""></div>
+    </main>
+    <footer class="bg-theam mt-4">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 py-2">
+                    <p class="mb-0 f-14 text-white text-center">Copyrights © 2020 All Rights Reserved by Orien's'</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <style>
+        .displaynone {
+            display: none !important;
+        }
+
+        .displayblock {
+            display: block !important;
+        }
+    </style>
+    <script type="text/javascript" src="js/jquery.min.js?v4.0.2"></script>
+    <script type="text/javascript" src="js/popper.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/animsition.min.js"></script>
+    <script type="text/javascript" src="js/jquery.mousewheel.js"></script>
+    <script type="text/javascript" src="js/jquery-asScrollbar.min.js"></script>
+    <script type="text/javascript" src="js/jquery-asScrollable.min.js"></script>
+    <script type="text/javascript" src="js/jquery-asHoverScroll.min.js"></script>
+
+    <script type="text/javascript" src="js/switchery.min.js"></script>
+    <script type="text/javascript" src="js/intro.min.js"></script>
+    <script type="text/javascript" src="js/screenfull.js"></script>
+    <script type="text/javascript" src="js/jquery-slidePanel.min.js"></script>
+
+    <script type="text/javascript" src="js/skycons.js"></script>
+    <script type="text/javascript" src="js/chartist.min.js"></script>
+    <script type="text/javascript" src="js/chartist-plugin-tooltip.min.js"></script>
+    <script type="text/javascript" src="js/jquery-asPieProgress.min.js"></script>
+    <script type="text/javascript" src="js/jquery-jvectormap.min.js"></script>
+    <script type="text/javascript" src="js/jquery-jvectormap-au-mill-en.js"></script>
+    <script type="text/javascript" src="js/jquery.matchHeight-min.js"></script>
+  
+    <script type="text/javascript" src="js/Base.min.js"></script>
+    <script type="text/javascript" src="js/Config.min.js"></script>
+    <script type="text/javascript" src="js/Menubar.min.js"></script>
+    <script type="text/javascript" src="js/Sidebar.min.js"></script>
+    <script type="text/javascript" src="js/PageAside.min.js"></script>
+    <script type="text/javascript" src="js/menu.min.js"></script>
+    <script type="text/javascript" src="js/Site.min.js"></script>
+    <script type="text/javascript" src="js/v1.min.js"></script>
+    <script type="text/javascript" src="../Scripts_AJ/alertify.js?v=1.1" type="text/javascript"></script>
+    <link href="../Scripts_AJ/alertify.css?v=1.1" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="../Scripts_AJ/angular.js?v=1.1"></script>
+    <script src="../Scripts_AJ/ng-infinite-scroll.js?v=1.1"></script>
+    <script type="text/javascript" src="../Scripts_AJ/angular-route.js?v=1.1"></script>
+    <script type="text/javascript" src="../Scripts_AJ/dirPagination.js?v=1.1"></script>
+    <script type="text/javascript" src="../Scripts_AJ/angular-sanitize.js?v=1.1"></script>
+    <script type="text/javascript" src="../Scripts_AJ/ngAutocomplete.js?v=1.1"></script>
+    <script type="text/javascript" src="../Scripts_AJ/FileSaver.js?v=1.1"></script>
+    <script type="text/javascript" src="../Scripts_AJ/aes.js?v=1.1"></script>
+    <script type="text/javascript" src="../Scripts_AJ/datetimepicker.js?v=1.1" type="text/javascript"></script>
+
+    <!--<script type="text/javascript" src="../app/memberApp.js?v=1.108"></script>-->
+    <script type="text/javascript">
+        var _c = new Date().getTime();
+        document.write('<script type="text/javascript" src="../app/NewmemberApp.js?v=' + _c + '"><\/script>');
+    </script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $('#divDetails').modal('show');
+
+            var h = $(document).height();
+            /*  var w = $(document).width();
+            $("body").css({ width:w });*/
+            $("body").css({ height: h });
+            $(document).on("click", "button.navbar-toggler.hamburger.hamburger-close.navbar-toggler-left.hided", function () {
+                $(".site-menubar.site-menubar-light").toggleClass("left");
+                $(".mobilemenu-overlay").toggleClass("display-none");
+            });
+            $(document).on("click", ".mobilemenu-overlay", function () {
+                //  $(this).children().addClass("block");
+                // mobilemenu - overlay
+                $(".site-menubar.site-menubar-light").removeClass("left");
+                $(".mobilemenu-overlay").addClass("display-none");
+                $(".site-menu-sub").removeClass("block").css({ visibility: "hidden" });
+            });
+            $(document).on("click", ".main-side-ul-home", function () {
+                //  $(this).children().addClass("block");
+                // mobilemenu - overlay
+                $(".site-menubar.site-menubar-light").removeClass("left");
+                $(".mobilemenu-overlay").addClass("display-none");
+            });
+            $(".main-side-ul a").click(function () {
+                var winw = $(window).width();
+                if (winw < 460) {
+                    $(".site-menu-sub").css({ visibility: "hidden" });
+                    $(this).closest('li').find("ul").css({ visibility: "visible" });
+                }
+            });
+            $(".sumenu-li").click(function () {
+                $(".site-menubar.site-menubar-light").removeClass("left");
+                $(".mobilemenu-overlay").addClass("display-none");
+            });
+
+            $(".main-side-ul-home a").click(function () {
+                //alert(54);
+                $(".site-menu-sub").removeAttr("style");
+            });
+
+            $(".main-side-ul a").mouseover(function () {
+                //$(this).closest('li').find("ul").addClass("block");
+                var winh = $(window).height();
+                var winw = $(window).width();
+                var submenu = $(this).closest('li').find("ul").height();
+                var site_menubar_body = $(".site-menubar-body");
+                var site_menubar_body_offset = site_menubar_body.offset();
+                var p = $(this).closest('li').find("ul");
+                var offset = p.offset();
+                var submenuh = site_menubar_body_offset.top - offset.top - -winh;
+                var total = offset.top + submenu;
+                //  alert(total +"+"+ winh);
+                // alert(winh);
+                if (winw > 460) {
+                    if (total > winh) {
+                        //    alert(total + "hi" + winh);
+                        $(this).closest('li').find("ul").css({ height: submenuh - 120 + "px", overflow: "auto" });
+                        //  alert(submenuh);
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

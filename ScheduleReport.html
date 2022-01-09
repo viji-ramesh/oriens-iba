@@ -1,0 +1,147 @@
+﻿<div class="" ng-controller="Payout_ctrl" ng-init="SchduleRpt()">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row top-row-strip">
+                <div class="col-md-12">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"> Payout</li>
+                        <li class="breadcrumb-item active">Schedule Report</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-model="panel1">
+        <div class="panel panel-body">
+            <div class="row mb-2">
+                <div class="col-md-9">
+                </div>
+                <div class="col-md-3">
+                    <input type="text" ng-model="search" class="form-control" placeholder="Search">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class=" table-responsive">
+                        <table class="table table-bordered table-striped f-14">
+                            <thead>
+                                <tr class="table-header">
+                                    <th>
+                                        S No.
+                                    </th>
+                                    <th>
+                                        Pay No
+                                    </th>
+                                    <th>
+                                        Schedule Date
+                                    </th>
+                                    <th>
+                                        BF Amount
+                                    </th>
+                                    <th>
+                                        FastTrack Bonus
+                                    </th>
+                                    <th>
+                                        Compensation Bonus
+                                    </th>
+                                    <th>
+                                        Partnership Bonus
+                                    </th>
+                                    <th>
+                                        PP Bonus
+                                    </th>
+                                    <th>
+                                        Gross Amount
+                                    </th>
+                                    <th>
+                                        TDS
+                                    </th>
+                                    <th>
+                                        Net Amount
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr dir-paginate="x in schreport | filter:search | itemsPerPage:ItemsperPage track by $index">
+                                    <td class="label-center">
+                                        {{$index+1}}
+                                    </td>
+                                    <td class="label-center">
+                                        {{x.PayNo}}
+                                    </td>
+                                    <td class="label-center">
+                                        <label ng-bind-html="x.Schedule | unsafe">
+                                        </label>
+                                    </td>
+                                    <td class="label-right">
+                                        {{x.BFAmt}}
+                                    </td>
+                                    <td  class="label-right">
+                                        {{x.FSInc}}
+                                    </td>
+                                    <td  class="label-right">
+                                        {{x.CBInc}}
+                                    </td>
+                                    <td  class="label-right">
+                                        {{x.PBInc}}
+                                    </td>
+                                    <td  class="label-right">
+                                        {{x.PPBInc}}
+                                    </td>
+                                    <td  class="label-right">
+                                        {{x.GrAmt}}
+                                    </td>
+                                    <td  class="label-right">
+                                        {{x.TDS}}
+                                    </td>
+                                    <td  class="label-right">
+                                        {{x.NetElgAmt}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    </td>
+                                    <td class="label-center">
+                                    </td>
+                                    <td class="label-center">
+                                        <font color="red">Totals</font>
+                                    </td>
+                                    <td  class="label-right">
+                                        <font color="red">{{total_BFAmt|number:2}}</font>
+                                    </td>
+                                    <td  class="label-right">
+                                        <font color="red"> {{total_FSInc|number:2}}</font>
+                                    </td>
+                                    <td  class="label-right">
+                                        <font color="red">{{total_CBInc|number:2}}</font>
+                                    </td>
+                                    <td  class="label-right">
+                                        <font color="red">{{total_PBInc|number:2}}</font>
+                                    </td>
+                                    <td  class="label-right">
+                                        <font color="red">{{total_PPBInc|number:2}}</font>
+                                    </td>
+                                    <td  class="label-right">
+                                        <font color="red">{{total_GrAmt|number:2}}</font>
+                                    </td>
+                                    <td  class="label-right">
+                                        <font color="red">{{total_TDS|number:2}}</font>
+                                    </td>
+                                    <td  class="label-right">
+                                        <font color="red">{{total_NetElgAmt|number:2}}</font>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-11">
+                            <dir-pagination-controls max-size="15" direction-links="true" boundary-links="true">
+                            </dir-pagination-controls>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

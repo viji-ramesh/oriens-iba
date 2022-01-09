@@ -1,0 +1,821 @@
+﻿
+<div class="row">
+    <div class="col-md-12">
+        <div class="row top-row-strip">
+            <div class="col-md-12">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"> Geneolgy</li>
+                    <li class="breadcrumb-item active">Tree View</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="page-content panel" ng-controller="Treeview_ctrl" style="padding: 0px;">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card p-3">
+                <div class="row">
+                    <div class="col-md-8 mx-auto">
+                        <div class=" table-responsive">
+                            <table class="table table-bordered table-striped f-14">
+                                <tr align="center" class="table-header">
+                                    <td colspan="2">
+                                        LEFT CF : {{lbllcf}}
+                                    </td>
+                                    <td colspan="2">
+                                        RIGHT CF : {{lblrcf}}
+                                    </td>
+                                </tr>
+                                <tr align="center" class="table-header">
+                                    <td>
+                                        LEFT COUNT : {{lbllcount}}
+                                    </td>
+                                    <td>
+                                        LEFT CPV : {{lbllcpv | number : 2}}
+                                    </td>
+                                    <td>
+                                        RIGHT COUNT : {{lblrcount}}
+                                    </td>
+                                    <td>
+                                        RIGHT CPV : {{lblrcpv | number : 2}}
+                                    </td>
+                                </tr>
+                                <tr align="center" class="table-header">
+                                    <td colspan="4">
+                                        PERSONAL PV : {{lblppv | number : 2}} (CURRENT CYCLE)
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body" style="padding: 0px;">
+        <div class="section-wrapper toppopup">
+            <div class="row" ng-init="GetTreeHead('')">
+                <div class="col-md-12">
+                </div>
+            </div>
+            <section class="management-hierarchy secoundtree" STYLE="overflow:auto;">
+                <div class="hv-container">
+                    <div class="hv-wrapper">
+                        <!-- Key component -->
+                        <div class="hv-item">
+
+                            <div class="hv-item-parent">
+                                <div class="person">
+                                    <img src="../images/genealogy/India.png" alt="" style="opacity: 0.2; border: 3px solid #3BAA9D;" ng-show="status1=='vac'">
+                                    <img class="personpp" src="../images/genealogy/{{lblcountry1}}.png" alt="" ng-click="GetTreeHead(lblsprno1,'Main')" style="border: 3px solid #3BAA9D;" ng-show="status1=='PAID'" ng-mouseover="GetTolltip(lblidnoLevel1)">
+                                    <img class="personpp" src="../images/genealogy/{{lblcountry1}}.png" alt="" ng-click="GetTreeHead(lblsprno1,'Main')" style="border: 3px solid #000;" ng-show="status1=='BLOCK'" ng-mouseover="GetTolltip(lblidnoLevel1)">
+                                    <img class="personpp" src="../images/genealogy/{{lblcountry1}}.png" alt="" ng-click="GetTreeHead(lblsprno1,'Main')" style="border: 3px solid #a7ada7;" ng-show="status1=='GUEST'" ng-mouseover="GetTolltip(lblidnoLevel1)">
+                                    <p class="name">
+                                        <b><font color="red">{{lblidnoLevel1}}</font></b>
+                                        <br />
+                                        {{lblnameLevel1}}
+                                        <br />
+                                        {{lbldateLevel1}}
+                                        <label style="display:none">{{lblsprno1}}</label>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="hv-item-children">
+
+                                <div class="hv-item-child">
+                                    <div class="hv-item">
+
+                                        <div class="hv-item-parent">
+                                            <div class="person">
+                                                <img src="../images/genealogy/India.png" alt="" style="opacity: 0.2; border: 3px solid #3BAA9D;" ng-show="status2=='vac'">
+                                                <img class="personpp" src="../images/genealogy/{{lblcountry2}}.png" alt="" ng-click="GetTreeHead(lblidnoLevel2,'Chaild')" style="border: 3px solid #3BAA9D;" ng-show="status2=='PAID'" ng-mouseover="GetTolltip(lblidnoLevel2)">
+                                                <img class="personpp" src="../images/genealogy/{{lblcountry2}}.png" alt="" ng-click="GetTreeHead(lblidnoLevel2,'Chaild')" style="border: 3px solid #000;" ng-show="status2=='BLOCK'" ng-mouseover="GetTolltip(lblidnoLevel2)">
+                                                <img class="personpp" src="../images/genealogy/{{lblcountry2}}.png" alt="" ng-click="GetTreeHead(lblidnoLevel2,'Chaild')" style="border: 3px solid #a7ada7;" ng-show="status2=='GUEST'" ng-mouseover="GetTolltip(lblidnoLevel2)">
+                                                <p class="name">
+                                                    <b><font color="red">{{lblidnoLevel2}}</font></b>
+                                                    <br />
+                                                    {{lblnameLevel2}}
+                                                    <br />
+                                                    {{lbldateLevel2}}
+                                                    <label style="color:blue;cursor:pointer" ng-show="lblidnoLevel2==''&&lblidnoLevel1!=''" data-toggle="modal" data-target="#divDetailsJoin" ng-click="Ckicltojoin(lblidnoLevel1,'Left','Write','2')">Click to join</label>
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <div class="hv-item-children">
+                                            <div class="hv-item-child">
+                                                <div class="hv-item">
+                                                    <div class="hv-item-parent">
+                                                        <div class="person">
+                                                            <img src="../images/genealogy/India.png" alt="" style="opacity: 0.2; border: 3px solid #3BAA9D;" ng-show="status4=='vac'">
+                                                            <img class="personpp" src="../images/genealogy/{{lblcountry4}}.png" alt="" ng-click="GetTreeHead(lblidnoLevel4,'Chaild')" style="border: 3px solid #3BAA9D;" ng-show="status4=='PAID'" ng-mouseover="GetTolltip(lblidnoLevel4)">
+                                                            <img class="personpp" src="../images/genealogy/{{lblcountry4}}.png" alt="" ng-click="GetTreeHead(lblidnoLevel4,'Chaild')" style="border: 3px solid #000;" ng-show="status4=='BLOCK'" ng-mouseover="GetTolltip(lblidnoLevel4)">
+                                                            <img class="personpp" src="../images/genealogy/{{lblcountry4}}.png" alt="" ng-click="GetTreeHead(lblidnoLevel4,'Chaild')" style="border: 3px solid #a7ada7;" ng-show="status4=='GUEST'" ng-mouseover="GetTolltip(lblidnoLevel4)">
+                                                            <p class="name">
+                                                                <b><font color="red">{{lblidnoLevel4}}</font></b>
+                                                                <br />
+                                                                {{lblnameLevel4}}
+                                                                <br />
+                                                                {{lbldateLevel4}}
+                                                                <label style="color:blue;cursor:pointer" ng-show="lblidnoLevel4==''&&lblidnoLevel2!=''" data-toggle="modal" data-target="#divDetailsJoin" ng-click="Ckicltojoin(lblidnoLevel2,'Left','Write','4')">Click to join</label>
+
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="hv-item-children">
+                                                        <div class="hv-item-child">
+                                                            <div class="person">
+                                                                <img src="../images/genealogy/India.png" alt="" style="opacity: 0.2; border: 3px solid #3BAA9D;" ng-show="status8=='vac'">
+                                                                <img class="personpp" src="../images/genealogy/{{lblcountry8}}.png" alt="" ng-click="GetTreeHead(lblidnoLevel8,'Chaild')" style="border: 3px solid #3BAA9D;" ng-show="status8=='PAID'" ng-mouseover="GetTolltip(lblidnoLevel8)">
+                                                                <img class="personpp" src="../images/genealogy/{{lblcountry8}}.png" alt="" ng-click="GetTreeHead(lblidnoLevel8,'Chaild')" style="border: 3px solid #000;" ng-show="status8=='BLOCK'" ng-mouseover="GetTolltip(lblidnoLevel8)">
+                                                                <img class="personpp" src="../images/genealogy/{{lblcountry8}}.png" alt="" ng-click="GetTreeHead(lblidnoLevel8,'Chaild')" style="border: 3px solid #a7ada7;" ng-show="status8=='GUEST'" ng-mouseover="GetTolltip(lblidnoLevel8)">
+                                                                <p class="name">
+                                                                    <b><font color="red">{{lblidnoLevel8}}</font></b>
+                                                                    <br />
+                                                                    {{lblnameLevel8}}
+                                                                    <br />
+                                                                    {{lbldateLevel8}}
+                                                                    <label style="color:blue;cursor:pointer" ng-show="lblidnoLevel8=='' &&lblidnoLevel4!=''" data-toggle="modal" data-target="#divDetailsJoin" ng-click="Ckicltojoin(lblidnoLevel4,'Left','Write','8')">Click to join</label>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="hv-item-child">
+                                                            <div class="person">
+                                                                <img src="../images/genealogy/India.png" alt="" style="opacity: 0.2; border: 3px solid #3BAA9D;" ng-show="status9=='vac'">
+                                                                <img class="personpp" src="../images/genealogy/{{lblcountry9}}.png" alt="" ng-click="GetTreeHead(lblidnoLevel9,'Chaild')" style="border: 3px solid #3BAA9D;" ng-show="status9=='PAID'" ng-mouseover="GetTolltip(lblidnoLevel9)">
+                                                                <img class="personpp" src="../images/genealogy/{{lblcountry9}}.png" alt="" ng-click="GetTreeHead(lblidnoLevel9,'Chaild')" style="border: 3px solid #000;" ng-show="status9=='BLOCK'" ng-mouseover="GetTolltip(lblidnoLevel9)">
+                                                                <img class="personpp" src="../images/genealogy/{{lblcountry9}}.png" alt="" ng-click="GetTreeHead(lblidnoLevel9,'Chaild')" style="border: 3px solid #a7ada7;" ng-show="status9=='GUEST'" ng-mouseover="GetTolltip(lblidnoLevel9)">
+                                                                <p class="name">
+                                                                    <b><font color="red">{{lblidnoLevel9}}</font></b>
+                                                                    <br />
+                                                                    {{lblnameLevel9}}
+                                                                    <br />
+                                                                    {{lbldateLevel9}}
+                                                                    <label style="color:blue;cursor:pointer" ng-show="lblidnoLevel9=='' &&lblidnoLevel4!=''" data-toggle="modal" data-target="#divDetailsJoin" ng-click="Ckicltojoin(lblidnoLevel4,'Right','Read','9')">Click to join</label>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="hv-item-child">
+                                                <div class="hv-item">
+
+                                                    <div class="hv-item-parent">
+                                                        <div class="person">
+                                                            <img src="../images/genealogy/India.png" alt="" style="opacity: 0.2; border: 3px solid #3BAA9D;" ng-show="status5=='vac'">
+                                                            <img class="personpp" src="../images/genealogy/{{lblcountry5}}.png" alt="" ng-click="GetTreeHead(lblidnoLevel5,'Chaild')" style="border: 3px solid #3BAA9D;" ng-show="status5=='PAID'" ng-mouseover="GetTolltip(lblidnoLevel5)">
+                                                            <img class="personpp" src="../images/genealogy/{{lblcountry5}}.png" alt="" ng-click="GetTreeHead(lblidnoLevel5,'Chaild')" style="border: 3px solid #000;" ng-show="status5=='BLOCK'" ng-mouseover="GetTolltip(lblidnoLevel5)">
+                                                            <img class="personpp" src="../images/genealogy/{{lblcountry5}}.png" alt="" ng-click="GetTreeHead(lblidnoLevel5,'Chaild')" style="border: 3px solid #a7ada7;" ng-show="status5=='GUEST'" ng-mouseover="GetTolltip(lblidnoLevel5)">
+                                                            <p class="name">
+                                                                <b><font color="red">{{lblidnoLevel5}}</font></b>
+                                                                <br />
+                                                                {{lblnameLevel5}}
+                                                                <br />
+                                                                {{lbldateLevel5}}
+                                                                <label style="color:blue;cursor:pointer" ng-show="lblidnoLevel5=='' &&lblidnoLevel2!=''" data-toggle="modal" data-target="#divDetailsJoin" ng-click="Ckicltojoin(lblidnoLevel2,'Right','Read','5')">Click to join</label>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="hv-item-children">
+                                                        <div class="hv-item-child">
+                                                            <div class="person">
+                                                                <img src="../images/genealogy/India.png" alt="" style="opacity: 0.2; border: 3px solid #3BAA9D;" ng-show="status10=='vac'">
+                                                                <img class="personpp" src="../images/genealogy/{{lblcountry10}}.png" alt="" ng-click="GetTreeHead(lblidnoLevel10,'Chaild')" style="border: 3px solid #3BAA9D;" ng-show="status10=='PAID'" ng-mouseover="GetTolltip(lblidnoLevel10)">
+                                                                <img class="personpp" src="../images/genealogy/{{lblcountry10}}.png" alt="" ng-click="GetTreeHead(lblidnoLevel10,'Chaild')" style="border: 3px solid #000;" ng-show="status10=='BLOCK'" ng-mouseover="GetTolltip(lblidnoLevel10)">
+                                                                <img class="personpp" src="../images/genealogy/{{lblcountry10}}.png" alt="" ng-click="GetTreeHead(lblidnoLevel10,'Chaild')" style="border: 3px solid #a7ada7;" ng-show="status10=='GUEST'" ng-mouseover="GetTolltip(lblidnoLevel10)">
+                                                                <p class="name">
+                                                                    <b><font color="red">{{lblidnoLevel10}}</font></b>
+                                                                    <br />
+                                                                    {{lblnameLevel10}}
+                                                                    <br />
+                                                                    {{lbldateLevel10}}
+                                                                    <label style="color:blue;cursor:pointer" ng-show="lblidnoLevel10=='' &&lblidnoLevel5!=''" data-toggle="modal" data-target="#divDetailsJoin" ng-click="Ckicltojoin(lblidnoLevel5,'Left','Read','10')">Click to join</label>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="hv-item-child">
+                                                            <div class="person">
+                                                                <img src="../images/genealogy/India.png" alt="" style="opacity: 0.2; border: 3px solid #3BAA9D;" ng-show="status11=='vac'">
+                                                                <img class="personpp" src="../images/genealogy/{{lblcountry11}}.png" alt="" ng-click="GetTreeHead(lblidnoLevel11,'Chaild')" style="border: 3px solid #3BAA9D;" ng-show="status11=='PAID'" ng-mouseover="GetTolltip(lblidnoLevel11)">
+                                                                <img class="personpp" src="../images/genealogy/{{lblcountry11}}.png" alt="" ng-click="GetTreeHead(lblidnoLevel11,'Chaild')" style="border: 3px solid #000;" ng-show="status11=='BLOCK'" ng-mouseover="GetTolltip(lblidnoLevel11)">
+                                                                <img class="personpp" src="../images/genealogy/{{lblcountry11}}.png" alt="" ng-click="GetTreeHead(lblidnoLevel11,'Chaild')" style="border: 3px solid #a7ada7;" ng-show="status11=='GUEST'" ng-mouseover="GetTolltip(lblidnoLevel11)">
+                                                                <p class="name">
+                                                                    <b><font color="red">{{lblidnoLevel11}}</font></b>
+                                                                    <br />
+                                                                    {{lblnameLevel11}}
+                                                                    <br />
+                                                                    {{lbldateLevel11}}
+                                                                    <label style="color:blue;cursor:pointer" ng-show="lblidnoLevel11=='' && lblidnoLevel5!=''" data-toggle="modal" data-target="#divDetailsJoin" ng-click="Ckicltojoin(lblidnoLevel5,'Right','Read','11')">Click to join</label>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="hv-item-child">
+                                    <!-- Key component -->
+                                    <div class="hv-item">
+
+                                        <div class="hv-item-parent">
+                                            <div class="person">
+                                                <img src="../images/genealogy/India.png" alt="" style="opacity: 0.2; border: 3px solid #3BAA9D;" ng-show="status3=='vac'">
+                                                <img class="personpp" src="../images/genealogy/{{lblcountry3}}.png" alt="" ng-click="GetTreeHead(lblidnoLevel3,'Chaild')" style="border: 3px solid #3BAA9D;" ng-show="status3=='PAID'" ng-mouseover="GetTolltip(lblidnoLevel3)">
+                                                <img class="personpp" src="../images/genealogy/{{lblcountry3}}.png" alt="" ng-click="GetTreeHead(lblidnoLevel3,'Chaild')" style="border: 3px solid #000;" ng-show="status3=='BLOCK'" ng-mouseover="GetTolltip(lblidnoLevel3)">
+                                                <img class="personpp" src="../images/genealogy/{{lblcountry3}}.png" alt="" ng-click="GetTreeHead(lblidnoLevel3,'Chaild')" style="border: 3px solid #a7ada7;" ng-show="status3=='GUEST'" ng-mouseover="GetTolltip(lblidnoLevel3)">
+                                                <p class="name">
+                                                    <b><font color="red">{{lblidnoLevel3}}</font></b>
+                                                    <br />
+                                                    {{lblnameLevel3}}
+                                                    <br />
+                                                    {{lbldateLevel3}}
+                                                    <label style="color:blue;cursor:pointer" ng-show="lblidnoLevel3=='' && lblidnoLevel1!=''" data-toggle="modal" data-target="#divDetailsJoin" ng-click="Ckicltojoin(lblidnoLevel1,'Right','Write','3')">Click to join</label>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="hv-item-children">
+                                            <div class="hv-item-child">
+                                                <div class="hv-item">
+                                                    <div class="hv-item-parent">
+                                                        <div class="person">
+                                                            <img src="../images/genealogy/India.png" alt="" style="opacity: 0.2; border: 3px solid #3BAA9D;" ng-show="status6=='vac'">
+                                                            <img class="personpp" src="../images/genealogy/{{lblcountry6}}.png" alt="" ng-click="GetTreeHead(lblidnoLevel6,'Chaild')" style="border: 3px solid #3BAA9D;" ng-show="status6=='PAID'" ng-mouseover="GetTolltip(lblidnoLevel6)">
+                                                            <img class="personpp" src="../images/genealogy/{{lblcountry6}}.png" alt="" ng-click="GetTreeHead(lblidnoLevel6,'Chaild')" style="border: 3px solid #000;" ng-show="status6=='BLOCK'" ng-mouseover="GetTolltip(lblidnoLevel6)">
+                                                            <img class="personpp" src="../images/genealogy/{{lblcountry6}}.png" alt="" ng-click="GetTreeHead(lblidnoLevel6,'Chaild')" style="border: 3px solid #a7ada7;" ng-show="status6=='GUEST'" ng-mouseover="GetTolltip(lblidnoLevel6)">
+                                                            <p class="name">
+                                                                <b><font color="red">{{lblidnoLevel6}}</font></b>
+                                                                <br />
+                                                                {{lblnameLevel6}}
+                                                                <br />
+                                                                {{lbldateLevel6}}
+                                                                <label style="color:blue;cursor:pointer" ng-show="lblidnoLevel6=='' &&lblidnoLevel3!=''" data-toggle="modal" data-target="#divDetailsJoin" ng-click="Ckicltojoin(lblidnoLevel3,'Left','Write','6')">Click to join</label>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="hv-item-children">
+                                                        <div class="hv-item-child">
+                                                            <div class="person">
+                                                                <img src="../images/genealogy/India.png" alt="" style="opacity: 0.2; border: 3px solid #3BAA9D;" ng-show="status12=='vac'">
+                                                                <img class="personpp" src="../images/genealogy/{{lblcountry12}}.png" alt="" ng-click="GetTreeHead(lblidnoLevel12,'Chaild')" style="border: 3px solid #3BAA9D;" ng-show="status12=='PAID'" ng-mouseover="GetTolltip(lblidnoLevel12)">
+                                                                <img class="personpp" src="../images/genealogy/{{lblcountry12}}.png" alt="" ng-click="GetTreeHead(lblidnoLevel12,'Chaild')" style="border: 3px solid #000;" ng-show="status12=='BLOCK'" ng-mouseover="GetTolltip(lblidnoLevel12)">
+                                                                <img class="personpp" src="../images/genealogy/{{lblcountry12}}.png" alt="" ng-click="GetTreeHead(lblidnoLevel12,'Chaild')" style="border: 3px solid #a7ada7;" ng-show="status12=='GUEST'" ng-mouseover="GetTolltip(lblidnoLevel12)">
+                                                                <p class="name">
+                                                                    <b><font color="red">{{lblidnoLevel12}}</font></b>
+                                                                    <br />
+                                                                    {{lblnameLevel12}}
+                                                                    <br />
+                                                                    {{lbldateLevel12}}
+                                                                    <label style="color:blue;cursor:pointer" ng-show="lblidnoLevel12=='' &&lblidnoLevel6!='' " data-toggle="modal" data-target="#divDetailsJoin" ng-click="Ckicltojoin(lblidnoLevel6,'Left','Read','12')">Click to join</label>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="hv-item-child">
+                                                            <div class="person">
+                                                                <img src="../images/genealogy/India.png" alt="" style="opacity: 0.2; border: 3px solid #3BAA9D;" ng-show="status13=='vac'">
+                                                                <img class="personpp" src="../images/genealogy/{{lblcountry13}}.png" alt="" ng-click="GetTreeHead(lblidnoLevel13,'Chaild')" style="border: 3px solid #3BAA9D;" ng-show="status13=='PAID'" ng-mouseover="GetTolltip(lblidnoLevel13)">
+                                                                <img class="personpp" src="../images/genealogy/{{lblcountry13}}.png" alt="" ng-click="GetTreeHead(lblidnoLevel13,'Chaild')" style="border: 3px solid #000;" ng-show="status13=='BLOCK'" ng-mouseover="GetTolltip(lblidnoLevel13)">
+                                                                <img class="personpp" src="../images/genealogy/{{lblcountry13}}.png" alt="" ng-click="GetTreeHead(lblidnoLevel13,'Chaild')" style="border: 3px solid #a7ada7;" ng-show="status13=='GUEST'" ng-mouseover="GetTolltip(lblidnoLevel13)">
+                                                                <p class="name">
+                                                                    <b><font color="red">{{lblidnoLevel13}}</font></b>
+                                                                    <br />
+                                                                    {{lblnameLevel13}}
+                                                                    <br />
+                                                                    {{lbldateLevel13}}
+                                                                    <label style="color:blue;cursor:pointer" ng-show="lblidnoLevel13=='' &&lblidnoLevel6!=''" data-toggle="modal" data-target="#divDetailsJoin" ng-click="Ckicltojoin(lblidnoLevel6,'Right','Read','13')">Click to join</label>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="hv-item-child">
+                                                <div class="hv-item">
+
+                                                    <div class="hv-item-parent">
+                                                        <div class="person">
+                                                            <img src="../images/genealogy/India.png" alt="" style="opacity: 0.2; border: 3px solid #3BAA9D;" ng-show="status7=='vac'">
+                                                            <img class="personpp" src="../images/genealogy/{{lblcountry7}}.png" alt="" ng-click="GetTreeHead(lblidnoLevel7,'Chaild')" style="border: 3px solid #3BAA9D;" ng-show="status7=='PAID'" ng-mouseover="GetTolltip(lblidnoLevel7)">
+                                                            <img class="personpp" src="../images/genealogy/{{lblcountry7}}.png" alt="" ng-click="GetTreeHead(lblidnoLevel7,'Chaild')" style="border: 3px solid #000;" ng-show="status7=='BLOCK'" ng-mouseover="GetTolltip(lblidnoLevel7)">
+                                                            <img class="personpp" src="../images/genealogy/{{lblcountry7}}.png" alt="" ng-click="GetTreeHead(lblidnoLevel7,'Chaild')" style="border: 3px solid #a7ada7;" ng-show="status7=='GUEST'" ng-mouseover="GetTolltip(lblidnoLevel7)">
+                                                            <p class="name">
+                                                                <b><font color="red">{{lblidnoLevel7}}</font></b>
+                                                                <br />
+                                                                {{lblnameLevel7}}
+                                                                <br />
+                                                                {{lbldateLevel7}}
+                                                                <label style="color:blue;cursor:pointer" ng-show="lblidnoLevel7=='' &&lblidnoLevel3!=''" data-toggle="modal" data-target="#divDetailsJoin" ng-click="Ckicltojoin(lblidnoLevel3,'Right','Write','7')">Click to join</label>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="hv-item-children">
+                                                        <div class="hv-item-child">
+                                                            <div class="person">
+                                                                <img src="../images/genealogy/India.png" alt="" style="opacity: 0.2; border: 3px solid #3BAA9D;" ng-show="status14=='vac'">
+                                                                <img class="personpp" src="../images/genealogy/{{lblcountry14}}.png" alt="" ng-click="GetTreeHead(lblidnoLevel14,'Chaild')" style="border: 3px solid #3BAA9D;" ng-show="status14=='PAID'" ng-mouseover="GetTolltip(lblidnoLevel14)">
+                                                                <img class="personpp" src="../images/genealogy/{{lblcountry14}}.png" alt="" ng-click="GetTreeHead(lblidnoLevel14,'Chaild')" style="border: 3px solid #000;" ng-show="status14=='BLOCK'" ng-mouseover="GetTolltip(lblidnoLevel14)">
+                                                                <img class="personpp" src="../images/genealogy/{{lblcountry14}}.png" alt="" ng-click="GetTreeHead(lblidnoLevel14,'Chaild')" style="border: 3px solid #a7ada7;" ng-show="status14=='GUEST'" ng-mouseover="GetTolltip(lblidnoLevel14)">
+                                                                <p class="name">
+                                                                    <b><font color="red">{{lblidnoLevel14}}</font></b>
+                                                                    <br />
+                                                                    {{lblnameLevel14}}
+                                                                    <br />
+                                                                    {{lbldateLevel14}}
+                                                                    <label style="color:blue;cursor:pointer" ng-show="lblidnoLevel14=='' &&lblidnoLevel7!=''" data-toggle="modal" data-target="#divDetailsJoin" ng-click="Ckicltojoin(lblidnoLevel7,'Left','Read','14')">Click to join</label>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="hv-item-child">
+                                                            <div class="person">
+                                                                <img src="../images/genealogy/India.png" alt="" style="opacity: 0.2; border: 3px solid #3BAA9D;" ng-show="status15=='vac'">
+                                                                <img class="personpp" src="../images/genealogy/{{lblcountry15}}.png" alt="" ng-click="GetTreeHead(lblidnoLevel15,'Chaild')" style="border: 3px solid #3BAA9D;" ng-show="status15=='PAID'" ng-mouseover="GetTolltip(lblidnoLevel15)">
+                                                                <img class="personpp" src="../images/genealogy/{{lblcountry15}}.png" alt="" ng-click="GetTreeHead(lblidnoLevel15,'Chaild')" style="border: 3px solid #000;" ng-show="status15=='BLOCK'" ng-mouseover="GetTolltip(lblidnoLevel15)">
+                                                                <img class="personpp" src="../images/genealogy/{{lblcountry15}}.png" alt="" ng-click="GetTreeHead(lblidnoLevel15,'Chaild')" style="border: 3px solid #a7ada7;" ng-show="status15=='GUEST'" ng-mouseover="GetTolltip(lblidnoLevel15)">
+                                                                <p class="name">
+                                                                    <b><font color="red">{{lblidnoLevel15}}</font></b>
+                                                                    <br />
+                                                                    {{lblnameLevel15}}
+                                                                    <br />
+                                                                    {{lbldateLevel15}}
+                                                                    <label style="color:blue;cursor:pointer" ng-show="lblidnoLevel15=='' &&lblidnoLevel7!=''" data-toggle="modal" data-target="#divDetailsJoin" ng-click="Ckicltojoin(lblidnoLevel7,'Right','Write','15')">Click to join</label>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="identications" style="text-align:center;">
+                    <div class="row" style="margin: 26px 20px 0;border-top: 3px solid #cecdcd;border-bottom: 3px solid #cecdcd;padding: 13px 0;">
+                        <div class="col-3 col-md-3">
+                            <img src="../images/genealogy/India.png" alt="" style="width:60px; border:3px solid #a7ada7; padding:2px; border-radius: 50%;">
+                            <label style="float:left; width:100%; margin-top:7px;">Guest</label>
+                        </div>
+                        <div class="col-3 col-md-3">
+                            <img src="../images/genealogy/India.png" alt="" style="opacity: 0.2; width:60px; border:3px solid #3BAA9D; padding:2px; border-radius: 50%;">
+                            <label style="float:left; width:100%; margin-top:7px; ">Vacant</label>
+                        </div>
+                        <div class="col-3 col-md-3">
+                            <img src="../images/genealogy/India.png" alt="" style="width:60px; border:3px solid #3BAA9D; padding:2px; border-radius: 50%;">
+                            <label style="float:left; width:100%; margin-top:7px;">Paid</label>
+                        </div>
+                        <div class="col-3 col-md-3">
+                            <img src="../images/genealogy/India.png" alt="" style="width:60px; border:3px solid #000; padding:2px; border-radius: 50%;">
+                            <label style="float:left; width:100%; margin-top:7px;">Block</label>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="form-group row" style="margin-top: 20px;">
+
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label class="col-md-2 col-form-label">
+                        Search By
+                    </label>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" name="txtidno" ng-model="txtidno" placeholder="IBA No.">
+                    </div>
+                    <div class="col-md-2">
+                        <button type="submit" class="btn btn-primary" ng-click="Chkmemdowntv(txtidno)">
+                            Search
+                        </button>
+                    </div>
+                </div>
+            </section>
+            <div class="div-display" style="width: 40%; display: none; position: absolute; top: 101px; left: 556.875px; border-top: 4px solid #3d276f; border-radius: 5px; padding-top: 3px; background: #fff">
+                <table class="tolltip-table  custom-tooltiphover" cellspacing="1">
+                    <tr>
+                        <td>
+                            IBA
+                        </td>
+                        <td colspan="3">
+                            {{lblTIdno}} - {{lblTName}}
+                        </td>
+                    </tr>
+                    <tr height="2">
+                        <td>
+                            Introducer
+                        </td>
+                        <td colspan="3">
+                            {{lblTSprno}} - {{lblTSprname}}
+                        </td>
+                    </tr>
+                    <tr height="2">
+                        <td>
+                            Sponsor
+                        </td>
+                        <td colspan="3">
+                            {{lblTupliner}} - {{lblTuplinename}}
+                        </td>
+                    </tr>
+                    <tr height="2">
+
+                        <td>
+                            Cadre
+                        </td>
+                        <td align="Center" colspan="3">
+                            {{lblTSysDesgNo}}
+                        </td>
+                    </tr>
+                    <tr height="2">
+                        <td width="25%">
+                            PV Type
+                        </td>
+                        <td width="25%" align="center">
+                            Upto Last Closing
+                        </td>
+                        <td width="25%" align="center">
+                            Present Closing
+                        </td>
+                        <td width="25%" align="center">
+                            Total
+                        </td>
+                    </tr>
+                    <tr height="2" ng-show="lblTSysDesgNodd<7">
+                        <td>
+                            CPV
+                        </td>
+                        <td align="center">
+                            {{lblTCPV1}}
+                        </td>
+                        <td align="center">
+                            {{lblTCPV2}}
+                        </td>
+                        <td align="center">
+                            {{lblTCPV}}
+                        </td>
+                    </tr>
+                    <tr height="2">
+                        <td>
+                            PPV
+                        </td>
+                        <td align="center">
+                            {{lblTPPV1}}
+                        </td>
+                        <td align="center">
+                            {{lblTPPV2}}
+                        </td>
+                        <td align="center">
+                            {{lblTPPV}}
+                        </td>
+                    </tr>
+                    <tr height="2">
+                        <td>
+                            eCBPV
+                        </td>
+                        <td align="center">
+                            {{lblCBPV1}}
+                        </td>
+                        <td align="center">
+                            {{lblCBPV2}}
+                        </td>
+                        <td align="center">
+                            {{lblCBPV}}
+                        </td>
+                    </tr>
+                    <tr height="2">
+                        <td colspan="2">
+                            Compensation
+                        </td>
+                        <td align="center">
+                            Left
+                        </td>
+                        <td align="center">
+                            Right
+                        </td>
+                    </tr>
+                    <tr height="2">
+                        <td colspan="2">
+                            Brought Forward
+                        </td>
+                        <td align="center">
+                            {{lblTLeftCF}}
+                        </td>
+                        <td align="center">
+                            {{lblTRightCF}}
+                        </td>
+                    </tr>
+                    <tr height="2">
+                        <td colspan="2">
+                            Current Cycle
+                        </td>
+                        <td align="center">
+                            {{lblTLeftCurCycTotBV}}
+                        </td>
+                        <td align="center">
+                            {{lblTRightCurCycTotBV}}
+                        </td>
+                    </tr>
+                    <tr height="2">
+                        <td colspan="2">
+                            Compensation PV
+                        </td>
+                        <td align="center">
+                            {{lblTLeftCompBV}}
+                        </td>
+                        <td align="center">
+                            {{lblTRightCompBV}}
+                        </td>
+                    </tr>
+                    <tr height="2">
+                        <td>
+                            Current eCBPV
+                        </td>
+                        <td align="center">
+                            <!--{{lblCureCBPV}}-->
+
+
+                        </td>
+
+
+                        <td align="center">
+
+                            {{lblCureCBPV1}}
+                        </td>
+                        <td align="center">
+                            {{lblCureCBPV2}}
+                        </td>
+                    </tr>
+                    <tr height="2">
+                        <td>
+                            Cumm eCBPV
+                        </td>
+                        <td align="center">
+                            <!--{{lblCummeCBPVTot}}-->
+
+
+                        </td>
+
+
+                        <td align="center">
+
+                            {{lblCummeCBPVLeft}}
+                        </td>
+                        <td align="center">
+                            {{lblCummeCBPVRight}}
+                        </td>
+                    </tr>
+                    <tr height="2">
+                        <td>
+                            Repurchase PV
+                        </td>
+                        <td align="center">
+                            {{lblTTotPerPurBV}}
+                        </td>
+                        <td align="center">
+                            {{lblTLeftPerPurBV}}
+                        </td>
+                        <td align="center">
+                            {{lblTRightPerPurBV}}
+                        </td>
+                    </tr>
+                    <tr height="2">
+                        <td colspan="2">
+                            Downline PC
+                        </td>
+                        <td align="center">
+                            {{lblTLeftDPC}}
+                        </td>
+                        <td align="center">
+                            {{lblTRightDPC}}
+                        </td>
+                    </tr>
+                    <tr height="2">
+                        <td>
+                            Personal PC
+                        </td>
+                        <td align="center" colspan="3">
+                            {{lblTPersonalPC}}
+                        </td>
+
+                    </tr>
+                    <!--<tr height="2" ng-show="lblTIdno=='10000225'">
+                        <td colspan="2">
+                            Converted BPV
+                        </td>
+                        <td align="center">
+                            {{lblLeftCPCB}}
+                        </td>
+                        <td align="center">
+                            {{lblRightCPCB}}
+                        </td>
+                    </tr>-->
+
+
+                </table>
+            </div>
+        </div>
+        <!
+    </div>
+
+    <!-- container -->
+    <div class="overlay-loader" ng-show="loader">
+        <img src="../Images/loader.gif" />
+    </div>
+    <div class="modal fade" id="divDetailsJoin" role="dialog">
+        <div class="modal-dialog modal-md">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">
+                        JOIN NOW
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <td valign="top">
+                        <table align="center" border="0" cellpadding="6" cellspacing="0" class="tborder"
+                               width="80%">
+                            <tbody>
+                                <tr>
+                                    <td class="alt1">
+                                        <p>
+                                            <table border="0" cellpadding="0" cellspacing="0" width="100%" align="center">
+                                                <tr>
+                                                    <td class="listhead">
+                                                        Introducer ID
+                                                        <br />
+                                                    </td>
+                                                    <td class="listhead">
+                                                        :
+                                                        <br />
+                                                    </td>
+                                                    <td align="left">
+                                                        <input type="text" class="form-control" name="txttreesprno" ng-model="txttreesprno"
+                                                               ng-readonly="lbltrretype=='Read'">
+                                                        <br />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="listhead">
+                                                        Downto ID
+                                                        <br />
+                                                        <br />
+                                                    </td>
+                                                    <td class="listhead">
+                                                        :&nbsp;&nbsp;&nbsp;
+                                                        <br />
+                                                        <br />
+                                                    </td>
+                                                    <td align="left">
+                                                        <font color="#ff9900">{{lbltreedownto}}</font>
+                                                        <br />
+                                                        <br />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="listhead">
+                                                        Placement
+                                                        <br />
+                                                        <br />
+                                                    </td>
+                                                    <td class="listhead">
+                                                        :&nbsp;&nbsp;&nbsp;
+                                                        <br />
+                                                        <br />
+                                                    </td>
+                                                    <td align="left">
+                                                        <font color="#ff9900">{{lbltrreeposition}}</font>
+                                                        <label style="display: none">
+                                                            <font color="#ff9900">{{lbltrreplaceno}}</font>
+                                                        </label>
+                                                        <br />
+                                                        <br />
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr align="right">
+                                    <td height="15" colspan="4">
+                                        <input type="submit" name="Submit" value="Submit" ng-click="Gototreereg()" class="close"
+                                               data-dismiss="modal" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="./lib/jquery/js/jquery.js"></script>
+<!--<script src="./lib/popper.js/js/popper.js"></script>
+<script src="./lib/bootstrap/js/bootstrap.js"></script>
+<script src="./lib/jquery.cookie/js/jquery.cookie.js"></script>-->
+<script src="js/jquery.min.js?v4.0.2"></script>
+<style type="text/css">
+    .display-block {
+        display: block !important;
+    }
+</style>
+<script>
+    $(document).ready(function () {
+
+        $(".personpp").mouseover(function () {
+            $(".div-display").addClass("display-block");
+            var p = $(this);
+            var toppopup = $(".toppopup");
+            var secoundtree = $(".secoundtree");
+            var offset = p.offset();
+            var divoffset = secoundtree.offset();
+            var toppopupp = toppopup.offset();
+            var top = offset.top;
+            var left = offset.left;
+            // var w = $(window).width();
+            // var h = $(window).height();
+            // alert(offset.left);
+            var w = parseInt(window.innerWidth);
+            var h = parseInt(window.innerHeight);
+            var hw = $(".secoundtree").height();
+            var hh = $(".secoundtree").width();
+            var dw = $(".div-display").width();
+            var dh = $(".secoundtree").height();
+            var pd = w - left;
+            var c = w / 2 - 100;
+            var right = left - dw;
+            var divoffseth = divoffset.top - top;
+            var ph = pd - 100;
+            // alert(pd +"+"+ dw);
+            if (pd > dw) {
+                $(".div-display").css({ top: offset.top - toppopupp.top + 50 + 'px', left: offset.left - divoffset.left + 50 });
+                //alert("frist");
+            } else {
+                $(".div-display").css({ top: offset.top - toppopupp.top + 50 + 'px', left: offset.left - divoffset.left + 50 });
+                // alert("secound");
+            } if (ph < dw) {
+                $(".div-display").css({ top: offset.top - toppopupp.top + 50 + 'px', left: offset.left - divoffset.left - dw });
+                //alert("frist");
+            } if (ph < dw && ph < dw) {
+                $(".div-display").css({ top: offset.top - toppopupp.top + 50 + 'px', left: offset.left - divoffset.left - dw });
+                //alert("frist");
+            }
+        });
+        $(".personpp").mouseout(function () {
+            $(".div-display").removeClass("display-block");
+        });
+    });
+</script>
+<style>
+
+    .tolltip-table {
+        font-size: 12px;
+        color: #fff;
+        border-collapse: unset;
+        width: 100%;
+    }
+
+        .tolltip-table tr td {
+            background: #3d276f;
+            border: 1px solid #fefefe;
+            padding: 2px 2px;
+            border-radius: 5px;
+            color: #ffffff;
+        }
+
+    .panel-body {
+        padding: 0px !important;
+    }
+
+    .overlay-loader {
+        background: rgba(0, 0, 0, 0.6) none repeat scroll 0 0;
+        bottom: 0;
+        height: 100%;
+        left: 0;
+        position: fixed;
+        right: 0;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+    }
+
+        .overlay-loader img {
+            left: 50%;
+            position: absolute;
+            top: 50%;
+        }
+
+    @media screen and (min-width: 320px) and (max-width: 600px) {
+
+        .hv-wrapper .hv-item {
+            width: auto !important;
+        }
+    }
+</style>
+<link rel="stylesheet" href="css/css-genealogy/hierarchy-view.css?v=1.12">
+<link rel="stylesheet" href="css/css-genealogy/main.css?v=1.12">

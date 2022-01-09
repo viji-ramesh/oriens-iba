@@ -1,0 +1,635 @@
+﻿<div class="container-fluid" ng-controller="MemberSignUp" ng-init="GetMember()">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row top-row-strip">
+
+                <div class="col-md-12">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">Profile</li>
+                        <li class="breadcrumb-item active">{{title1}}</li>
+                 </ol>
+                </div>
+            </div>
+
+            <div class="w-100" ng-show="ShowProfile">
+                <form name="ViewProfile_Form" class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <h4 class="modal-title" id="myModalLabel">Sponsor Details</h4>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 form-group">
+                                        <div class="row">
+                                            <div class="col-6 col-md-4" >  Sponsor ID </div>
+                                            <div class="col-6 col-md-8">
+                                                {{spridno}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <div class="row">
+                                            <div class="col-6  col-md-4">Sponsor Name </div>
+                                            <div class="col-6 col-md-8">
+                                                {{sprname}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr />
+                                <div class="row form-group">
+                                    <div class="col-md-10 col-xs-10">
+                                        <h4 class="modal-title" id="myModalLabel">Personal Details</h4>
+                                    </div>
+                                    <div class="col-md-2 col-xs-2 label-right">
+                            <button type="submit" ng-click="editpro()"><i class="las la-edit"></i></button>
+                        </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col-md-6 col-xs-12">
+                                        <div class="row">
+                                            <label class="col-6  col-sm-5 col-xs-5  control-label text-md-right text-left">
+                                                Distributor ID
+                                            </label>
+                                            <label class="col-1 d-none d-md-block col-sm-1 col-xs-1 control-label">
+                                                :
+                                            </label>
+                                            <label class="col-6 col-sm-6 col-xs-6 ">
+                                                {{idno | uppercase}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-xs-12">
+                                      <div class="row">
+                                          <label class="col-6  col-sm-5 col-xs-5  control-label text-md-right text-left">
+                                              Name
+                                          </label>
+                                          <label class="col-1 d-none d-md-block col-sm-1 col-xs-1 control-label">
+                                              :
+                                          </label>
+                                          <label class="col-6 col-sm-6 col-xs-6 ">
+                                              {{name}}
+                                          </label>
+                                      </div>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col-md-6 col-xs-12" style="display:none">
+                                        <div class="row">
+                                            <label class="col-6  col-sm-5 col-xs-5  control-label text-md-right text-left">
+                                                Password
+                                            </label>
+                                            <label class="col-1 d-none d-md-block col-sm-1 col-xs-1 control-label">
+                                                :
+                                            </label>
+                                            <div class="col-6 col-sm-6 col-xs-6">
+                                                {{LPassword}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-xs-12">
+                                      <div class="row">
+                                          <label class="col-6  col-sm-5 col-xs-5  control-label text-md-right text-left">
+                                              Date of Birth
+                                          </label>
+                                          <label class="col-1 d-none d-md-block col-sm-1 col-xs-1 control-label">
+                                              :
+                                          </label>
+                                          <label class="col-6 col-sm-6 col-xs-6">
+                                              {{dob}}
+                                          </label>
+                                      </div>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col-md-6 col-xs-12">
+                                        <div class="row">
+                                            <label class="col-6  col-sm-5 col-xs-5  control-label text-md-right text-left">
+                                                PAN
+                                            </label>
+                                            <label class="col-1 d-none d-md-block col-sm-1 col-xs-1 control-label">
+                                                :
+                                            </label>
+                                            <div class="col-6 col-sm-6 col-xs-6">
+                                                {{PANNo}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-xs-12">
+                                       <div class="row">
+                                           <label class="col-sm-5 col-xs-5 control-label label-right">
+
+                                           </label>
+                                           <label class="col-sm-1 col-xs-1 control-label">
+
+                                           </label>
+                                           <div class="col-sm-6 col-xs-6">
+
+                                           </div>
+                                       </div>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col-md-6 col-xs-12">
+                                        <div class="row">
+
+
+                                            <label class="col-6  col-sm-5 col-xs-5  control-label text-md-right text-left">
+                                                Account No
+                                            </label>
+                                            <label class="col-1 d-none d-md-block col-sm-1 col-xs-1 control-label">
+                                                :
+                                            </label>
+                                            <div class="col-6 col-sm-6 col-xs-6">
+                                                {{accno}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-xs-12">
+                                      <div class="row">
+                                          <label class="col-6  col-sm-5 col-xs-5  control-label text-md-right text-left">
+                                              Bank Name
+                                          </label>
+                                          <label class="col-1 d-none d-md-block col-sm-1 col-xs-1 control-label">
+                                              :
+                                          </label>
+                                          <div class="col-6 col-sm-6 col-xs-6">
+                                              {{bank}}
+                                          </div>
+                                      </div>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col-md-6 col-xs-12">
+                                        <div class="row">
+
+
+                                            <label class="col-6  col-sm-5 col-xs-5  control-label text-md-right text-left">
+                                                Branch Name
+                                            </label>
+                                            <label class="col-1 d-none d-md-block col-sm-1 col-xs-1 control-label">
+                                                :
+                                            </label>
+                                            <div class="col-6 col-sm-6 col-xs-6">
+                                                {{Branch}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-xs-12">
+                                       <div class="row">
+                                           <label class="col-6  col-sm-5 col-xs-5  control-label text-md-right text-left">
+                                               IFSC
+                                           </label>
+                                           <label class="col-1 d-none d-md-block col-sm-1 col-xs-1 control-label">
+                                               :
+                                           </label>
+                                           <div class="col-6 col-sm-6 col-xs-6">
+                                               {{ifscode}}
+                                           </div>
+                                       </div>
+                                    </div>
+                                </div>
+
+
+                                <hr />
+                                <div class="row form-group">
+                                    <div class="col-md-10">
+                                        <h4 class="modal-title" id="myModalLabel">Address Details</h4>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 col-xs-12 ">
+                                        <div class="row">
+
+
+                                            <label class="col-6  col-sm-5 col-xs-5  control-label text-md-right text-left">
+                                                Address
+                                            </label>
+                                            <label class="col-1 d-none d-md-block col-sm-1 col-xs-1 control-label">
+                                                :
+                                            </label>
+                                            <label class="col-6 col-sm-6 col-xs-6">
+                                                {{txtadd1}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-xs-12">
+                                     <div class="row">
+                                         <label class="col-6  col-sm-5 col-xs-5  control-label text-md-right text-left">
+                                             PIN Code
+                                         </label>
+                                         <label class="col-1 d-none d-md-block col-sm-1 col-xs-1 control-label">
+                                             :
+                                         </label>
+                                         <label class="col-6 col-sm-6 col-xs-6">
+                                             {{txtpin}}
+                                         </label>
+                                     </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 col-xs-12">
+                                        <div class="row">
+
+
+                                            <label class="col-6  col-sm-5 col-xs-5  control-label text-md-right text-left">
+                                                District
+                                            </label>
+                                            <label class="col-1 d-none d-md-block col-sm-1 col-xs-1 control-label">
+                                                :
+                                            </label>
+                                            <label class="col-6 col-sm-6 col-xs-6">
+                                                {{txtdistrict}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-xs-12">
+                                      <div class="row">
+                                          <label class="col-6  col-sm-5 col-xs-5  control-label text-md-right text-left">
+                                              City
+                                          </label>
+                                          <label class="col-1 d-none d-md-block col-sm-1 col-xs-1 control-label">
+                                              :
+                                          </label>
+                                          <label class="col-6 col-sm-6 col-xs-6">
+                                              {{txtcity}}
+                                          </label>
+                                      </div>
+                                    </div>
+                                </div>
+                                <div class="row ">
+                                    <div class="col-md-6 col-xs-12">
+                                        <div class="row">
+
+
+                                            <label class="col-6  col-sm-5 col-xs-5  control-label text-md-right text-left">
+                                                State
+                                            </label>
+                                            <label class="col-1 d-none d-md-block col-sm-1 col-xs-1 control-label">
+                                                :
+                                            </label>
+                                            <label class="col-6 col-sm-6 col-xs-6">
+                                                {{ddlstate}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-xs-12">
+                                      <div class="row">
+                                          <label class="col-6  col-sm-5 col-xs-5  control-label text-md-right text-left">
+                                              Mobile No
+                                          </label>
+                                          <label class="col-1 d-none d-md-block col-sm-1 col-xs-1 control-label">
+                                              :
+                                          </label>
+                                          <label class="col-6 col-sm-6 col-xs-6">
+                                              {{txtmobile}}
+                                          </label>
+                                      </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 col-xs-12">
+                                        <div class="row">
+
+
+                                            <label class="col-6  col-sm-5 col-xs-5  control-label text-md-right text-left">
+                                                Email
+                                            </label>
+                                            <label class="col-1 d-none d-md-block col-sm-1 col-xs-1 control-label">
+                                                :
+                                            </label>
+                                            <label class="col-6 col-sm-6 col-xs-6">
+                                                {{txtemail}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr />
+                                <div class="row form-group">
+                                    <div class="col-md-10">
+                                        <h4 class="modal-title">Nominee Details</h4>
+                                    </div>
+                                </div>
+
+                                <div class="row ">
+                                    <div class="col-md-6 col-xs-12">
+                                        <div class="row">
+
+
+                                            <label class="col-6  col-sm-5 col-xs-5  control-label text-md-right text-left">
+                                                Full Name
+                                            </label>
+                                            <label class="col-1 d-none d-md-block col-sm-1 col-xs-1 control-label">
+                                                :
+                                            </label>
+                                            <label class="col-6 col-sm-6 col-xs-6">
+                                                {{nominee}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-xs-12">
+                                      <div class="row">
+                                          <label class="col-6  col-sm-5 col-xs-5  control-label text-md-right text-left">
+                                              Relation with Applicant
+                                          </label>
+                                          <label class="col-1 d-none d-md-block col-sm-1 col-xs-1 control-label">
+                                              :
+                                          </label>
+                                          <label class="col-6 col-sm-6 col-xs-6">
+                                              {{relation}}
+                                          </label>
+                                      </div>
+                                    </div>
+                                </div>
+                                <div class="row ">
+                                    <div class="col-md-6 col-xs-12">
+                                        <div class="row">
+
+
+                                            <label class="col-6  col-sm-5 col-xs-5  control-label text-md-right text-left">
+                                                DOB of Nominee
+                                            </label>
+                                            <label class="col-1 d-none d-md-block col-sm-1 col-xs-1 control-label">
+                                                :
+                                            </label>
+                                            <label class="col-6 col-sm-6 col-xs-6">
+                                                {{nomage}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-xs-12">
+
+                                    </div>
+                                </div>
+                                <hr />
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            
+
+            <div class="col-md-12 col-lg-12 col-sm-12 hidden-xs">
+                <div class="row" ng-show="EditProfile">
+                    <form name="Form_SignupForm" class="w-100 card" ng-submit="UpdateSignupDetails()" novalidate>
+                        <div class="col-md-12">
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <h4 class="modal-title" id="myModalLabel" style="font-weight: bold;"> Sponsor Details </h4>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 form-group">
+                                        <div class="row">
+                                            <div class="col-md-4">  Sponsor ID </div>
+                                            <div class="col-md-8">
+                                                {{spridno}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <div class="row">
+                                            <div class="col-md-4">Sponsor Name </div>
+                                            <div class="col-md-8">
+                                                {{sprname}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                
+                                <hr />
+                                <div class="form-group">
+                                    <h4 class="modal-title" id="myModalLabel" style="font-weight: bold;">Personal Details</h4>
+                                </div>
+
+                                <div class="col-md-12 ">
+                                    <div class="row">
+                                        <div class="col-md-6 form-group">
+                                            <div class="row">
+                                                <div class="col-md-4">Distributor ID </div>
+                                                <div class="col-md-8">
+                                                    {{idno | uppercase}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 form-group">
+                                            <div class="row">
+                                                <div class="col-md-4">Name </div>
+                                                <div class="col-md-8">
+                                                    {{name}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-6 form-group">
+                                    <div class="row">
+                                        <div class="col-md-4">  Date of Birth </div>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" name="txtDateofbirth" uib-datepicker-popup="dd/MM/yyyy" ng-model="dob" is-open="dobsts.opened" ng-click="open($event)"
+                                                   min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" ng-required="true" date-disabled="disabled(date, mode)"
+                                                   show-button-bar="false" show-weeks="false" formatyear="yyyy" />
+                                            <div ng-show="Form_SignupForm.dob.$invalid && !Form_SignupForm.dob.$pristine" class="validation_info">
+                                                <ul class="ulvalid">
+                                                    <li class="invalid" ng-show="Form_SignupForm.dob.$invalid">Date of Birth is required.</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <hr />
+                                <div class="form-group">
+                                    <h4 class="modal-title" id="myModalLabel" style="font-weight: bold;">Address Details</h4>
+                                </div>
+
+                                <div class="col-md-12 ">
+                                    <div class="row">
+                                        <div class="col-md-6 form-group" ng-class="{ 'has-error' : Form_SignupForm.txtAddress1.$invalid && !Form_SignupForm.txtAddress1.$pristine }">
+                                            <div class="row">
+                                                <div class="col-md-4">Address </div>
+                                                <div class="col-md-8">
+                                                    <textarea name="txtAddress1" ng-model="txtadd1" ng-disabled="ISAdd1==0" class="form-control" rows="3" ng-minlength="5" maxlength="250" ng-focus="add1.focus=true" ng-blur="add1.focus=false"></textarea>
+                                                    <div ng-show="Form_SignupForm.txtadd1.$invalid && !Form_SignupForm.txtadd1.$pristine && add1.focus" class="validation_info">
+                                                        <ul class="ulvalid">
+                                                            <li class="invalid" ng-show="Form_SignupForm.txtadd1.$invalid">Address1 is required.</li>
+                                                            <li class="invalid" ng-show="Form_SignupForm.txtadd1.$error.minlength">Address1 is too short.</li>
+                                                            <li class="invalid" ng-show="Form_SignupForm.txtadd1.$error.maxlength">Address1 is too long.</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 form-group" ng-class="{ 'has-error' : Form_SignupForm.txtpin.$invalid && !Form_SignupForm.txtpin.$pristine }">
+                                            <div class="row">
+                                                <div class="col-md-4">PinCode </div>
+                                                <div class="col-md-8">
+                                                    <input type="text" name="txtPINCode" valid-number id="idpincode" ng-model="txtpin" class="form-control" maxlength="6" typeahead-editable="false" placeholder="PinCode"
+                                                           typeahead="a.Text as a.Text for a in PinCodeList | filter:$viewValue | limitTo:8" autocomplete="off"
+                                                           typeahead-on-select='Pincodesubmit($item)' typeahead-min-length="1" ng-focus="pincode.focus=true" ng-blur="pincode.focus=false">
+                                                    <div ng-show="Form_SignupForm.txtpin.$invalid && !Form_SignupForm.txtpin.$pristine && pincode.focus" class="validation_info">
+                                                        <ul class="ulvalid">
+                                                            <li class="invalid" ng-show="Form_SignupForm.txtpin.$invalid">Pincode is required.</li>
+                                                            <li class="invalid" ng-show="Form_SignupForm.txtpin.$error.minlength">Invalid Pincode</li>
+                                                            <li class="invalid" ng-show="Form_SignupForm.txtpin.$error.maxlength">Invalid Pincode</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 form-group" ng-class="{ 'has-error' : Form_SignupForm.ddlstate.$invalid && !Form_SignupForm.ddlstate.$pristine }">
+                                            <div class="row">
+                                                <div class="col-md-4">State </div>
+                                                <div class="col-md-8">
+                                                    <select name="txtState" id="Sta" ng-options="a.Value as a.Text for a in StateList" ng-model="ddlstate" class="form-control">
+                                                        <option value="" selected="selected" style="display:none">Select</option>
+                                                    </select>
+                                                    <div ng-show="Form_SignupForm.ddlstate.$invalid && !Form_SignupForm.ddlstate.$pristine" class="validation_info">
+                                                        <ul class="ulvalid">
+                                                            <li class="invalid" ng-show="Form_SignupForm.ddlstate.$invalid">State is required.</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 form-group" ng-class="{ 'has-error' : Form_SignupForm.txtmobile.$invalid && !Form_SignupForm.txtmobile.$pristine }">
+                                            <div class="row">
+                                                <div class="col-md-4">Mobile </div>
+                                                <div class="col-md-8">
+                                                    <input type="text" valid-number name="txtMobile" id="txtmob" maxlength="10" ng-disabled="ISMobile==0" ng-model="txtmobile" class="form-control" ng-pattern="/^[6-9][0-9]{9}$/"
+                                                           ng-focus="mobile.focus=true" ng-blur="CheckMobileNo()" /> <!--ng-blur="mobile.focus=false ">-->
+                                                    <div ng-show="Form_SignupForm.txtmobile.$invalid && !Form_SignupForm.txtmobile.$pristine && mobile.focus" class="validation_info">
+                                                        <ul class="ulvalid">
+                                                            <li class="invalid" ng-show="Form_SignupForm.txtmobile.$invalid">Mobile is required.</li>
+                                                            <li class="invalid" ng-show="Form_SignupForm.txtmobile.$error.pattern || Form_SignupForm.txtmobile.$error.number">Valid Mobile Mumber</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 form-group" ng-class="{ 'has-error' : Form_SignupForm.txtemail.$invalid && !Form_SignupForm.txtemail.$pristine }">
+                                            <div class="row">
+                                                <div class="col-md-4">Email </div>
+                                                <div class="col-md-8">
+                                                    <input type="email" name="txtEmail" id="IDEmail" ng-disabled="ISEmail==0" ng-model="txtemail" class="form-control" ng-pattern="/^[_a-zA-Z0-9-]+(\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,4})$/" ng-maxlength="100"
+                                                           ng-focus="email.focus=true" ng-blur="email.focus=false">
+                                                    <div ng-show="Form_SignupForm.txtemail.$invalid && !Form_SignupForm.txtemail.$pristine && email.focus" class="validation_info">
+                                                        <ul class="ulvalid">
+                                                            <li class="invalid" ng-show="Form_SignupForm.txtemail.$error.pattern || Form_SignupForm.txtemail.$error.number">Valid Email Required</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                
+
+                                <hr />
+                                <div class="form-group">
+                                    <h4 class="modal-title" id="myModalLabel" style="font-weight: bold;">Nominee Details</h4>
+                                </div>
+
+                                <div class="col-md-12 ">
+                                    <div class="row">
+                                        <div class="col-md-6 form-group">
+                                            <div class="row">
+                                                <div class="col-md-4"> Full Name </div>
+                                                <div class="col-md-8">
+                                                    <input type="text" name="txtNominee" id="txtNominee" ng-model="nominee" class="form-control"
+                                                           ng-focus="Nominee.focus=true" ng-blur="Nominee.focus=false" placeholder="Nominee" />
+                                                    <div ng-show="Form_SignupForm.nominee.$invalid && !Form_SignupForm.nominee.$pristine && Nominee.focus" class="validation_info">
+                                                        <ul class="ulvalid">
+                                                            <li class="invalid" ng-show="Form_SignupForm.nominee.$invalid">txtNominee is required.</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 form-group">
+                                            <div class="row">
+                                                <div class="col-md-4">   Relation with Applicant </div>
+                                                <div class="col-md-8">
+                                                    <select name="Relation" ng-model="relation" class="form-control">
+                                                        <option value="" selected="selected" style="display:none">Select Relation</option>
+                                                        <option value="Mother">Mother</option>
+                                                        <option value="Father">Father</option>
+                                                        <option value="Wife">Wife</option>
+                                                        <option value="Brother">Brother</option>
+                                                        <option value="Sister">Sister</option>
+                                                        <option value="Son">Son</option>
+                                                        <option value="Daughter">Daughter</option>
+                                                        <option value="Friend">Friend</option>
+                                                        <option value="Grand Son">Grand Son</option>
+                                                        <option value="Grand Daughter">Grand Daughter</option>
+                                                        <option value="Son In Law">Son In Law</option>
+                                                        <option value="Daughter In Law">Daughter In Law</option>
+                                                        <option value="Brother In Law">Brother In Law</option>
+                                                        <option value="Sister In Law">Sister In Law</option>
+                                                        <option value="Husband">Husband</option>
+                                                        <option value="Propreitor">Propreitor</option>
+                                                        <option value="Partner">Partner</option>
+                                                        <option value="Director">Director</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 form-group">
+                                            <div class="row">
+                                                <div class="col-md-4">DOB Of Nominee </div>
+                                                <div class="col-md-8">
+                                                    <input type="text" class="form-control" name="txtDateofbirth2" uib-datepicker-popup="dd/MM/yyyy" ng-model="nomage" is-open="dobsts2.opened" ng-click="open2($event)"
+                                                           min-date="minDate" max-date="maxDate2" datepicker-options="dateOptions" date-disabled="disabled(date, mode)"
+                                                           show-button-bar="false" show-weeks="false" formatyear="yyyy" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--<div class="col-md-6 form-group">
+                                            <div class="row">
+                                                <div class="col-md-4">Remarks </div>
+                                                <div class="col-md-8">
+                                                    <textarea ng-model="txtRemarks" class="form-control" rows="4" ng-required="true"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>-->
+                                    </div>
+                                </div>
+
+
+                                
+
+                            </div>
+                            <div class="modal-footer">
+                                <div class="col-md-offset-9 col-md-2 col-xs-3">
+                                    <button type="button" class="btn btn-secondary" ng-click="Backtoprofile()"> « Back</button>
+                                </div>
+                                <div class="col-md-1 col-xs-3">
+                                    <button type="submit" id="btnprofileupdate" class="btn bg-theam text-white ml-2" ng-disabled="Form_SignupForm.$invalid">
+                                        Update
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .bg-theam {
+        background-color: #3d276f !important;
+    }
+</style>

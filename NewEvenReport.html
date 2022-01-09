@@ -1,0 +1,302 @@
+﻿<div class="container-fluid" ng-controller="Events_ctrl" ng-init="getNewProgram()">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row top-row-strip">
+                <div class="col-md-12">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"> Profile</li>
+                        <li class="breadcrumb-item active">New Event Report</li>
+                    </ol>
+                </div>
+            </div>
+            <label ng-model="lblmobile" style="display: none">
+            </label>
+            <label ng-model="lblname" style="display: none">
+            </label>
+            <label ng-model="lblemail" style="display: none">
+            </label>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class=" table-responsive">
+                        <table class="table table-bordered table-striped f-14">
+                            <thead>
+                                <tr class="table-header">
+                                    <th>
+                                        Name of Program
+                                    </th>
+                                    <th>
+                                        Image
+                                    </th>
+                                    <th>
+                                        Venue
+                                    </th>
+                                    <th>
+                                        Date & Time
+                                    </th>
+                                    <th>
+                                        City
+                                    </th>
+                                    <th>
+                                        State
+                                    </th>
+                                    <th>
+                                        Amount
+                                    </th>
+                                    <th>
+                                        AvailableTickets
+                                    </th>
+                                    <th>
+                                        Action
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr dir-paginate="x in newProgram  | itemsPerPage:ItemsperPage track by $index">
+                                    <td>
+                                        {{x.PrgmName}}
+                                    </td>
+                                    <td>
+                                        <a href="..{{x.ImgPath}}" target="_blank">
+                                            <img src="..{{x.ImgPath}}" height="50px" width="60px" />
+                                        </a>
+                                    </td>
+                                    <td>
+                                        {{x.venue}}
+                                    </td>
+                                    <td>
+                                        {{x.DateTM}}
+                                    </td>
+                                    <td>
+                                        {{x.City}}
+                                    </td>
+                                    <td>
+                                        {{x.State}}
+                                    </td>
+                                    <td>
+                                        {{x.TicketVal}}
+                                    </td>
+                                    <td>
+                                        {{x.AvailableTickets}}
+                                    </td>
+                                    <td>
+                                        <label ng-model="lblchkbuy" style="color: Blue" ng-click="getProgram(x.PrgmId)" data-toggle="modal"
+                                               data-target="#divDetailseve">
+                                            Buy
+                                        </label>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-11">
+                        <dir-pagination-controls max-size="15" direction-links="true" boundary-links="true">
+                        </dir-pagination-controls>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="divDetailseve" role="dialog">
+        <div class="modal-dialog modal-md">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">
+                        BUY TICKET FOR NEW EVENT
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <td valign="top">
+                        <table align="center" border="0" cellpadding="6" cellspacing="0" class="tborder"
+                               width="80%">
+                            <tbody>
+                                <tr>
+                                    <td class="alt1">
+                                        <p>
+                                            <table border="0" cellpadding="0" cellspacing="0" width="100%" align="center">
+                                                <tr>
+                                                    <td class="listhead">
+                                                        Program Name
+                                                    </td>
+                                                    <td class="listhead">
+                                                        :
+                                                    </td>
+                                                    <td align="left">
+                                                        <font color="#ff9900">{{lblprogramname}}</font>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="listhead">
+                                                        Venue
+                                                    </td>
+                                                    <td class="listhead">
+                                                        :&nbsp;&nbsp;&nbsp;
+                                                    </td>
+                                                    <td align="left">
+                                                        <font color="#ff9900">{{lblvenue}}</font>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="listhead">
+                                                        Date & Time
+                                                    </td>
+                                                    <td class="listhead">
+                                                        :&nbsp;&nbsp;&nbsp;
+                                                    </td>
+                                                    <td align="left">
+                                                        <font color="#ff9900">{{lbldate}} {{lbltime}}</font>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="listhead">
+                                                        City
+                                                    </td>
+                                                    <td class="listhead">
+                                                        :&nbsp;&nbsp;&nbsp;
+                                                    </td>
+                                                    <td align="left">
+                                                        <font color="#ff9900">{{lblcity}}</font>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="listhead">
+                                                        State
+                                                    </td>
+                                                    <td class="listhead">
+                                                        :&nbsp;&nbsp;&nbsp;
+                                                    </td>
+                                                    <td align="left">
+                                                        <font color="#ff9900">{{lblstate}}</font>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="listhead">
+                                                        Country
+                                                    </td>
+                                                    <td class="listhead">
+                                                        :&nbsp;&nbsp;&nbsp;
+                                                    </td>
+                                                    <td align="left">
+                                                        <font color="#ff9900">{{lblcountry}}</font>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="listhead">
+                                                        Ticket Value
+                                                    </td>
+                                                    <td class="listhead">
+                                                        :&nbsp;&nbsp;&nbsp;
+                                                    </td>
+                                                    <td align="left">
+                                                        <font color="#ff9900">Rs. {{lbltickvale}}</font>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="listhead">
+                                                        Available Tickets
+                                                    </td>
+                                                    <td class="listhead">
+                                                        :&nbsp;&nbsp;&nbsp;
+                                                    </td>
+                                                    <td align="left">
+                                                        <font color="#ff9900">{{lblavlbtckt}}</font>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="listhead">
+                                                        No. of Tickets
+                                                    </td>
+                                                    <td class="listhead">
+                                                        :&nbsp;&nbsp;&nbsp;
+                                                    </td>
+                                                    <td align="left">
+                                                        <input type="text" ng-model="txtnoftik" ng-show="showmony2" />
+                                                        <label ng-show="showmony">
+                                                            <font color="#ff9900">{{txtnoftik}}</font>
+                                                        </label>
+                                                    </td>
+                                                </tr>
+                                                <tr ng-show="showmony">
+                                                    <td class="listhead">
+                                                        Total Amount
+                                                    </td>
+                                                    <td class="listhead">
+                                                        :&nbsp;&nbsp;&nbsp;
+                                                    </td>
+                                                    <td align="left">
+                                                        <font color="#ff9900">{{lbltickvale*txtnoftik}}</font>
+                                                    </td>
+                                                </tr>
+                                                <tr ng-show="showmony">
+                                                    <td class="listhead">
+                                                        Mode Of Payment
+                                                    </td>
+                                                    <td class="listhead">
+                                                        :&nbsp;&nbsp;&nbsp;
+                                                    </td>
+                                                    <td align="left">
+                                                        <select ng-model="ddlmop" style="widht: 200px" ng-change="getEvalData()">
+                                                            <option value="Ewallet">Ewallet</option>
+                                                            <!--<option value="PG">Online Payment</option>-->
+                                                            <option value="Paytm">Paytm Payment</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr ng-show="showewall">
+                                                    <td class="listhead">
+                                                        Ewallet Available Amount
+                                                    </td>
+                                                    <td class="listhead">
+                                                        :&nbsp;&nbsp;&nbsp;
+                                                    </td>
+                                                    <td align="left">
+                                                        <font color="#ff9900">{{lblewalamt}}</font>
+                                                    </td>
+                                                </tr>
+                                                <tr ng-show="showewall">
+                                                    <td class="listhead">
+                                                        Ewallet Amount to be used Now
+                                                    </td>
+                                                    <td class="listhead">
+                                                        :&nbsp;&nbsp;&nbsp;
+                                                    </td>
+                                                    <td align="left">
+                                                        <font color="#ff9900">{{lbltickvale*txtnoftik}}</font>
+                                                    </td>
+                                                </tr>
+                                                <tr ng-show="showewall">
+                                                    <td class="listhead">
+                                                        Transaction Password
+                                                    </td>
+                                                    <td class="listhead">
+                                                        :&nbsp;&nbsp;&nbsp;
+                                                    </td>
+                                                    <td align="left">
+                                                        <input type="password" ng-model="txttpwd" />
+                                                        <label ng-show="false">
+                                                            <font color="#ff9900">{{lbltpwd}}</font>
+                                                        </label>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr align="right">
+                                    <td height="15" colspan="4">
+                                        <input type="submit" name="Submit" ng-show="showmony2" value="Priview!" ng-click="getData()" />
+                                        <input type="submit" name="Submitg" ng-show="showmony" class="close" data-dismiss="modal" value="Buy Ticket" ng-click="BuyTicket()" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

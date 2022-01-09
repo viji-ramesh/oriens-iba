@@ -1,0 +1,107 @@
+﻿<div class="container-fluid" ng-controller="Payout_ctrl" ng-init="GetIncPayno('IncDet')">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row top-row-strip">
+                <div class="col-md-12">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"> Payout</li>
+                        <li class="breadcrumb-item active">INCOME DETAILS</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="">
+        <div class="panel panel-body">
+            <div class="example-wrap" ng-show="showpayno==false">
+                <div class="example">
+                    <form name="Form">
+                        <div class="form-group row">
+                            <label class="col-md-2 col-form-label">
+                                &nbsp; PayNo for Income Details
+                            </label>
+                            <div class="col-md-4">
+                                <select ng-model="ddlrtype" id="desgid" class="form-control">
+                                    <option selected="true" value="">Select Payno</option>
+                                    <option ng-repeat="x in paynos" value="{{x.payno}}">{{x.paydate}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label">
+                            </label>
+                            <div class="col-md-8">
+                                <button type="submit" class="btn btn-primary" ng-click="IncomeDetails(ddlrtype)">
+                                    Submit
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="row" ng-show="showpayno==true">
+                <div class="col-md-4">
+                    <img src="images/backimg.jpg" style="width: 80px; height: 35px" ng-click="backIncomedet()" />
+                </div>
+                <div class="col-md-4 col-md-offset-3" style="float: right">
+                </div>
+                <div class="col-md-4">
+                    <input type="text" ng-model="search" class="form-control" placeholder="Search">
+                </div>
+
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-12">
+                    <div class=" table-responsive">
+                        <table class="table table-bordered table-striped f-14"
+                               ng-show="showpayno==true">
+                            <thead>
+                                <tr class="table-header">
+                                    <th>
+                                        Thru
+                                    </th>
+                                    <th>
+                                        Income Type
+                                    </th>
+                                    <th>
+                                        Remarks
+                                    </th>
+                                    <th>
+                                        Compensation Bonus
+                                    </th>
+                                    <th>
+                                        Amount
+                                    </th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="x in incdetls | filter:search">
+                                    <td class="label-center">
+                                        {{x.Thru}}
+                                    </td>
+                                    <td class="label-center">
+                                        {{x.Way}}
+                                    </td>
+                                    <td class="label-center">
+                                        {{x.Remarks}}
+                                    </td>
+                                    <td class="label-center">
+                                        {{x.CBInc}}
+                                    </td>
+                                    <td class="label-right">
+                                        {{x.Amt}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

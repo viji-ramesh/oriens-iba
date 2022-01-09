@@ -1,0 +1,100 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Oriens | Distributor Login</title>
+    <link rel='shortcut icon' href="images/favicon.png" />
+    <link href="../Styles/alertify.core.css" rel="stylesheet" />
+    <link href="../Styles/alertify.default.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+    <script src="../AlertMsg/alertify.js"></script>
+    <script src="../AlertMsg/alertify.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="../Styles/login-style.css" rel="stylesheet">
+
+    <script src="../Scripts_AJ/alertify.js" type="text/javascript"></script>
+    <link href="../Scripts_AJ/alertify.css" rel="stylesheet" type="text/css" />
+    <script src="../Scripts_AJ/angular.js?v=1.0"></script>
+    <script src="../Scripts_AJ/ng-infinite-scroll.js?v=1.0"></script>
+    <script src="../Scripts_AJ/angular-route.js?v=1.0"></script>
+    <script src="../Scripts_AJ/dirPagination.js?v=1.0"></script>
+    <script src="../Scripts_AJ/angular-sanitize.js?v=1.0"></script>
+    <script src="../Scripts_AJ/ngAutocomplete.js?v=1.0"></script>
+    <script src="../Scripts_AJ/FileSaver.js?v=1.0"></script>
+    <script src="../Scripts_AJ/aes.js?v=1.0"></script>
+    <script src="../app/memberApp.js?v=1.86"></script>
+    <script src="../Scripts_AJ/datetimepicker.js?v=1.0"></script>
+    <style>
+    </style>
+</head>
+
+<body ng-app="NewmemberApp" ng-controller="MemberLoginCtrl">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="mx-auto col-md-5 login">
+                    <div class="text-center mb-3">
+                        <img src="../images/logo.png" alt="" class="logo center-block" style="width:20%" />
+                    </div>
+                    <h1>Distributor Login</h1>
+                    <form name="Form_Login" ng-submit="DistributorLogin()" novalidate>
+                        <div class="form-group" ng-class="{ 'has-error' : Form_Login.username.$invalid && !Form_Login.username.$pristine }">
+                            <input type="text" only-alphabets class="form-control" maxlength="15" name="username" ng-model="username" autocomplete="off" autofocus ng-required="true" placeholder="User ID" ng-focus="userid.focus=true" ng-blur="userid.focus=false">
+                            <div ng-show="Form_Login.username.$invalid && !Form_Login.username.$pristine && userid.focus" class="validation_info">
+                                <ul class="ulvalid">
+                                    <li class="invalid" ng-show="Form_Login.username.$invalid">User ID is required.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error' : Form_Login.pwd.$invalid && !Form_Login.pwd.$pristine }">
+                            <input type="password" class="form-control" maxlength="20" name="pwd" ng-model="password" autocomplete="off" ng-required="true" placeholder="Password" ng-keypress="checkIfEnterKeyWasPressed($event)">
+                            <div ng-show="Form_Login.pwd.$invalid && !Form_Login.pwd.$pristine && pwd.focus" class="validation_info">
+                                <ul class="ulvalid">
+                                    <li class="invalid" ng-show="Form_Login.pwd.$invalid">Password is required.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-12 text-right">
+                            <button type="submit" id="btnlogin" class="btn btn-primary" ng-disabled="Form_Login.$invalid || loader">Login</button>
+                        </div>
+                        <div class="col-md-1">
+                            <img ng-show="loader" src="../Images/loading.gif" class="loading" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="overlay-loader" ng-show="QuickLoginloader">
+            <div class="text-center bg-white p-3">
+                <p>Login Authentication</p>
+                <img src="../Images/loading.gif" />
+            </div>
+        </div>
+
+       
+    </div>
+    <script src="../Scripts/bootstrap.min.js"></script>
+    <script src="../Scripts_AJ/aes.js"></script>
+    <style>
+        .overlay-loader {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: #000000bf;
+            top: 0;
+            left: 0;
+            align-items: center;
+            display: flex;
+            justify-content: center;
+            color: #000;
+            font-size: 18px;
+        }
+    </style>
+</body>
+
+
+</html>

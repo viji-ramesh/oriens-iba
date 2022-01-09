@@ -1,0 +1,87 @@
+﻿<!--<script src="../Scripts_AJ/angular-sanitize.js"> </script>-->
+<div class="" ng-controller="MailBox_ctrl">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row top-row-strip">
+                <div class="col-md-12">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"> Mail Box</li>
+                        <li class="breadcrumb-item active">Bulk Mails</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel" ng-model="panel1" ng-show="inboxshow">
+        <div class="row">
+            <div class="col-md-12">
+                <div class=" table-responsive">
+                    <table class="table table-bordered table-striped f-14">
+                        <thead>
+                            <tr class="table-header">
+                                <th>
+                                    S No.
+                                </th>
+                                <th>
+                                    From
+                                </th>
+                                <th>
+                                    Subject
+                                </th>
+                                <th>
+                                    Date
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="x in Bulkmails">
+                                <td>
+                                    {{$index+1}}
+                                </td>
+                                <td>
+                                    {{x.CreatedBy}}
+                                </td>
+                                <td>
+                                    <span>
+                                        <label ng-click="getBulkmsg(x.MAILID,x.Heading)" style="color:Blue">{{x.Heading}}</label>'
+                                        <span ng-bind-html="x.Details | limitTo:50 | unsafe">
+                                        </span>
+
+                                    </span>
+                                </td>
+                                <td>
+                                    {{x.SendDate}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel" ng-model="panel2" ng-show="msgshow">
+        <div class="row ">
+            <div class="col-md-12 ">
+                <div class="card p-3">
+                    <div class="row">
+                        <div class="col-md-8 mx-auto">
+                            <div class="panel-body">
+                                Subject : {{bulksub}}
+                                <br />
+                                <br />
+                                Message :<span id="Bulkmsg"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-12" style="text-align:right">
+                            <button type="button" class="btn btn-primary" ng-click="getBulkmails()">
+                                Back
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

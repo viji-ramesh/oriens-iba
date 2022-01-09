@@ -1,0 +1,83 @@
+﻿<div class="container-fluid" ng-controller="getSession" ng-init="getApprGuestRpt('')">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row top-row-strip">
+                <div class="col-md-12">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"> Profile</li>
+                        <li class="breadcrumb-item active">Guest Report</li>
+                    </ol>
+                </div>
+            </div>
+            <div ng-model="panel1">
+                <div class="panel panel-body">
+                    <div class="row mb-2">
+                        <div class="col-md-9"></div>
+                        <div class="col-md-3">
+                            <input type="text" ng-model="search" class="form-control" placeholder="Search">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class=" table-responsive">
+                                <table class="table table-bordered table-striped f-14">
+                                    <thead >
+                                        <tr class="table-header">
+                                            <th>
+                                                User Id
+                                            </th>
+                                            <th>
+                                                Name
+                                            </th>
+                                            <th>
+                                                Introducer
+                                            </th>
+                                            <th>
+                                                City
+                                            </th>
+                                            <th>
+                                                Join Date
+                                            </th>
+                                            <th>
+                                                Status
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr dir-paginate="x in ApprGuest | filter:search | itemsPerPage:ItemsperPage track by $index">
+                                            <td>
+                                                {{x.idno}}
+                                            </td>
+                                            <td>
+                                                {{x.name}}
+                                            </td>
+                                            <td>
+                                                {{x.sprno}}
+                                            </td>
+                                            <td>
+                                                {{x.city}}
+                                            </td>
+                                            <td>
+                                                {{x.memdate}}
+                                            </td>
+                                            <td>
+                                                {{x.status}}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-11">
+                            <dir-pagination-controls max-size="15" direction-links="true" boundary-links="true">
+                            </dir-pagination-controls>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

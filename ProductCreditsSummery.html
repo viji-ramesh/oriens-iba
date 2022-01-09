@@ -1,0 +1,133 @@
+﻿<div class="container-fluid" ng-controller="Orders_ctrl" ng-init="Dsummary('productcredits','List')">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row top-row-strip">
+                <div class="col-md-12">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"> Order</li>
+                        <li class="breadcrumb-item active">PRODUCT CREDITS SUMMARY</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>   
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-md-4">
+                <h3 class="panel-title">
+                    Total Available Credits :
+                    <label style="text-align: right; color: Green">
+                        {{totavlcr}}
+                    </label>
+                </h3>
+            </div>
+            <div class="col-md-4">
+                <h3 class="panel-title">
+                    Added Credits :
+                    <label style="text-align: right; color: red">
+                        {{totaddcr}}
+                    </label>
+                </h3>
+            </div>
+            <div class="col-md-4">
+                <h3 class="panel-title">
+                    Deducted Credits
+                    <label style="text-align: right; color: red">
+                        {{totdbcr}}
+                    </label>
+                </h3>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="panel" ng-model="panel1">
+        <div class="panel-body">
+            
+            <div class="row">
+                
+                <div class="col-md-12">
+                    <div class="teambtn" style="float: right">
+                        <span style="cursor: pointer" ng-click="exportToExcelESummary(.)">Export Excel</span>
+                    </div>
+                    <div class="col-md-3 col-md-offset-9" style="float: right">
+                        <input type="text" ng-model="search" class="form-control" placeholder="Search">
+                    </div>
+                    <br />
+                    <br />
+                    <div class=" table-responsive">
+                        <table class="table table-bordered table-striped f-14">
+                            <thead>
+                                <tr class="table-header">
+                                    <th>
+                                        S No.
+                                    </th>
+                                    <th>
+                                        Dated
+                                    </th>
+				    <th>
+                                        Thru IDNo.
+                                    </th>
+				    <th>
+                                        Description
+                                    </th>
+                                    <th>
+                                        Remarks
+                                    </th>
+                                    <th>
+                                        Added Credits
+                                    </th>
+                                    <th>
+                                        Deducted Credits
+                                    </th>
+                                    <th>
+                                        Balance
+                                    </th>
+                                    <!--<th>
+                                        Exp. Date
+                                    </th>-->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr dir-paginate="x in prodcr | filter:search | itemsPerPage:ItemsperPage track by $index">
+                                    <td class="label-center">
+                                        {{$index+1}}
+                                    </td>
+                                    <td class="label-center">
+                                        {{x.Dated}}
+                                    </td>
+				    <td class="label-center">
+                                        {{x.idno}}
+                                    </td>
+				    <td>
+                                        {{x.Remarks}}
+                                    </td>
+                                    <td>
+                                        {{x.rem}}
+                                    </td>
+                                    <td class="label-right">
+                                        {{x.InAmt}}
+                                    </td>
+                                    <td class="label-right">
+                                        {{x.OutAmt}}
+                                    </td>
+                                    <td class="label-right">
+                                        {{x.Balance}}
+                                    </td>
+                                    <!--<td>
+                                        <span ng-show="x.InAmt>0">{{x.ExpiredDate}}</span>
+                                    </td>-->
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-11">
+                            <dir-pagination-controls max-size="15" direction-links="true" boundary-links="true">
+                            </dir-pagination-controls>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

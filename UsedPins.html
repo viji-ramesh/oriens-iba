@@ -1,0 +1,101 @@
+﻿<div class="container-fluid" ng-controller="Pin_ctrl" ng-init="UserdPinLoad('UsedPinsReport')">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row top-row-strip">
+                <div class="col-md-12">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"> Pin Menu</li>
+                        <li class="breadcrumb-item active">Pin Used Report</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-model="panel1">
+        <div class="row">
+            <div class="col-md-12">
+                <div class=" table-responsive">
+                    <table class="table table-bordered table-striped f-14">
+                        <thead>
+                            <tr class="table-header">
+                                <th>
+                                    S No.
+                                </th>
+                                <th>
+                                    Cardsno
+                                </th>
+                                <th>
+                                    PIN No.
+                                </th>
+
+                                <th>
+
+                                    Invoice No.
+                                </th>
+                                <th>
+                                    Product Name & Code
+                                </th>
+                                <th>
+                                    Amount
+                                </th>
+                                <th>
+                                    Invoice Date
+                                </th>
+                                <th>
+                                    Through
+                                </th>
+                                <th>
+                                    Used ID
+                                </th>
+                                <th>
+                                    Used Date
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr dir-paginate="x in UserdPins  | itemsPerPage:ItemsperPage track by $index">
+                                <td class="label-center">
+                                    {{$index+1}}
+                                </td>
+                                <td class="label-center">
+                                    {{x.Cardsno}}
+                                </td>
+                                <td class="label-center">
+                                    {{x.PINNo}}
+                                </td>
+                                <td class="label-center">
+                                    {{x.InvoiceNo}}
+                                </td>
+                                <td>
+                                    {{x.ProductNameCode}}
+                                </td>
+                                <td class="label-right">
+                                    {{x.Amount}}
+                                </td>
+                                <td class="label-center">
+                                    {{x.InvoiceDate}}
+                                </td>
+                                <td class="label-center">
+                                    {{x.Through}}
+                                </td>
+                                <td class="label-center">
+                                    {{x.UsedID}}
+                                </td>
+                                <td class="label-center">
+                                    {{x.UsedDate}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="row form-group">
+                        <div class="col-md-11">
+                            <dir-pagination-controls max-size="15" direction-links="true" boundary-links="true">
+                            </dir-pagination-controls>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,210 @@
+﻿<style>
+
+    .text-blue {
+        color: #3d276f;
+    }
+</style>
+<div class="container-fluid" ng-controller="getSession">
+    <div class="row">
+        <!-- <div class="col sidebar-width sidebar border-right bg-white">
+            <div class="">
+
+            </div>
+        </div> -->
+        <div class="col-md-12">
+
+            <div class="row mt-3">
+                <div class="col-6 col-md-3 mb-3" >
+                    <div class="card" style="background-color: #7a6fbe!important;">
+                        
+                        <div style="background-image: url(https://themesbrand.com/lexa/layouts/purple/horizontal/assets/images/bg-1.png); height: 130px; background-size: cover;">
+                            <div class="status-icon"><i class="las la-check"></i></div>
+                            <div ng-if="Glance[0].addresssts=='Pending'" class="status-icon"><i class="las la-history"></i></div>
+                            <div ng-if="Glance[0].addresssts=='Rejected'" class="status-icon"><i class="las la-times"></i></div>
+                            <div ng-if="Glance[0].addresssts=='Not Uploaded'" class="status-icon"><i class="las la-info-circle"></i></div>
+
+                            <div class="status-text"><small>Approved</small>KYC</div>
+                            <div ng-if="Glance[0].addresssts=='Pending'" class="status-text"><small>Pending</small>KYC</div>
+                            <div ng-if="Glance[0].addresssts=='Rejected'" class="status-text"><small>Rejected</small>KYC</div>
+                            <div ng-if="Glance[0].addresssts=='Not Uploaded'" class="status-text"><small>Not Uploaded</small>KYC</div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-6 col-md-3 mb-3">
+                    <div class="card" style="background-color: #7a6fbe!important;">
+                        <div style="background-image: url(https://themesbrand.com/lexa/layouts/purple/horizontal/assets/images/bg-1.png); height: 130px; background-size: cover;">
+                            <div class="status-icon"><i class="las la-check"></i></div>
+                            <div ng-if="Glance[0].banksts=='Pending'" class="status-icon"><i class="las la-history"></i></div>
+                            <div ng-if="Glance[0].banksts=='Rejected'" class="status-icon"><i class="las la-times"></i></div>
+                            <div ng-if="Glance[0].banksts=='Not Uploaded'" class="status-icon"><i class="las la-info-circle"></i></div>
+
+                            <div class="status-text"><small>Approved</small>NEFT</div>
+                            <div ng-if="Glance[0].banksts=='Pending'" class="status-text"><small>Pending</small>NEFT</div>
+                            <div ng-if="Glance[0].banksts=='Rejected'" class="status-text"><small>Rejected</small>NEFT</div>
+                            <div ng-if="Glance[0].banksts=='Not Uploaded'" class="status-text"><small>Not Uploaded</small>NEFT</div>
+                        </div>
+
+                    </div>
+                </div>
+            
+                <div class="col-6 col-md-3 mb-3">
+                    <div class="card" style="background-color: #7a6fbe!important;">
+                        <div style="background-image: url(https://themesbrand.com/lexa/layouts/purple/horizontal/assets/images/bg-1.png); height: 130px; background-size: cover;">
+                            <div class="status-icon"><i class="las la-check"></i></div>
+                            <div ng-if="Glance[0].pansts=='Pending'" class="status-icon"><i class="las la-history"></i></div>
+                            <div ng-if="Glance[0].pansts=='Rejected'" class="status-icon"><i class="las la-times"></i></div>
+                            <div ng-if="Glance[0].pansts=='Not Uploaded'" class="status-icon"><i class="las la-info-circle"></i></div>
+
+                            <div class="status-text"><small>Approved</small>PAN Card</div>
+                            <div ng-if="Glance[0].pansts=='Pending'" class="status-text"><small>Pending</small>PAN Card</div>
+                            <div ng-if="Glance[0].pansts=='Rejected'" class="status-text"><small>Rejected</small>PAN Card</div>
+                            <div ng-if="Glance[0].pansts=='Not Uploaded'" class="status-text"><small>Not Uploaded</small>PAN Card</div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-6 col-md-3 mb-3">
+                    <div class="card" style="background-color: #7a6fbe!important;">
+                        <div style="background-image: url(https://themesbrand.com/lexa/layouts/purple/horizontal/assets/images/bg-1.png); height: 130px; background-size: cover;">
+                            <div class="status-icon"><i class="las la-wallet"></i></div>
+
+                            <div class="status-text"><small>Wallet</small>00000.00</div><!--{{Glance[0].Ebal}}-->
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3">
+
+                <div class="col-md-4">
+                    <div class="card p-3">
+                        <div class="row f-14">
+                            <div class="col-md-12 text-center mb-5">
+                                <h5 class="text-left mb-4">Profile Info</h5>
+                                <div class="profile-image">
+                                    <img src="{{Glance[0].MemPhoto}}" width="100px" />
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <label>User Name </label>
+                            </div>
+                            <div class="col-md-6">
+                                <label> {{lblname}}</label>
+                            </div>
+                            <div class="col-md-5">
+                                <label>User Id</label>
+                            </div>
+                            <div class="col-md-5">
+                                <label>  {{lblidno}}</label>
+                            </div>
+                            <div class="col-md-5">
+                                <label>Date Of Joining</label>
+                            </div>
+                            <div class="col-md-5">
+                                <label>  {{lbldate}}</label>
+                            </div>
+                            <!--<div class="col-md-5">
+                    <label>Rank</label>
+                </div>
+                <div class="col-md-5">
+                    <label>DIAMOND</label>
+                </div>-->
+                            <div class="col-md-5">
+                                <label>Sponsor</label>
+                            </div>
+                            <div class="col-md-5">
+                                <label>{{lblsprid}}</label>
+                            </div>
+                            <div class="col-md-5">
+                                <label>Sponsor Name</label>
+                            </div>
+                            <div class="col-md-5">
+                                <label>{{Lblsprname}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <!--<div class="card h-100">
+            <div class="card-header bg-theam text-white">
+                My Business Details
+            </div>
+
+        </div>-->
+                    <div class="w-100">
+                        <div class="row form-group">
+                            <div class="col-lg-6 col-md-6 ">
+                                <div class=" card p-2 mb-3">
+                                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 ">
+                                        <h3 style="font-size:13px;" class="text-blue mb-3">
+                                            Required PPV
+                                        </h3>
+                                        <h4 class="ng-binding">{{lblReqPV}}</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 ">
+                                <div class=" card p-2 mb-3">
+                                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 ">
+                                        <h3 style="font-size:13px;" class="text-blue mb-3">Total PPV </h3>
+                                        <h4 class="ng-binding">{{totPV}}</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 ">
+                                <div class=" card p-2 mb-3">
+                                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 ">
+                                        <h3 style="font-size:13px;" class="text-blue mb-3">Downline </h3>
+                                        <h4 class="ng-binding">Left</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 ">
+                                <div class=" card p-2 mb-3">
+                                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 ">
+                                        <h3 style="font-size:13px;" class="text-blue mb-3">Today</h3>
+                                        <h4 class="ng-binding">{{LTodCnt}}</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 ">
+                                <div class=" card p-2 mb-3">
+                                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 ">
+                                        <h3 style="font-size:13px;" class="text-blue mb-3">Total </h3>
+                                        <h4 class="ng-binding">{{LTotCnt}}</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 ">
+                                <div class=" card p-2 mb-3">
+                                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 ">
+                                        <h3 style="font-size:13px;" class="text-blue mb-3">Downline </h3>
+                                        <h4 class="ng-binding">Right</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 ">
+                                <div class=" card p-2 mb-3">
+                                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 ">
+                                        <h3 style="font-size:13px;" class="text-blue mb-3">Today</h3>
+                                        <h4 class="ng-binding">{{LTotCnt}}</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 ">
+                                <div class=" card p-2 mb-3">
+                                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 ">
+                                        <h3 style="font-size:13px;" class="text-blue mb-3">Total </h3>
+                                        <h4 class="ng-binding">{{RTotCnt}}</h4>
+                                    </div>
+                                </div>
+                            </div>                            
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,105 @@
+﻿<div class="container-fluid" ng-controller="Events_ctrl" ng-init="GetCompleteEvents()">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row top-row-strip">
+                <div class="col-md-12">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"> Profile</li>
+                        <li class="breadcrumb-item active">TICKET REPORT</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row ">
+        <div class="col-md-12 ">
+            <div class="card p-3">
+                <div class="row">
+                    <div class="col-md-8 mx-auto">
+                        <form name="Form">
+                            <div class="form-group row">
+                                <label class="col-md-4 col-form-label">
+                                    Select Event :
+                                </label>
+                                <div class="col-md-4">
+                                    <select ng-model="ddlevent" class="form-control">
+                                        <option ng-repeat="x in AtdTicks" value="{{x.prgmid}}">{{x.PrgmName}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-4 col-form-label">
+                                    Select Member Type :
+                                </label>
+                                <div class="col-md-4">
+                                    <select ng-model="ddltype" class="form-control">
+                                        <option value="Member">Member</option>
+                                        <option value="Guest">Guest</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-4 col-form-label">
+                                </label>
+                                <div class="col-md-8">
+                                    <button type="submit" class="btn btn-primary" ng-disabled="Form.$invalid" ng-click="EveTicketRpt(ddlevent,ddltype)">
+                                        Submit
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class=" table-responsive">
+                <table class="table table-bordered table-striped f-14">
+                    <thead>
+                        <tr class="table-header">
+                            <th>
+                                Ticket No
+                            </th>
+                            <th>
+                                IBA Id
+                            </th>
+                            <th>
+                                Name
+                            </th>
+                            <th>
+                                State
+                            </th>
+                            <th>
+                                Status
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr dir-paginate="x in AtdEvntTicks  | itemsPerPage:ItemsperPage track by $index">
+                            <td>
+                                {{x.TicketNo}}
+                            </td>
+                            <td>
+                                {{x.idno}}
+                            </td>
+                            <td>
+                                {{x.name}}
+                            </td>
+                            <td>
+                                {{x.State}}
+                            </td>
+                            <td>
+                                {{x.Tcktsts}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

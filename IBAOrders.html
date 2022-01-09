@@ -1,0 +1,193 @@
+﻿<div class="" ng-controller="Orders_ctrl">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row top-row-strip">
+                <div class="col-md-12">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"> Order</li>
+                        <li class="breadcrumb-item active">IBA ORDERS</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row " ng-show="showibaords==false">
+        <div class="col-md-12 ">
+            <div class="card p-3">
+                <div class="row">
+                    <div class="col-md-8 mx-auto">
+                        <div class="example-wrap" ng-show="showibaords==false">
+                            <div class="example">
+                                <form name="Form">
+                                    <div class="form-group row">
+                                        <label class="col-md-1 col-form-label">
+                                            <input type="radio" ng-model="rtype" value="All" ng-checked="true">&nbsp; All
+                                        </label>
+                                        <div class="col-md-8">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-1 col-form-label">
+                                            <input type="radio" ng-model="rtype" value="On">&nbsp;On
+                                        </label>
+                                        <div class="col-md-3">
+                                            <input type="Date" class="form-control" name="txtondate" ng-model="txtondate" placeholder="On Date">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-1 col-form-label">
+                                            <input type="radio" ng-model="rtype" value="Frm">&nbsp;From
+                                        </label>
+                                        <div class="col-md-3">
+                                            <input type="Date" class="form-control" name="txtfrmdate" ng-model="txtondate" placeholder="From Date">
+                                        </div>
+                                        <label class="col-md-1 col-form-label">
+                                            To
+                                        </label>
+                                        <div class="col-md-3">
+                                            <input type="Date" class="form-control" name="txttodate" ng-model="txttodate" placeholder="To Date">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-4 col-form-label">
+                                        </label>
+                                        <div class="col-md-8">
+                                            <button type="submit" class="btn btn-primary" ng-click="IBAOrdersReport(rtype,'')">
+                                                Submit
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" ng-show="showibaords==true">
+        <div class="col-md-3">
+            <img src="images/backimg.jpg" style="width: 80px; height: 35px" ng-click="backIbaOrders()" />
+        </div>
+        <div class="col-md-3 col-md-offset-9" style="float: right">
+            <input type="text" ng-model="search" class="form-control" placeholder="Search">
+        </div>
+        <div class="col-md-3" ng-show="showibaords==true" style="float: right">
+            <select ng-model="ddlmygoal" id="desgid" class="form-control" ng-change="IBAOrdersReport(rtype,ddlmygoal)">
+                <option selected="true" value="">Select MOP</option>
+                <option>CASH</option>
+                <option>CHEQUE</option>
+                <option>COD</option>
+                <option>DD</option>
+                <option>EWALLET</option>
+                <option>ONLINE PAYMENT</option>
+                <option>REPCOUPON</option>
+                <option>Pay Later</option>
+            </select>
+        </div>
+        <div class="col-md-3" ng-show="showibaords==true" style="float: right">
+            <select ng-model="ddlordtype" id="ddlordtype" class="form-control" ng-change="IBAOrdersReport(rtype,ddlmygoal)">
+                <option selected="true" value="">All</option>
+                <option value="IO">IBA Orders</option>
+                <option value="AH">Appy Homes</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class=" table-responsive">
+                <table class="table table-bordered table-striped f-14"
+                       ng-show="showibaords==true" cellspacing="3">
+                    <thead>
+                        <tr class="table-header">
+                            <th>
+                                SNo.
+                            </th>
+                            <th>
+                                Bill No.
+                            </th>
+                            <th>
+                                IDNO/Name
+                            </th>
+                            <th>
+                                Bill Date
+                            </th>
+                            <th>
+                                Product List
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr dir-paginate="x in ibaords | filter:search | itemsPerPage:ItemsperPage track by $index">
+                            <td  class="label-center">
+                                {{$index+1}}
+                            </td>
+                            <td  class="label-center">
+                                <a>
+                                    <label style="color: Blue" ng-click="getIBAInvoice(x.refno)">
+                                        {{x.refno}}
+                                    </label>
+                                </a>
+                            </td>
+                            <td class="label-center">
+                                {{x.name}}
+                            </td>
+                            <td  class="label-center">
+                                {{x.refdate}}
+                            </td>
+                            <td>
+                                <table class="table table-hover dataTable table-striped w-full small" ng-init="IBAOrdPrdDet()">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Product Code/Name
+                                            </th>
+                                            <th>
+                                                Quantity
+                                            </th>
+                                            <th>
+                                                DP
+                                            </th>
+                                            <th>
+                                                PV
+                                            </th>
+                                            <th>
+                                                ddd
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="t in ibaordprs | filter:{billno:x.refno}:true">
+                                            <td>
+                                                {{t.pname}}
+                                            </td>
+                                            <td class="label-center">
+                                                {{t.qty}}
+                                            </td>
+                                            <td class="label-center">
+                                                {{t.price}}
+                                            </td>
+                                            <td class="label-center">
+                                                {{t.pv}}
+                                            </td>
+                                            <td class="label-center">
+                                                {{t.billno}}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row form-group" ng-show="showibaords==true">
+                <div class="col-md-11">
+                    <dir-pagination-controls max-size="15" direction-links="true" boundary-links="true">
+                    </dir-pagination-controls>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

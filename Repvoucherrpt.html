@@ -1,0 +1,82 @@
+﻿<div class="container-fluid" ng-controller="Pin_ctrl">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row top-row-strip">
+                <div class="col-md-12">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"> Pin Menu</li>
+                        <li class="breadcrumb-item active">Repurchase Voucher Report</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-model="panel1" ng-init="UserdPinLoad('RepVocuher')">
+        <div class="row">
+            <div class="col-md-12">
+                <div class=" table-responsive">
+                    <table class="table table-bordered table-striped f-14">
+                        <thead>
+                            <tr class="table-header">
+                                <th>
+                                    S No.
+                                </th>
+                                <th>
+                                    Voucher No
+                                </th>
+                                <th>
+                                    Voucher Amount
+                                </th>
+                                <th>
+                                    Voucher Date
+                                </th>
+                                <th>
+                                    Expiry Date
+                                </th>
+                                <th>
+                                    Status
+                                </th>
+                                <th>
+                                    Remarks
+                                </th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr dir-paginate="x in UserdPins  | itemsPerPage:ItemsperPage track by $index">
+                                <td class="label-center">
+                                    {{$index+1}}
+                                </td>
+                                <td class="label-center">
+                                    {{x.VcrNo}}
+                                </td>
+                                <td class="label-right">
+                                    {{x.VcrAmt}}
+                                </td>
+                                <td class="label-center">
+                                    {{x.VcrDate}}
+                                </td>
+                                <td class="label-center">
+                                    {{x.ValidUpto}}
+                                </td>
+                                <td class="label-center">
+                                    {{x.Avl}}
+                                </td>
+                                <td>
+                                    {{x.Remarks}}
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="row form-group">
+                        <div class="col-md-11">
+                            <dir-pagination-controls max-size="15" direction-links="true" boundary-links="true">
+                            </dir-pagination-controls>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
